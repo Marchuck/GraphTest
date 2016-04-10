@@ -18,8 +18,10 @@ public class AGDS_Visualiser {
 
     public static final int summaryBuildingTimeInMillis = 10000;
 
-    private static final String GRAPH_STYLESHEET = "node {fill-color: rgb(0,0,255);}" +
+    private static final String GRAPH_STYLESHEET = "node#A {fill-color: rgb(0,0,255);}" +
+            "node#B {fill-color: rgb(255,0,0);}" +
             "node.marked {fill-color: rgb(255,0,0);}";
+
 
     private boolean notDrawed = true;
 
@@ -38,25 +40,27 @@ public class AGDS_Visualiser {
         if (nextInt == 0) {
             //this looks tricky, but it is equvalent to
             //Element element = graph.addNode("X");
-            //addLabel(element);
-            addLabel(graph.addNode("R"));
-            addLabel(graph.addNode("A"));
-            addLabel(graph.addEdge("RA", "A", "R"));
-            addLabel(graph.addNode("B"));
+            //addElementWithLabel(element);
+            addLabel(graph.addNode("R"), nextInt);
+            addLabel(graph.addNode("A"), nextInt);
+            addLabel(graph.addEdge("RA", "A", "R"), nextInt);
+            addLabel(graph.addNode("B"), nextInt);
+
+
         } else if (nextInt < n) {
             String newNodeName = "A" + nextInt;
             Node newNodeAn = graph.addNode(newNodeName);
-            addLabel(newNodeAn);
+            addLabel(newNodeAn, nextInt);
             Edge edgeAnA = graph.addEdge("A" + newNodeName, "A", newNodeName);
-            addLabel(edgeAnA);
+            addLabel(edgeAnA, nextInt);
             Edge edgeAnB = graph.addEdge("B" + newNodeName, "B", newNodeName);
-            addLabel(edgeAnB);
+            addLabel(edgeAnB, nextInt);
         } else if (n == nextInt) {
-            addLabel(graph.addNode("C"));
+            addLabel(graph.addNode("C"), nextInt);
         } else {
             if (notDrawed) {
                 notDrawed = false;
-                addLabel(graph.addEdge("CB", "C", "B"));
+                addLabel(graph.addEdge("CB", "C", "B"), nextInt);
             }
             Log.d(TAG, "completed");
         }
@@ -67,9 +71,14 @@ public class AGDS_Visualiser {
      *
      * @param e
      */
-    public static void addLabel(Element e) {
+    public static void addLabel(Element e, int index) {
         String id = e.getId();
         e.addAttribute("ui.label", id);
+
+        if (index % 2 == 0) e.addAttribute("ui.style", "fill-color: rgb(255,0,0);");
+        else e.addAttribute("ui.style", "fill-color: rgb(0,255,0);");
+
+
     }
 
     /**
@@ -103,16 +112,18 @@ public class AGDS_Visualiser {
         graph.setStrict(true);
         graph.setAutoCreate(true);
 
-        graph.addAttribute("ui.stylesheet", GRAPH_STYLESHEET);
+//        graph.addAttribute("ui.stylesheet", GRAPH_STYLESHEET);
         int maxStep = nodes;
 //        graph.display();
         for (int j = 0; j < maxStep; j++) {
             doOnNext(graph, j, maxStep);
-//            sleep(summaryBuildingTimeInMillis / maxStep);
+            graph.display();
+            sleep(500);
+
         }
 
-        graph.display();
-        sleep(2000);
-        explore(graph.getNode("A"));
+//        graph.display();
+//        sleep(2000);
+//        explore(graph.getNode("A"));
     }
 }

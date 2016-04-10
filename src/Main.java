@@ -1,8 +1,12 @@
+import agds.AGDS;
+import agds.GraphDrawer;
+import agds.Node;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
-import some_graphs.AGDS_Visualiser;
+import some_graphs.GraphVisualiser;
 import ui.NDimensionalPanel;
+import util.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,11 +25,34 @@ public class Main {
 
     public static void main(String[] args) {
 
-        new AGDS_Visualiser().run();
+        final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS visualiser");
+//        graphVisualiser.setRefreshCount(10).setSleepTime(3000);
+        graphVisualiser.setStepsDisabled(false);
+        AGDS agds = new AGDS();
+        agds.connectGraphDrawer(new GraphDrawer<Node>() {
 
-//   new DemoViewerJComponents();
-        // NDimensionalPanel.showTabs(new SingleTab("KNN", createEmptyComponent("//TODO: KNN")),
-        //       new SingleTab("Data Mining", createEmptyComponent("TODO: DATA MINING")));
+            @Override
+            public void drawNode(Node node) {
+                Log.d(TAG, "drawNode " + node.getValue() + "," + node.getStyleSheet());
+                if (!graphVisualiser.containsNode(node))
+                    graphVisualiser.drawNode(node.getValue(), node.getStyleSheet());
+                else
+                    Log.e(TAG, "drawNode failed. Node " + node.getValue() + " already exists!");
+            }
+
+            @Override
+            public void drawEdge(Node nodeA, Node nodeB) {
+                Log.d(TAG, "drawEdge " + nodeA.getValue() + "," + nodeB.getValue());
+                if (!graphVisualiser.containsEdge(nodeA, nodeB))
+                    graphVisualiser.drawEdge(nodeA.getValue(), nodeB.getValue());
+                else
+                    Log.e(TAG, "drawNode failed. Edge (" + nodeA.getValue()
+                            + "," + nodeB.getValue() + ") already exists!");
+
+            }
+        });
+        agds.drawData();
+        graphVisualiser.showGraph();
     }
 
     public void draw() {
