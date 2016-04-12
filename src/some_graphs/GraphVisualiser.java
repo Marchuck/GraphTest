@@ -1,9 +1,11 @@
 package some_graphs;
 
 import agds.AGDS;
+import agds.GraphDrawer;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 
 import java.util.Iterator;
@@ -14,6 +16,11 @@ import java.util.Iterator;
  */
 public class GraphVisualiser {
     public static final String TAG = GraphVisualiser.class.getSimpleName();
+    public boolean isLegend = false;
+
+    public Graph getGraph() {
+        return graph;
+    }
 
     public static final int summaryBuildingTimeInMillis = 10000;
 
@@ -26,7 +33,8 @@ public class GraphVisualiser {
     private Graph graph;
 
     public GraphVisualiser(String name) {
-        graph = new SingleGraph(name);
+//        graph = new SingleGraph(name);
+        graph = new MultiGraph(name);
     }
 
 
@@ -112,12 +120,9 @@ public class GraphVisualiser {
 
     public void showGraph() {
         graph.display();
+        if (isLegend) showLegend();
     }
 
-    public void showGraphWithLegend() {
-        showLegend();
-        showGraph();
-    }
 
     int invalidatorIndex = 0;
     int REFRESH_COUNT = 10;
@@ -155,13 +160,39 @@ public class GraphVisualiser {
         return node;
     }
 
+    public static final String RECORD_NODES = "Record Nodes";
+    public static final String ATTR_NODES = "Attribute Nodes";
+    public static final String CLASS_NODES = "Class Nodes";
+    public static final String VALUE_NODES = "Value Nodes";
+
     public void showLegend() {
-        Node a = drawNode("Record Nodes", AGDS.RECORD_NODE_STYLESHEET);
-        Node b = drawNode("Attribute Nodes", AGDS.ATTR_NODE_STYLESHEET);
-        Node c = drawNode("Class Nodes", AGDS.CLASS_NODE_STYLESHEET);
-        Node d = drawNode("Value Nodes", AGDS.VALUE_NODE_STYLESHEET);
+        Node a = drawNode(RECORD_NODES, AGDS.RECORD_NODE_STYLESHEET);
+        Node b = drawNode(ATTR_NODES, AGDS.ATTR_NODE_STYLESHEET);
+        Node c = drawNode(CLASS_NODES, AGDS.CLASS_NODE_STYLESHEET);
+        Node d = drawNode(VALUE_NODES, AGDS.VALUE_NODE_STYLESHEET);
         graph.addEdge(a.getId() + b.getId(), a.getId(), b.getId());
         graph.addEdge(c.getId() + b.getId(), c.getId(), b.getId());
         graph.addEdge(c.getId() + d.getId(), c.getId(), d.getId());
+    }
+
+    public void removeLegend() {
+        if (graph.getNode(RECORD_NODES) != null)
+            graph.removeNode(RECORD_NODES);
+        if (graph.getNode(ATTR_NODES) != null)
+            graph.removeNode(ATTR_NODES);
+        if (graph.getNode(VALUE_NODES) != null)
+            graph.removeNode(VALUE_NODES);
+        if (graph.getNode(CLASS_NODES) != null)
+            graph.removeNode(CLASS_NODES);
+    }
+
+    public synchronized void switchLegend() {
+        if (isLegend) {
+            removeLegend();
+            isLegend = false;
+        } else {
+            showLegend();
+            isLegend = true;
+        }
     }
 }

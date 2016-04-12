@@ -4,8 +4,9 @@ import agds.Node;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
+import some_graphs.AGDS_Visualiser;
 import some_graphs.GraphVisualiser;
-import ui.NDimensionalPanel;
+import ui.AllAlgorithmsPanel;
 import util.Log;
 
 import javax.swing.*;
@@ -19,11 +20,16 @@ public class Main {
     public static final String TAG = Main.class.getSimpleName();
 
     public static JComponent createEmptyComponent(String name) {
-        return NDimensionalPanel.makeTextPanel(name);
+        return AllAlgorithmsPanel.makeTextPanel(name);
     }
 
+    static boolean runExample = false;
 
     public static void main(String[] args) {
+        if (runExample) {
+            new AGDS_Visualiser(10).run();
+            return;
+        }
 
         final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS visualiser");
 //        graphVisualiser.setRefreshCount(10).setSleepTime(3000);
@@ -52,6 +58,7 @@ public class Main {
             }
         });
         agds.drawData();
+//        graphVisualiser.showGraphWithLegend();
         graphVisualiser.showGraph();
     }
 

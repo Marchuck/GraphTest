@@ -1,18 +1,23 @@
 package ui;
 
+import some_graphs.GraphMerger;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by lukasz on 24.03.16.
+ * @author Lukasz Marczak
+ * @since 24.03.16.
  */
-public class NDimensionalPanel extends JPanel {
+public class AllAlgorithmsPanel extends JPanel {
 
     public static final int WINDOW_WIDTH = 800;
     public static final int WINDOW_HEIGHT = 600;
 
-    public NDimensionalPanel(SingleTab... tabs) {
+    public AllAlgorithmsPanel(SingleTab... tabs) {
         super(new GridLayout(1, 1));
         JTabbedPane tabbedPane = new JTabbedPane();
         for (SingleTab tab : tabs) {
@@ -25,13 +30,32 @@ public class NDimensionalPanel extends JPanel {
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
     }
 
-    public NDimensionalPanel() {
+    public AllAlgorithmsPanel() {
         super(new GridLayout(1, 1));
 
         JTabbedPane tabbedPane = new JTabbedPane();
         ImageIcon icon = createImageIcon("images/share.png");
 
         JComponent panel1 = makeTextPanel("Panel #1");
+
+
+//        tabbedPane.addTab("Graph",new GraphView());
+
+        final GraphMerger graphMerger = new GraphMerger();
+        tabbedPane.addTab("Graph", graphMerger);
+
+        JButton btn = new JButton("LEGENDUJ!");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                graphMerger.getGraphVisualiser().switchLegend();
+
+            }
+        });
+        tabbedPane.add(btn);
+
+
         tabbedPane.addTab("Tab 1", icon, panel1,
                 "Does nothing");
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
@@ -63,6 +87,7 @@ public class NDimensionalPanel extends JPanel {
     public static JComponent makeTextPanel(String text) {
         JPanel panel = new JPanel(false);
         JLabel filler = new JLabel(text);
+
         filler.setHorizontalAlignment(JLabel.CENTER);
         panel.setLayout(new GridLayout(1, 1));
         panel.add(filler);
@@ -73,7 +98,7 @@ public class NDimensionalPanel extends JPanel {
      * Returns an ImageIcon, or null if the path was invalid.
      */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = NDimensionalPanel.class.getResource(path);
+        java.net.URL imgURL = AllAlgorithmsPanel.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -93,7 +118,7 @@ public class NDimensionalPanel extends JPanel {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Add content to the window.
-        frame.add(new NDimensionalPanel(), BorderLayout.CENTER);
+        frame.add(new AllAlgorithmsPanel(), BorderLayout.CENTER);
 
         //Display the window.
         frame.pack();
@@ -106,7 +131,7 @@ public class NDimensionalPanel extends JPanel {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Add content to the window.
-        frame.add(new NDimensionalPanel(tabs), BorderLayout.CENTER);
+        frame.add(new AllAlgorithmsPanel(tabs), BorderLayout.CENTER);
 
         //Display the window.
         frame.pack();

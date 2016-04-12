@@ -76,7 +76,7 @@ public class AGDS_Visualiser {
         e.addAttribute("ui.label", id);
 
         if (index % 2 == 0) e.addAttribute("ui.style", "fill-color: rgb(255,0,0);");
-        else e.addAttribute("ui.style", "fill-color: rgb(0,255,0);");
+        else e.addAttribute("ui.style", "fill-color: rgb(0,0,255);");
 
 
     }

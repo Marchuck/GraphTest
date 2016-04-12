@@ -11,7 +11,8 @@ import org.graphstream.ui.view.Viewer;
 import javax.swing.*;
 
 /**
- * Created by lukasz on 23.03.16.
+ * @author Lukasz Marczak
+ * @since 23.03.16.
  */
 public class DemoViewerJComponents {
     public DemoViewerJComponents() {
