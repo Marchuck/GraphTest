@@ -1,7 +1,5 @@
 package ui;
 
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import util.Log;

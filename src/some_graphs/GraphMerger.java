@@ -7,10 +7,6 @@ import org.graphstream.ui.view.Viewer;
 import util.Log;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 /**
  * @author Lukasz Marczak
