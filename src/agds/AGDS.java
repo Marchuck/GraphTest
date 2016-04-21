@@ -1,7 +1,7 @@
 package agds;
 
 import com.sun.istack.internal.Nullable;
-import util.Log;
+import common.Log;
 import utils.Utils;
 
 import java.io.BufferedReader;

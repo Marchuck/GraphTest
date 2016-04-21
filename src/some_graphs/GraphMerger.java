@@ -3,8 +3,8 @@ package some_graphs;
 import agds.AGDS;
 import agds.GraphDrawer;
 import agds.Node;
+import common.Log;
 import org.graphstream.ui.view.Viewer;
-import util.Log;
 
 import javax.swing.*;
 

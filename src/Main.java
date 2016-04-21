@@ -1,13 +1,13 @@
 import agds.AGDS;
 import agds.GraphDrawer;
 import agds.Node;
+import common.Log;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.AGDS_Visualiser;
 import some_graphs.GraphVisualiser;
 import ui.AllAlgorithmsPanel;
-import util.Log;
 
 import javax.swing.*;
 import java.awt.*;

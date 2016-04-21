@@ -1,0 +1,9 @@
+1	kawa	mleko	cukier	orzeszki	 	 	 	 	 	 
+2	kawa	 	cukier	 	jajka	 	 	 	 	 
+3	kawa	 	cukier	 	 	chleb	masło	 	 	ser
+4	 	 	cukier	orzeszki	jajka	 	 	miód	płatki	 
+5	 	mleko	 	 	jajka	 	masło	 	 	 
+6	kawa	 	 	orzeszki	 	chleb	 	 	 	
+7	 	mleko	 	 	 	 	 	miód	płatki	 
+8	 	 	 	 	jajka	chleb	masło	 	 	ser
+9	 	mleko	 	 	 	 	 	 	 	ser

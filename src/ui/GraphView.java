@@ -1,8 +1,8 @@
 package ui;
 
+import common.Log;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
-import util.Log;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,12 +1,11 @@
 package some_graphs;
 
+import common.Log;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
-import util.Log;
-
 import java.util.Iterator;
 
 /**

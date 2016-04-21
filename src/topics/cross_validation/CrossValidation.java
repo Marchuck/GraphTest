@@ -20,7 +20,8 @@ public class CrossValidation {
         DataReader<Item> dataReader = new DataReader<>(readStrategy);
         List<Item> dataSet = dataReader.read(DataReader.IRIS_DATA);
         if (!dataReader.dataSetOk(dataSet))
-            DataReader.throwX("Not enough elements in dataset");
+            DataReader.throwExc("Not enough elements in data set");
+
     }
 
 }

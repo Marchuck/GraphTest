@@ -30,7 +30,7 @@ public class NearestKNeighbours {
         //get all
         List<Item> list = dataReader.read("data.txt");
         if (list.size() < NEAREST_CANDIDATES || !dataReader.dataSetOk(list))
-            DataReader.throwX("Cannot classify. Not enough elements.");
+            DataReader.throwExc("Cannot classify. Not enough elements.");
 
         list.add(candidate);
         Collections.sort(list);

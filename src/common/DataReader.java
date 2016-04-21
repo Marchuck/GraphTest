@@ -4,9 +4,7 @@ import com.sun.javafx.beans.annotations.NonNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DataReader<DESTINATION> {
     public static final String IRIS_DATA = "IrisData.txt";
@@ -17,7 +15,7 @@ public class DataReader<DESTINATION> {
         return list.size() > 0;
     }
 
-    public static void throwX(String detailedMessage) {
+    public static void throwExc(String detailedMessage) {
         throw new IllegalStateException(detailedMessage);
     }
 
@@ -70,7 +68,7 @@ public class DataReader<DESTINATION> {
     }
 
     /**
-     * creates
+     * create new row and convert to {@link Item}
      *
      * @param nextLine
      * @return
@@ -86,5 +84,23 @@ public class DataReader<DESTINATION> {
         float[] values = new float[]{first, sec, third, fourth};
         String name = arr[4];
         return new Item(values, name);
+    }
+
+    /**
+     * create new row and convert to list of Strings
+     *
+     * @param nextLine
+     * @return
+     */
+    public static List<String> newStringListRow(String nextLine) {
+        String arr[] = nextLine.split("\t");
+//		System.out.println("New row length "+arr.length);
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list, arr);
+        return list;
+    }
+
+    public static <E> boolean isNullOrEmpty(Collection<E> collection) {
+        return collection == null || collection.size() == 0;
     }
 }
