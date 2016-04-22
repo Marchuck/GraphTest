@@ -1,68 +1,82 @@
 package topics.data_mining.property;
 
-import common.DataReader;
-import topics.data_mining.PropertyManager;
-import topics.data_mining.Transaction;
+import common.Log;
+import topics.data_mining.transaction.Transaction;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Lukasz Marczak
- * @since 21.04.16.
+ * @author lukasz
+ *         Class responisble to count confidence:
+ *         conditional probability p(X|Y) : when transaction contains X, it also contains Y
  */
-public class PropertyConfidenceBuilder implements AbstractBuilder {
+public class PropertyConfidenceBuilder {
+    public static final String TAG = PropertyConfidenceBuilder.class.getSimpleName();
+    private double PERCENTAGE_CONFIDENCE_THRESHOLD;
 
-    private PropertyManager propertyManager;
-    private List<Float> propertiesSupport;
-    private List<Transaction> transactionSet;
-
-    public PropertyConfidenceBuilder(PropertyManager propertyManager, List<Transaction> transactionSet) {
-        this.propertyManager = propertyManager;
-        this.transactionSet = transactionSet;
+    /**
+     * Constructors
+     *
+     * @param threshold
+     */
+    private PropertyConfidenceBuilder(double threshold) {
+        this.PERCENTAGE_CONFIDENCE_THRESHOLD = threshold;
     }
 
-    @Override
-    public List<Float> get() {
-        return propertiesSupport;
+    public static PropertyConfidenceBuilder with(double confidenceThreshold) {
+        if (confidenceThreshold < 0 || confidenceThreshold > 100)
+            throw new IllegalArgumentException("Invalid parameter");
+        PropertyConfidenceBuilder builder = new PropertyConfidenceBuilder(confidenceThreshold);
+        return builder;
     }
 
-    @Override
-    public List<Float> getNormalized() {
-        if (DataReader.isNullOrEmpty(this.propertiesSupport))
-            throw new NullPointerException("Nullable or empty list");
-
-        for (int j = 0; j < propertiesSupport.size(); j++) {
-            float oldValue = propertiesSupport.get(j);
-            propertiesSupport.set(j, oldValue * 100 / transactionSet.get(j).properties.size());
-            System.out.print("property name: "
-//                        + PROPERTY.values()[j].name()
-                    + propertyManager.getProperty(j)
-                    + ", value = "
-                    + String.format("%.2f",
-                    oldValue * 100 / transactionSet.size()));
-            System.out.println("%");
-        }
-        return this.propertiesSupport;
+    public static PropertyConfidenceBuilder withDefaultThreshold() {
+        return new PropertyConfidenceBuilder(50f);//with >50 passes
     }
 
-    @Override
-    public PropertyConfidenceBuilder compute() {
-        propertiesSupport = new ArrayList<>();
-
-        for (int j = 0; j < propertyManager.size(); j++) {
-            propertiesSupport.add(0f);
-        }
-
-        for (int j = 0; j < propertyManager.size(); j++) {
-            String nextProperty = propertyManager.getProperty(j);
-            for (Transaction tr : transactionSet) {
-                if (tr.properties.contains(nextProperty)) {
-                    float element = propertiesSupport.get(j);
-                    propertiesSupport.set(j, element + 1);
+    public static double compute(String selectedProperty, String otherProperty,
+                                 List<Transaction> transactions) {
+        int containsSelectedProperty = 0, containsBoth = 0;
+        for (Transaction tr : transactions) {
+            boolean containsThisProperty = tr.properties.contains(selectedProperty);
+            if (containsThisProperty) {
+                ++containsSelectedProperty;
+                if (tr.properties.contains(otherProperty)) {
+                    ++containsBoth;
                 }
             }
         }
-        return this;
+        return 100 * containsBoth / containsSelectedProperty;
+    }
+
+    /**
+     * computes conditional
+     *
+     * @param properties
+     * @param transactionSet
+     */
+    public void singleConditionalConfidence(List<String> properties, List<Transaction> transactionSet) {
+        int aboveThreshold = 0, allPossibilities = 0;
+        for (String propertySelected : properties) {
+            for (String property : properties) {
+                //avoid conditions like if kawa then kawa; it'll always compute 100%
+                if (!propertySelected.equals(property)) {
+                    double confidence = compute(propertySelected, property, transactionSet);
+                    if (confidence > PERCENTAGE_CONFIDENCE_THRESHOLD) {
+                        System.out.println("if " + propertySelected
+                                + " then  " + property + ": possibility = " + confidence + "%");
+                        ++aboveThreshold;
+                    }
+                    ++allPossibilities;
+                }
+            }
+        }
+        Log.d(TAG, "all possibilities = " + allPossibilities + ", above treshold = " + aboveThreshold);
+        Log.d(TAG, "this is  " + aboveThreshold * 100 / allPossibilities + " % of all.");
+    }
+
+
+    private boolean isNonZero(double confidence) {
+        return Double.compare(0.0f, confidence) != 0;
     }
 }

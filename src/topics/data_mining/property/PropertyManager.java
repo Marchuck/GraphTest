@@ -1,8 +1,6 @@
-package topics.data_mining;
+package topics.data_mining.property;
 
-import topics.data_mining.property.AbstractBuilder;
-import topics.data_mining.property.PropertyConfidenceBuilder;
-import topics.data_mining.property.PropertySupportBuilder;
+import topics.data_mining.transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.List;
 /**
  * @author Lukasz Marczak
  * @since 21.04.16.
+ * Store all unique properties here
  */
 public class PropertyManager {
 
@@ -40,19 +39,18 @@ public class PropertyManager {
     }
 
 
-    public static AbstractBuilder calculatePropertiesSupport(PropertyManager propertyManager,
+    public static PropertySupportBuilder calculatePropertiesSupport(PropertyManager propertyManager,
                                                              List<Transaction> transactionSet) {
-        AbstractBuilder builder = new PropertySupportBuilder(propertyManager, transactionSet);
+        PropertySupportBuilder builder = new PropertySupportBuilder(propertyManager, transactionSet);
         return builder.compute();
     }
 
-    public static AbstractBuilder calculatePropertiesConfidence(PropertyManager propertyManager,
-                                                                List<Transaction> transactionSet) {
-        AbstractBuilder builder = new PropertyConfidenceBuilder(propertyManager, transactionSet);
-        return builder;
-    }
 
     public static String withoutWhiteCharacters(String s) {
         return s.replaceAll("\\s+", "");
+    }
+
+    public List<String> get() {
+        return allProperties;
     }
 }

@@ -1,8 +1,8 @@
 package topics.data_mining.property;
 
 import common.DataReader;
-import topics.data_mining.PropertyManager;
-import topics.data_mining.Transaction;
+import javafx.util.Pair;
+import topics.data_mining.transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,12 @@ import java.util.List;
 /**
  * @author Lukasz Marczak
  * @since 21.04.16.
+ * Support definition:
+ * Possibility of existence that selected transaction contains X sum Y
+ *
  */
-public class PropertySupportBuilder implements AbstractBuilder {
-
+public class PropertySupportBuilder {
+    private boolean computed;
     private PropertyManager propertyManager;
     private List<Float> propertiesSupport;
     private List<Transaction> transactionSet;
@@ -22,12 +25,25 @@ public class PropertySupportBuilder implements AbstractBuilder {
         this.transactionSet = transactionSet;
     }
 
-    @Override
     public List<Float> get() {
         return propertiesSupport;
     }
 
-    @Override
+    private boolean notComputed() {
+        return !computed;
+    }
+
+    public List<Pair<String, Float>> getPropertiesWithSupport() {
+        if (notComputed()) compute();
+        List<Pair<String, Float>> pairs = new ArrayList<>();
+        for (int j = 0; j < propertiesSupport.size(); j++) {
+            String nextProperty = propertyManager.getProperty(j);
+            Float nextSupport = propertiesSupport.get(j);
+            pairs.add(new Pair<>(nextProperty, nextSupport));
+        }
+        return pairs;
+    }
+
     public List<Float> getNormalized() {
         if (DataReader.isNullOrEmpty(this.propertiesSupport))
             throw new NullPointerException("Nullable or empty list");
@@ -35,17 +51,16 @@ public class PropertySupportBuilder implements AbstractBuilder {
         for (int j = 0; j < propertiesSupport.size(); j++) {
             float oldValue = propertiesSupport.get(j);
             propertiesSupport.set(j, oldValue * 100 / transactionSet.size());
-            System.out.print("property name: "
-                    + propertyManager.getProperty(j)
-                    + ", support = "
-                    + String.format("%.2f",
-                    oldValue * 100 / transactionSet.size()));
-            System.out.println("%");
+//            System.out.print("property name: "
+//                    + propertyManager.getProperty(j)
+//                    + ", support = "
+//                    + String.format("%.2f",
+//                    oldValue * 100 / transactionSet.size()));
+//            System.out.println("%");
         }
         return this.propertiesSupport;
     }
 
-    @Override
     public PropertySupportBuilder compute() {
         propertiesSupport = new ArrayList<>();
 
@@ -62,6 +77,7 @@ public class PropertySupportBuilder implements AbstractBuilder {
                 }
             }
         }
+        this.computed = true;
         return this;
     }
 }

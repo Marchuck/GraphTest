@@ -1,7 +1,7 @@
 /**
  *
  */
-package topics.data_mining;
+package topics.data_mining.transaction;
 
 import java.util.ArrayList;
 import java.util.List;

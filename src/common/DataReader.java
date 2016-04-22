@@ -1,6 +1,7 @@
 package common;
 
 import com.sun.javafx.beans.annotations.NonNull;
+import topics.data_mining.transaction.Transaction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,6 +18,12 @@ public class DataReader<DESTINATION> {
 
     public static void throwExc(String detailedMessage) {
         throw new IllegalStateException(detailedMessage);
+    }
+
+    private boolean shouldSkipFirstLine;
+
+    public void skipFirstLine() {
+        this.shouldSkipFirstLine = true;
     }
 
     /**
@@ -54,8 +61,13 @@ public class DataReader<DESTINATION> {
 
             while (input.hasNextLine()) {
                 //read next line
+
                 String nextLine = input.nextLine();
                 //save record as four variables
+                if (shouldSkipFirstLine){
+                    shouldSkipFirstLine = false;
+                    continue;
+                }
                 list.add(readStrategy.createNewRow(nextLine));
             }
         } catch (FileNotFoundException e) {
@@ -100,7 +112,24 @@ public class DataReader<DESTINATION> {
         return list;
     }
 
+
     public static <E> boolean isNullOrEmpty(Collection<E> collection) {
         return collection == null || collection.size() == 0;
+    }
+
+    public static <T> List<T> listToDistinctList(List<T> list) {
+        Set<T> set = new HashSet<>();
+        set.addAll(list);
+        List<T> distinctList = new ArrayList<>();
+        distinctList.addAll(set);
+        return distinctList;
+    }
+
+    public static <T> List<T> setToArray(Set<T> set) {
+        List<T> list = new ArrayList<>();
+        for (T element : set) {
+            list.add(element);
+        }
+        return list;
     }
 }
