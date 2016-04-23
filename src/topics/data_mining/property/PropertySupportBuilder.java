@@ -45,7 +45,7 @@ public class PropertySupportBuilder {
     }
 
     public List<Float> getNormalized() {
-        if (DataReader.isNullOrEmpty(this.propertiesSupport))
+        if (DataReader.Utils.isNullOrEmpty(this.propertiesSupport))
             throw new NullPointerException("Nullable or empty list");
 
         for (int j = 0; j < propertiesSupport.size(); j++) {

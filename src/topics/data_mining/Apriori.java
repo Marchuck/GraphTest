@@ -1,46 +1,58 @@
 package topics.data_mining;
 
-import common.DataReader;
-import common.Log;
-import common.OrderedPowerSet;
+import common.*;
 import topics.data_mining.transaction.Transaction;
 
 import java.util.*;
+import java.util.List;
 
 import static java.lang.System.out;
 
 /**
  * @author Lukasz Marczak
  * @since 22.04.16.
+ * Apriori algorithm designed as builder
  */
 public class Apriori {
-    static class Pair<FIRST, SECOND> {
-        FIRST first;
-        SECOND second;
-
-        public Pair(FIRST first, SECOND second) {
-            this.first = first;
-            this.second = second;
-        }
-    }
-
     public static final String TAG = Apriori.class.getSimpleName();
+    /**
+     * single properties, for example "A", "B", "C" (it depends of input dataSet)
+     */
     private List<String> properties;
-
-    private List<Pair<String, Integer>> propertiesAndFrequnecy;
-
-    private List<String> frequentProperties;
-
+    /**
+     * input data, each transaction has list of properties
+     */
     private List<Transaction> transactions;
+    /**
+     * list of pairs: property with corresponding support
+     * (how much this value was present in transactions), for example { "A", 14}
+     */
+    private List<MPair<String, Integer>> propertiesWithFrequnecy;
+    /**
+     * store each patterns with corresponding support,
+     * for example { {"A", "B", "C"}, 4 }
+     * this is the output of Apriori algorithm
+     */
+    private List<MPair<List<String>, Integer>> mostFrequentProperties;
+    /**
+     * it is used to create combinations from most frequent properties
+     */
+    private List<String> singleFrequentProperties;
 
-    public Apriori() {
-        propertiesAndFrequnecy = new ArrayList<>();
+    /**
+     *
+     */
+    private double THRESHOLD;
+
+    public Apriori(double threshold) {
+        this.THRESHOLD = threshold;
+        this.propertiesWithFrequnecy = new ArrayList<>();
     }
 
     public Apriori withProperties(List<String> properties) {
         this.properties = properties;
         for (String property : properties) {
-            propertiesAndFrequnecy.add(new Pair<>(property, 0));
+            propertiesWithFrequnecy.add(new MPair<>(property, 0));
         }
         return this;
     }
@@ -51,33 +63,29 @@ public class Apriori {
     }
 
     public Apriori pruneStep() {
-        if (DataReader.isNullOrEmpty(transactions) || DataReader.isNullOrEmpty(properties))
+        if (DataReader.Utils.isNullOrEmpty(transactions) || DataReader.Utils.isNullOrEmpty(properties))
             throw new IllegalStateException("Cannot perform prune step with nullable dataset");
-        return fillProperties().sort().extractWith();
+        return fillProperties()
+                .sort()
+                .createMostFrequentSingles(THRESHOLD);
     }
 
-    //todo: create logic according to algorithm(stop when minSup is too small in deeper combination)
-    public Apriori joinStep() {
-        Log.d(TAG, "joinStep ");
-        //this method should be invoked after pruneStep()
-        if (DataReader.isNullOrEmpty(frequentProperties))
-            throw new IllegalStateException("Invoke pruneStep first!");
 
-        //create combination from list of existing frequenties:
-        OrderedPowerSet<String> powerSet = new OrderedPowerSet<>(frequentProperties);
-        for (int n = 1; n < 8 ; n++) {
-
-            List<LinkedHashSet<String>> hashSetList = powerSet.getPermutationsList(n);
-            for (LinkedHashSet<String> s : hashSetList) {
-                List<String> combinationOfN = DataReader.setToArray(s);
-
-                int computedSupport = computeSupport(combinationOfN, transactions);
-                if (computedSupport >= currentMinSupport) {
-                    Log.d("\n");
-                    Log.p("| ");
-                    for (String val : combinationOfN) Log.p(val + " | ");
-                    Log.d("\ncomputed support: " + computedSupport);
-                }
+    /**
+     * @param threshold value above which properties are considered to be frequent, used
+     *                  stronlgy in further step {@link Apriori#joinStep()}
+     * @return
+     */
+    private Apriori createMostFrequentSingles(double threshold) {
+        this.mostFrequentProperties = new ArrayList<>();
+        this.singleFrequentProperties = new ArrayList<>();
+        for (MPair<String, Integer> mPair : propertiesWithFrequnecy) {
+            if (mPair.second >= threshold) {
+                List<String> list = DataReader.Utils.wrapToList(mPair.first);
+                MPair<List<String>, Integer> pair = new MPair<>(list, mPair.second);
+                mostFrequentProperties.add(pair);
+                singleFrequentProperties.add(mPair.first);
+                //    Log.d(TAG, "___adding " + printMostFrequentProperty(pair));
             }
         }
 
@@ -85,29 +93,15 @@ public class Apriori {
     }
 
 
-    int maxx = 10;
-    int currentMinSupport;
-
-    private Apriori extractWith() {
-        this.frequentProperties = new ArrayList<>();
-        for (int j = 0; j < maxx; j++) {
-            frequentProperties.add(propertiesAndFrequnecy.get(j).first);
-        }
-        currentMinSupport = propertiesAndFrequnecy.get(frequentProperties.size() - 1).second;
-        Log.d("Current threshold = " + currentMinSupport);
-
-        return this;
-    }
-
     public Apriori fillProperties() {
         for (Transaction transaction : transactions) {
             for (String propertyFromTransaction : transaction.properties) {
                 int index = properties.indexOf(propertyFromTransaction);
                 if (index != -1) {
-                    Pair<String, Integer> toUpdate = propertiesAndFrequnecy.get(index);
-                    int previous = propertiesAndFrequnecy.get(index).second;
+                    MPair<String, Integer> toUpdate = propertiesWithFrequnecy.get(index);
+                    int previous = propertiesWithFrequnecy.get(index).second;
                     toUpdate.second = previous + 1;
-                    propertiesAndFrequnecy.set(index, toUpdate);
+                    propertiesWithFrequnecy.set(index, toUpdate);
                 } else {
                     Log.e(TAG, "pruneStep some errors with " + propertyFromTransaction);
                 }
@@ -122,17 +116,16 @@ public class Apriori {
 
     public Apriori sort(SortOrder ascending) {
         //create ascending list of property and support pairs
-        // with min to max support order
+        // with min to max support order or max to min order(DESCENDING)
         final int sgn = ascending == SortOrder.ASCENDING ? 1 : -1;
-        Collections.sort(propertiesAndFrequnecy, new Comparator<Pair<String, Integer>>() {
+        Collections.sort(propertiesWithFrequnecy, new Comparator<MPair<String, Integer>>() {
             @Override
-            public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
+            public int compare(MPair<String, Integer> o1, MPair<String, Integer> o2) {
                 return sgn * Integer.compare(o1.second, o2.second);
             }
         });
-        Log.d(TAG, "sort result: ");
-        for (Pair<String, Integer> a : propertiesAndFrequnecy)
-            out.println(a.first + ", " + a.second);
+//        for (MPair<String, Integer> a : propertiesWithFrequnecy)
+//            out.println(a.first + ", " + a.second);
         return this;
     }
 
@@ -141,7 +134,7 @@ public class Apriori {
                                      List<Transaction> transactions) {
         int finalSupport = 0;
         //avoid duplicates here
-        List<String> selectedPropertiesSet = DataReader.listToDistinctList(selectedProperties);
+        List<String> selectedPropertiesSet = DataReader.Utils.toDistinctList(selectedProperties);
         //remember set size
         int itemSetSize = selectedProperties.size();
 
@@ -159,8 +152,78 @@ public class Apriori {
         return finalSupport;
     }
 
-    public enum SortOrder {
-        ASCENDING, DESCENDING
+
+    public Apriori joinStep() {
+        Log.d(TAG, "joinStep ");
+        //this method should be invoked after pruneStep()
+        if (DataReader.Utils.isNullOrEmpty(singleFrequentProperties))
+            throw new IllegalStateException("mostFrequentProperties cannot be empty!");
+
+        //create combination from list of existing frequenties:
+        CombinationProvider<String> combProvider = new CombinationProvider<>(singleFrequentProperties);
+        //flag which indicates about possibility adding next in n-th iteration at least
+        boolean canAddMore = true;
+        //single properties are done at prune step while creating singleFrequentProperties,
+        // calculate multi dimensional support
+        for (int n = 2; canAddMore; n++) {
+            canAddMore = false;
+            //create combinations for each n
+            List<List<String>> combinations = combProvider.provideCombinations(n);
+            for (List<String> combination : combinations) {
+                if (combination.isEmpty()) continue;
+//                Log.d(TAG, "joinStep deal with combination " + printCombination(combination));
+                Integer computedSupport = computeSupport(combination, transactions);
+                if (computedSupport >= THRESHOLD) {
+                    canAddMore = true;
+                    mostFrequentProperties.add(new MPair<>(combination, computedSupport));
+                }
+            }
+        }
+        return this;
+    }
+
+    public List<MPair<List<String>, Integer>> get() {
+        return mostFrequentProperties;
+    }
+
+    public Apriori printMostFrequentProperties() {
+        Log.d(TAG, "\n\n****printMostFrequentProperties***\n\n");
+        for (MPair<List<String>, Integer> pair : mostFrequentProperties) {
+            Log.d(printMostFrequentProperty(pair));
+        }
+        return this;
+    }
+
+    private String printMostFrequentProperty(MPair<List<String>, Integer> mostFrequentProperty) {
+        return "support:  " + mostFrequentProperty.second +
+                ", properties: " + printCombination(mostFrequentProperty.first);
+    }
+
+    private String printCombination(List<String> first) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        int indexOfLastItem = first.size() - 1;
+        for (int j = 0; j < indexOfLastItem; j++) {
+            sb.append(first.get(j));
+            sb.append(", ");
+        }
+        sb.append(first.get(indexOfLastItem));
+        sb.append("}");
+
+        return sb.toString();
+    }
+
+
+    public List<String> getSingleMostFreqProperties() {
+        return singleFrequentProperties;
+    }
+
+    public List<MPair<List<String>, Integer>> findPair(String property) {
+        List<MPair<List<String>, Integer>> matches = new ArrayList<>();
+        for (MPair<List<String>, Integer> p : mostFrequentProperties) {
+            if (p.first.contains(property)) matches.add(p);
+        }
+        return matches;
     }
 }
 

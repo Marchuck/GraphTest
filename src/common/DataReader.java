@@ -64,7 +64,7 @@ public class DataReader<DESTINATION> {
 
                 String nextLine = input.nextLine();
                 //save record as four variables
-                if (shouldSkipFirstLine){
+                if (shouldSkipFirstLine) {
                     shouldSkipFirstLine = false;
                     continue;
                 }
@@ -112,24 +112,24 @@ public class DataReader<DESTINATION> {
         return list;
     }
 
-
-    public static <E> boolean isNullOrEmpty(Collection<E> collection) {
-        return collection == null || collection.size() == 0;
-    }
-
-    public static <T> List<T> listToDistinctList(List<T> list) {
-        Set<T> set = new HashSet<>();
-        set.addAll(list);
-        List<T> distinctList = new ArrayList<>();
-        distinctList.addAll(set);
-        return distinctList;
-    }
-
-    public static <T> List<T> setToArray(Set<T> set) {
-        List<T> list = new ArrayList<>();
-        for (T element : set) {
-            list.add(element);
+    public static class Utils {
+        public static <E> boolean isNullOrEmpty(Collection<E> collection) {
+            return collection == null || collection.size() == 0;
         }
-        return list;
+
+        public static <T> List<T> toDistinctList(List<T> list) {
+            Set<T> set = new HashSet<>();
+            set.addAll(list);
+            List<T> distinctList = new ArrayList<>();
+            distinctList.addAll(set);
+            return distinctList;
+        }
+
+        public static <T> List<T> wrapToList(T singleProperty) {
+            List<T> list = new ArrayList<>();
+            list.add(singleProperty);
+            return list;
+        }
     }
+
 }

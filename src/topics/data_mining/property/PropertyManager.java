@@ -39,8 +39,8 @@ public class PropertyManager {
     }
 
 
-    public static PropertySupportBuilder calculatePropertiesSupport(PropertyManager propertyManager,
-                                                             List<Transaction> transactionSet) {
+    public static PropertySupportBuilder computePropertySupport(PropertyManager propertyManager,
+                                                                List<Transaction> transactionSet) {
         PropertySupportBuilder builder = new PropertySupportBuilder(propertyManager, transactionSet);
         return builder.compute();
     }

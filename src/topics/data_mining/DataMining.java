@@ -2,14 +2,12 @@ package topics.data_mining;
 
 import common.DataReader;
 import common.Log;
-import javafx.util.Pair;
 import topics.data_mining.property.PropertyConfidenceBuilder;
 import topics.data_mining.property.PropertyManager;
 import topics.data_mining.property.PropertySupportBuilder;
 import topics.data_mining.transaction.Transaction;
 import topics.data_mining.transaction.TransactionManager;
 
-import java.lang.ref.SoftReference;
 import java.util.List;
 
 import static java.lang.System.out;
@@ -34,35 +32,23 @@ public class DataMining {
 
     public void run() {
 
-        DataReader.ReadStrategy<List<String>> strategy = new DataReader.ReadStrategy<List<String>>() {
-            @Override
-            public List<String> createNewRow(String line) {
-                return DataReader.newStringListRow(line);
-            }
-        };
-        DataReader<List<String>> dataReader = new DataReader<>(strategy);
-        dataReader.skipFirstLine();
-
         //create data set
-        List<List<String>> dataSet = dataReader.read(FILE_TO_READ);
+        List<List<String>> dataSet = prepareReader().read(FILE_TO_READ);
 
         //create property manager and fill with properties
         PropertyManager propertyManager = PropertyManager.create();
         propertyManager.addPropertiesFrom(dataSet);
         //create transactions for each row
         List<Transaction> transactionSet = TransactionManager.createTransactions(dataSet);
-
-        PropertySupportBuilder builder = PropertyManager
-                .calculatePropertiesSupport(propertyManager, transactionSet);
+        //class which computes single support
+        PropertySupportBuilder builder = PropertyManager.computePropertySupport(propertyManager, transactionSet);
 
         List<Float> propertiesSupport = builder.getNormalized();
-        List<Pair<String, Float>> propertiesWithSupport = builder.getPropertiesWithSupport();
 
         for (int j = 0; j < propertiesSupport.size(); j++) {
             out.println("property name: " + propertyManager.getProperty(j)
                     + " support: " + propertiesSupport.get(j) + " %");
         }
-
 
         // compute confidence
         float threshold = 50f;
@@ -72,14 +58,31 @@ public class DataMining {
 
 
         runAprioriAlgorithm(propertyManager.get(), transactionSet);
+    }
 
+    private DataReader<List<String>> prepareReader() {
+        DataReader.ReadStrategy<List<String>> strategy = new DataReader.ReadStrategy<List<String>>() {
+            @Override
+            public List<String> createNewRow(String line) {
+                return DataReader.newStringListRow(line);
+            }
+        };
+        DataReader<List<String>> dataReader = new DataReader<>(strategy);
+        dataReader.skipFirstLine();
+        return dataReader;
     }
 
     private void runAprioriAlgorithm(List<String> properties, List<Transaction> transactions) {
-        new Apriori().withProperties(properties)
+        Log.d("\n\n\n***runAprioriAlgorithm***");
+
+        int frequencyThreshold = 6;
+
+        Apriori apriori = new Apriori(frequencyThreshold)
+                .withProperties(properties)
                 .withTransactions(transactions)
                 .pruneStep()
-                .joinStep();
+                .joinStep()
+                .printMostFrequentProperties();
 
     }
 }

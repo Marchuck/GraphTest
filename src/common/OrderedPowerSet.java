@@ -17,8 +17,9 @@ public class OrderedPowerSet<E> {
         inputList = list;
         N = list.size();
         if (N > ELEMENT_LIMIT) {
-            throw new RuntimeException(
-                    "List with more then " + ELEMENT_LIMIT + " elements is too long...");
+            N = ELEMENT_LIMIT;
+//            throw new RuntimeException(
+//                    "List with more then " + ELEMENT_LIMIT + " elements is too long...");
         }
     }
 
@@ -36,24 +37,24 @@ public class OrderedPowerSet<E> {
         if (elementCount == N) {
             list.add(new LinkedHashSet<E>(inputList));
         } else if (elementCount == 1) {
-            for (int i = 0 ; i < N ; i++) {
+            for (int i = 0; i < N; i++) {
                 LinkedHashSet<E> set = new LinkedHashSet<E>();
                 set.add(inputList.get(i));
                 list.add(set);
             }
         } else {
             list = new ArrayList<LinkedHashSet<E>>();
-            for (int i = 0 ; i <= N - elementCount ; i++) {
+            for (int i = 0; i <= N - elementCount; i++) {
                 @SuppressWarnings("unchecked")
-                ArrayList<E> subList = (ArrayList<E>)((ArrayList<E>)inputList).clone();
-                for (int j = i ; j >= 0 ; j--) {
+                ArrayList<E> subList = (ArrayList<E>) ((ArrayList<E>) inputList).clone();
+                for (int j = i; j >= 0; j--) {
                     subList.remove(j);
                 }
                 OrderedPowerSet<E> subPowerSet =
                         new OrderedPowerSet<E>(subList);
 
                 List<LinkedHashSet<E>> pList =
-                        subPowerSet.getPermutationsList(elementCount-1);
+                        subPowerSet.getPermutationsList(elementCount - 1);
                 for (LinkedHashSet<E> s : pList) {
                     LinkedHashSet<E> set = new LinkedHashSet<E>();
                     set.add(inputList.get(i));
