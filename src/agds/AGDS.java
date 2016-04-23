@@ -78,9 +78,9 @@ public class AGDS {
 
                     //Matching record node to class node.
                     ClassNode classValueNode = newClassValues.get(className);
-                    RecordNode recordNode = new RecordNode("Record " + String.valueOf(itemCounter));
-                    recordNode.addClassNode(classValueNode);
-                    classValueNode.addRecordNode(recordNode);
+                    RNode rNode = new RNode("Record " + String.valueOf(itemCounter));
+                    rNode.addClassNode(classValueNode);
+                    classValueNode.addRecordNode(rNode);
 
                     List<ValueNode> valueNodeList = new ArrayList<>();
 
@@ -89,14 +89,14 @@ public class AGDS {
                         objectDoubleValues[i] = commaDelimiterFormat.parse(objectRawValues[i]).doubleValue();
 
                         ValueNode newValueNode = new ValueNode(objectDoubleValues[i]);
-                        newValueNode.addRecordNode(recordNode);
+                        newValueNode.addRecordNode(rNode);
                         newValueNode.setAttributeNode(param.get(i));
 
                         int indexValue = param.get(i).getValueNodeList().indexOf(newValueNode);
                         param.get(i).addNode(newValueNode);
                         valueNodeList.add(newValueNode);
                     }
-                    recordNode.setValueNodeList(valueNodeList);
+                    rNode.setValueNodeList(valueNodeList);
                     itemCounter++;
                 }
             }
@@ -113,7 +113,7 @@ public class AGDS {
     }
 
 
-    public RecordNode findMostSimilarElement(double[] scannedValues) {
+    public RNode findMostSimilarElement(double[] scannedValues) {
         ClassNode mostSimilarClass = null;
 //        ClassNode mostSimilarClass =newClassValues.values().iterator().next();
         resetNodesWages();
@@ -130,11 +130,11 @@ public class AGDS {
             newClassNode.sortNodes();
 
             if (mostSimilarClass == null) mostSimilarClass = newClassNode;
-            else if (newClassNode.getRecordNodeList().get(0).getTotalWage()
-                    > mostSimilarClass.getRecordNodeList().get(0).getTotalWage())
+            else if (newClassNode.getrNodeList().get(0).getTotalWage()
+                    > mostSimilarClass.getrNodeList().get(0).getTotalWage())
                 mostSimilarClass = newClassNode;
         }
-        return mostSimilarClass.getRecordNodeList().get(0);
+        return mostSimilarClass.getrNodeList().get(0);
     }
 
     private double[] loadNextDoubleRecord() {
@@ -185,7 +185,7 @@ public class AGDS {
     public static void main(String[] args) {
         AGDS irisAgds = new AGDS();
         irisAgds.launchAGDSStructureFromFile(new File(IRIS_DATA_PATH));
-        RecordNode mostSimilarClassNode = irisAgds.findMostSimilarElement(irisAgds.loadNextDoubleRecord());
+        RNode mostSimilarClassNode = irisAgds.findMostSimilarElement(irisAgds.loadNextDoubleRecord());
         System.out.println("Most similar class: "
                 + mostSimilarClassNode.getClassNode().getClassName()
                 + "(" + mostSimilarClassNode.getTotalWage() + ")");
@@ -233,13 +233,13 @@ public class AGDS {
 
                     //Matching record node to class node.
                     ClassNode classValueNode = newClassValues.get(className);
-                    RecordNode recordNode = new RecordNode("Record " + String.valueOf(itemCounter));
-                    recordNode.addClassNode(classValueNode);
-                    classValueNode.addRecordNode(recordNode);
+                    RNode rNode = new RNode("Record " + String.valueOf(itemCounter));
+                    rNode.addClassNode(classValueNode);
+                    classValueNode.addRecordNode(rNode);
 
-                    safeDrawNode(recordNode);
+                    safeDrawNode(rNode);
                     safeDrawNode(classValueNode);
-                    safeDrawEdge(classValueNode, recordNode);
+                    safeDrawEdge(classValueNode, rNode);
 
                     List<ValueNode> valueNodeList = new ArrayList<>();
 
@@ -248,21 +248,21 @@ public class AGDS {
                         objectDoubleValues[i] = commaDelimiterFormat.parse(objectRawValues[i]).doubleValue();
 
                         ValueNode newValueNode = new ValueNode(objectDoubleValues[i]);
-                        newValueNode.addRecordNode(recordNode);
+                        newValueNode.addRecordNode(rNode);
                         newValueNode.setAttributeNode(param.get(i));
 
                         int indexValue = param.get(i).getValueNodeList().indexOf(newValueNode);
                         param.get(i).addNode(newValueNode);
 
                         safeDrawNode(newValueNode);
-                        safeDrawNode(recordNode);
+                        safeDrawNode(rNode);
                         safeDrawNode(param.get(i));
-                        safeDrawEdge(newValueNode, recordNode);
+                        safeDrawEdge(newValueNode, rNode);
                         safeDrawEdge(param.get(i), newValueNode);
 
                         valueNodeList.add(newValueNode);
                     }
-                    recordNode.setValueNodeList(valueNodeList);
+                    rNode.setValueNodeList(valueNodeList);
                     itemCounter++;
                 }
             }

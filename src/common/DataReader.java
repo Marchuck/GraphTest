@@ -1,7 +1,7 @@
 package common;
 
+import com.sun.istack.internal.Nullable;
 import com.sun.javafx.beans.annotations.NonNull;
-import topics.data_mining.transaction.Transaction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,9 +11,18 @@ public class DataReader<DESTINATION> {
     public static final String IRIS_DATA = "IrisData.txt";
     public static final String WINE = "Wine.txt";
     public static final String STUDENTS = "BazaStudenciAcces2002.mdb";
+    private String firstLine;
 
-    public boolean dataSetOk(List<DESTINATION> list) {
-        return list.size() > 0;
+    /**
+     * if first line is skipped, its value is stored here
+     * @return first Line of file
+     */
+    public String getFirstLine() {
+        return firstLine;
+    }
+
+    public static <DESTINATION> boolean dataSetOk(@Nullable List<DESTINATION> list) {
+        return list != null && list.size() > 0;
     }
 
     public static void throwExc(String detailedMessage) {
@@ -22,8 +31,9 @@ public class DataReader<DESTINATION> {
 
     private boolean shouldSkipFirstLine;
 
-    public void skipFirstLine() {
+    public DataReader<DESTINATION> skipFirstLine() {
         this.shouldSkipFirstLine = true;
+        return this;
     }
 
     /**
@@ -65,6 +75,7 @@ public class DataReader<DESTINATION> {
                 String nextLine = input.nextLine();
                 //save record as four variables
                 if (shouldSkipFirstLine) {
+                    firstLine = nextLine;
                     shouldSkipFirstLine = false;
                     continue;
                 }
@@ -81,11 +92,12 @@ public class DataReader<DESTINATION> {
 
     /**
      * create new row and convert to {@link Item}
+     * dotted means that floats have format 1.23
      *
      * @param nextLine
      * @return
      */
-    public static Item newItemRow(String nextLine) {
+    public static Item newDottedItemRow(String nextLine) {
         String arr[] = nextLine.split("\t");
 
         Float first = Float.parseFloat(arr[0]);
@@ -96,6 +108,18 @@ public class DataReader<DESTINATION> {
         float[] values = new float[]{first, sec, third, fourth};
         String name = arr[4];
         return new Item(values, name);
+    }
+
+    /**
+     * create new row and convert to {@link Item}
+     * dotted means that floats have format 1,23
+     *
+     * @param nextLine
+     * @return
+     */
+    public static Item newCommaItemRow(String nextLine) {
+        nextLine = nextLine.replaceAll(",", ".");
+        return newDottedItemRow(nextLine);
     }
 
     /**
@@ -117,9 +141,14 @@ public class DataReader<DESTINATION> {
             return collection == null || collection.size() == 0;
         }
 
-        public static <T> List<T> toDistinctList(List<T> list) {
-            Set<T> set = new HashSet<>();
-            set.addAll(list);
+        public static <T> List<T> toDistinctList(Collection<T> collection) {
+            Set<T> set;
+            if (!(collection instanceof Set)) {
+                set = new HashSet<>();
+                set.addAll(collection);
+            } else {
+                set = (Set<T>) collection;
+            }
             List<T> distinctList = new ArrayList<>();
             distinctList.addAll(set);
             return distinctList;

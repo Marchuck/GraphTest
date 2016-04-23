@@ -1,7 +1,8 @@
 package agds;
 
 /**
- * Created by lukasz on 04.04.16.
+ * @author Lukasz Marczak
+ * @since 04.04.16.
  */
 public interface GraphDrawer<T> {
     void drawNode(T nodeName);

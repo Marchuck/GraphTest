@@ -291,7 +291,7 @@ class AprioriCalculation {
 
                 //check each candidate
                 for (int c = 0; c < candidates.size(); c++) {
-                    match = false; //reset match to false
+                    match = false; //resetObserving match to false
                     //tokenize the candidate so that we know what items need to be present for a match
                     st = new StringTokenizer(candidates.get(c));
                     //check each item in the itemset to see if it is present in the transaction

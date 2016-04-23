@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RecordNode implements Node, Comparable<RecordNode>, Resetable {
+public class RNode implements Node, Comparable<RNode>, Resetable {
 
     @Override
     public String getValue() {
@@ -24,7 +24,7 @@ public class RecordNode implements Node, Comparable<RecordNode>, Resetable {
     /**
      * Constructor, getter & setter.
      */
-    public RecordNode(String name) {
+    public RNode(String name) {
         this.name = name;
         this.totalWage = 0.0d;
         this.valueNodeList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class RecordNode implements Node, Comparable<RecordNode>, Resetable {
     }
 
     @Override
-    public int compareTo(RecordNode o) {
+    public int compareTo(RNode o) {
         return totalWage.compareTo(o.getTotalWage());
     }
 
@@ -79,7 +79,7 @@ public class RecordNode implements Node, Comparable<RecordNode>, Resetable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RecordNode that = (RecordNode) o;
+        RNode that = (RNode) o;
         return Objects.equals(name, that.name);
     }
 

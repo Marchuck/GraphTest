@@ -51,7 +51,7 @@ public class AttributeNode implements Node {
 
         if (valueNodeList.contains(valueNode)) {
             ValueNode foundValueNode = valueNodeList.get(valueNodeList.indexOf(valueNode));
-            foundValueNode.getRecordNodeList().addAll(valueNode.getRecordNodeList());
+            foundValueNode.getrNodeList().addAll(valueNode.getrNodeList());
         } else
             valueNodeList.add(valueNode);
     }
@@ -72,7 +72,7 @@ public class AttributeNode implements Node {
     public void calculateWages(int indexValue) {
         for (ValueNode valueNode : getValueNodeList()) {
             double wageValue = 1 - (Math.abs(valueNode.getDoubleValue() - getValueNodeList().get(indexValue).getDoubleValue())) / (maxValueNode.getDoubleValue() - minValueNode.getDoubleValue());
-            valueNode.addCalcuatedWageToAllRecords(wageValue);
+            valueNode.addCalcuatedWeightToAllRecords(wageValue);
         }
     }
 

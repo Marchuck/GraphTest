@@ -8,7 +8,7 @@ import java.util.Objects;
 public class ClassNode implements Node {
 
     private String className;
-    private List<RecordNode> recordNodeList;
+    private List<RNode> rNodeList;
 
 
     /**
@@ -16,16 +16,16 @@ public class ClassNode implements Node {
      */
     public ClassNode(String className) {
         this.className = className;
-        this.recordNodeList = new ArrayList<>();
+        this.rNodeList = new ArrayList<>();
     }
 
-    public void addRecordNode(RecordNode recordNode) {
-        if (!recordNodeList.contains(recordNode))
-            recordNodeList.add(recordNode);
+    public void addRecordNode(RNode rNode) {
+        if (!rNodeList.contains(rNode))
+            rNodeList.add(rNode);
     }
 
-    public List<RecordNode> getRecordNodeList() {
-        return recordNodeList;
+    public List<RNode> getrNodeList() {
+        return rNodeList;
     }
 
     public String getClassName() {
@@ -36,15 +36,15 @@ public class ClassNode implements Node {
      * Sorting nodes in descending order - first element is the most similar element from that class.
      */
     public void sortNodes() {
-        Collections.sort(recordNodeList, Collections.<RecordNode>reverseOrder());
+        Collections.sort(rNodeList, Collections.<RNode>reverseOrder());
     }
 
     /**
      * Reseting record nodes wage values.
      */
     public void resetRecordNodes() {
-        for (RecordNode recordNode : recordNodeList)
-            recordNode.onResetValue();
+        for (RNode rNode : rNodeList)
+            rNode.onResetValue();
     }
 
     @Override

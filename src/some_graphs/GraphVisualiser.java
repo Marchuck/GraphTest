@@ -61,7 +61,7 @@ public class GraphVisualiser {
     }
 
     /**
-     * "Walking" over whole graph, from one neighbour to another, starting from source Node
+     * "Walking" over whole graph, from one neighbour to another, starting from source AGDSNode
      *
      * @param source initial node from which exploration starts
      */

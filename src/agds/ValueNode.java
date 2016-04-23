@@ -9,7 +9,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
 
     private Double value;
     private Double wage;
-    private List<RecordNode> recordNodeList;
+    private List<RNode> rNodeList;
     private AttributeNode attributeNode;
 
     /**
@@ -18,7 +18,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
 
     public ValueNode(Double value) {
         this.value = value;
-        this.recordNodeList = new ArrayList<>();
+        this.rNodeList = new ArrayList<>();
     }
 
 
@@ -43,8 +43,8 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
         return AGDS.VALUE_NODE_STYLESHEET;
     }
 
-    public List<RecordNode> getRecordNodeList() {
-        return recordNodeList;
+    public List<RNode> getrNodeList() {
+        return rNodeList;
     }
 
     /**
@@ -52,20 +52,20 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
      *
      * @param wage
      */
-    public void addCalcuatedWageToAllRecords(Double wage) {
+    public void addCalcuatedWeightToAllRecords(Double wage) {
         setWage(wage);
-        for (RecordNode recordNode : recordNodeList) {
-            recordNode.addToTotalWage(wage);
+        for (RNode rNode : rNodeList) {
+            rNode.addToTotalWage(wage);
         }
     }
 
     /**
      * Adding new record node.
      *
-     * @param recordNode
+     * @param rNode
      */
-    public void addRecordNode(RecordNode recordNode) {
-        recordNodeList.add(recordNode);
+    public void addRecordNode(RNode rNode) {
+        rNodeList.add(rNode);
     }
 
     /**

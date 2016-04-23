@@ -200,17 +200,13 @@ public class Apriori {
     }
 
     private String printCombination(List<String> first) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        int indexOfLastItem = first.size() - 1;
-        for (int j = 0; j < indexOfLastItem; j++) {
-            sb.append(first.get(j));
-            sb.append(", ");
-        }
-        sb.append(first.get(indexOfLastItem));
-        sb.append("}");
 
-        return sb.toString();
+        return new ListPrinter<>(new ListPrinter.DefaultStrategy<String>() {
+            @Override
+            public String nextItemRow(String s) {
+                return s;
+            }
+        }).print(first);
     }
 
 
@@ -218,12 +214,31 @@ public class Apriori {
         return singleFrequentProperties;
     }
 
-    public List<MPair<List<String>, Integer>> findPair(String property) {
+    public List<MPair<List<String>, Integer>> findPairsWhichContains(List<String> properties) {
         List<MPair<List<String>, Integer>> matches = new ArrayList<>();
         for (MPair<List<String>, Integer> p : mostFrequentProperties) {
-            if (p.first.contains(property)) matches.add(p);
+            if (p.first.size() > properties.size() && p.first.containsAll(properties)) matches.add(p);
         }
         return matches;
+    }
+
+    private List<MPair<List<String>, Integer>> findPairsWhichContains(List<MPair<List<String>, Integer>> dataSet,
+                                                                      String properties) {
+        List<MPair<List<String>, Integer>> matches = new ArrayList<>();
+        for (MPair<List<String>, Integer> p : dataSet) {
+            if (p.first.contains(properties)) matches.add(p);
+        }
+        return matches;
+    }
+
+    public List<MPair<List<String>, Integer>> findPairsWhichContains(String properties) {
+        return findPairsWhichContains(mostFrequentProperties, properties);
+    }
+
+    public List<String> listsDifference(List<String> list1, List<String> list2) {
+        boolean success = list1.removeAll(list2);
+        if (success) return list1;
+        else return new ArrayList<>();
     }
 }
 

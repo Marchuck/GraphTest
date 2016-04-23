@@ -3,6 +3,7 @@ package common;
 /**
  * @author Lukasz Marczak
  * @since 23.04.16.
+ * Mutable pair
  */
 public class MPair<FIRST, SECOND> {
     public FIRST first;

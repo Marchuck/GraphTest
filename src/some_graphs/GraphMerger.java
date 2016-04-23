@@ -47,7 +47,7 @@ public class GraphMerger extends JComponent {
                 if (!graphVisualiser.containsNode(node))
                     graphVisualiser.drawNode(node.getValue(), node.getStyleSheet());
                 else
-                    Log.e(TAG, "drawNode failed. Node " + node.getValue() + " already exists!");
+                    Log.e(TAG, "drawNode failed. AGDSNode " + node.getValue() + " already exists!");
             }
 
             @Override
