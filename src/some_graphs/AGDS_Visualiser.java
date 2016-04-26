@@ -6,6 +6,7 @@ import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
+
 import java.util.Iterator;
 
 /**
@@ -15,11 +16,15 @@ import java.util.Iterator;
 public class AGDS_Visualiser {
     public static final String TAG = AGDS_Visualiser.class.getSimpleName();
 
+    public static void main(String[] args) {
+        new AGDS_Visualiser(10).run();
+    }
+
     public static final int summaryBuildingTimeInMillis = 10000;
 
-    private static final String GRAPH_STYLESHEET = "node#A {fill-color: rgb(0,0,255);}" +
-            "node#B {fill-color: rgb(255,0,0);}" +
-            "node.marked {fill-color: rgb(255,0,0);}";
+    private static final String GRAPH_STYLESHEET = "node#A {buildGraph-color: rgb(0,0,255);}" +
+            "node#B {buildGraph-color: rgb(255,0,0);}" +
+            "node.marked {buildGraph-color: rgb(255,0,0);}";
 
 
     private boolean notDrawed = true;
@@ -73,9 +78,9 @@ public class AGDS_Visualiser {
     public static void addLabel(Element e, int index) {
         String id = e.getId();
         e.addAttribute("ui.label", id);
-
-        if (index % 2 == 0) e.addAttribute("ui.style", "fill-color: rgb(255,0,0);");
-        else e.addAttribute("ui.style", "fill-color: rgb(0,0,255);");
+//        e.setAttribute("ui.style", "buildGraph-color: rgb(255,0,0);");
+//        if (index % 2 == 0) e.setAttribute("ui.style", "buildGraph-color: rgb(255,0,0);");
+//        else e.setAttribute("ui.style", "buildGraph-color: rgb(0,0,255);");
 
 
     }
@@ -117,12 +122,12 @@ public class AGDS_Visualiser {
         for (int j = 0; j < maxStep; j++) {
             doOnNext(graph, j, maxStep);
             graph.display();
-            sleep(500);
+            sleep(50);
 
         }
 
 //        graph.display();
 //        sleep(2000);
-//        explore(graph.getNode("A"));
+        explore(graph.getNode("A"));
     }
 }

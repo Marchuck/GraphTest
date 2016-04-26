@@ -1,12 +1,10 @@
 package some_graphs;
 
 import agds.AGDS;
-import agds.GraphDrawer;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.graph.implementations.SingleGraph;
 
 import java.util.Iterator;
 
@@ -24,8 +22,8 @@ public class GraphVisualiser {
 
     public static final int summaryBuildingTimeInMillis = 10000;
 
-    private static final String GRAPH_STYLESHEET = "node {fill-color: rgb(0,0,255);}" +
-            "node.marked {fill-color: rgb(255,0,0);}";
+    private static final String GRAPH_STYLESHEET = "node {buildGraph-color: rgb(0,0,255);}" +
+            "node.marked {buildGraph-color: rgb(255,0,0);}";
 
     private boolean notDrawed = true;
 
@@ -57,8 +55,10 @@ public class GraphVisualiser {
      */
     public static void addElementWithLabel(Element e) {
         String id = e.getId();
-//        e.addAttribute("ui.label", id);
+        e.addAttribute("ui.label", id);
     }
+
+
 
     /**
      * "Walking" over whole graph, from one neighbour to another, starting from source AGDSNode
@@ -123,7 +123,6 @@ public class GraphVisualiser {
         if (isLegend) showLegend();
     }
 
-
     int invalidatorIndex = 0;
     int REFRESH_COUNT = 10;
     int SLEEP_TIME = 2000;
@@ -167,7 +166,7 @@ public class GraphVisualiser {
 
     public void showLegend() {
         Node a = drawNode(RECORD_NODES, AGDS.RECORD_NODE_STYLESHEET);
-        Node b = drawNode(ATTR_NODES, AGDS.ATTR_NODE_STYLESHEET);
+        Node b = drawNode(ATTR_NODES, AGDS.PROPERTY_NODE_STYLESHEET);
         Node c = drawNode(CLASS_NODES, AGDS.CLASS_NODE_STYLESHEET);
         Node d = drawNode(VALUE_NODES, AGDS.VALUE_NODE_STYLESHEET);
         graph.addEdge(a.getId() + b.getId(), a.getId(), b.getId());

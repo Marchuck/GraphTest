@@ -13,7 +13,7 @@ import java.util.*;
 public class AGDS {
     public static final String TAG = AGDS.class.getSimpleName();
     public static final String CLASS_NODE_STYLESHEET = "fill-color: rgb(76,175,80);";
-    public static final String ATTR_NODE_STYLESHEET = "fill-color: rgb(255,152,0);";
+    public static final String PROPERTY_NODE_STYLESHEET = "fill-color: rgb(255,152,0);";
     public static final String RECORD_NODE_STYLESHEET = "fill-color: rgb(255,87,34);";
     public static final String VALUE_NODE_STYLESHEET = "fill-color: rgb(63,81,181);";
 
@@ -35,7 +35,7 @@ public class AGDS {
      * grupowanie względem przedziałów
      */
     private static final String TAB_WHITESPACE = "\t";
-    public static final String IRIS_DATA_PATH = "IrisDataSimplified.txt"; //or without -Simplified- suffix
+    public static final String IRIS_DATA_PATH = "IrisDataSimplified2.txt"; //or without -Simplified- suffix
 
     public List<AttributeNode> param;
     public Map<String, ClassNode> newClassValues;
@@ -129,9 +129,10 @@ public class AGDS {
         for (ClassNode newClassNode : newClassValues.values()) {
             newClassNode.sortNodes();
 
-            if (mostSimilarClass == null) mostSimilarClass = newClassNode;
-            else if (newClassNode.getrNodeList().get(0).getTotalWage()
-                    > mostSimilarClass.getrNodeList().get(0).getTotalWage())
+            if (mostSimilarClass == null) {
+                mostSimilarClass = newClassNode;
+            } else if (newClassNode.getrNodeList().get(0).getTotalWeight()
+                    > mostSimilarClass.getrNodeList().get(0).getTotalWeight())
                 mostSimilarClass = newClassNode;
         }
         return mostSimilarClass.getrNodeList().get(0);
@@ -188,13 +189,15 @@ public class AGDS {
         RNode mostSimilarClassNode = irisAgds.findMostSimilarElement(irisAgds.loadNextDoubleRecord());
         System.out.println("Most similar class: "
                 + mostSimilarClassNode.getClassNode().getClassName()
-                + "(" + mostSimilarClassNode.getTotalWage() + ")");
+                + "(" + mostSimilarClassNode.getTotalWeight() + ")");
     }
 
     public void drawData() {
         Log.d(TAG, "drawData ");
-        readFromFileWithDrawing(new File(IRIS_DATA_PATH));
+        readFromFileWithDrawing(new File(currentData));
     }
+
+    private String currentData = IRIS_DATA_PATH;
 
     private void readFromFileWithDrawing(File file) {
         Log.d(TAG, "readFromFileWithDrawing ");
@@ -278,5 +281,10 @@ public class AGDS {
 
     private void safeDrawEdge(Node nodeA, Node nodeB) {
         if (graphDrawer != null) graphDrawer.drawEdge(nodeA, nodeB);
+    }
+
+    public AGDS withData(String txtFileNameData) {
+        this.currentData = txtFileNameData;
+        return this;
     }
 }

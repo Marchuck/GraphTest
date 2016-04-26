@@ -20,7 +20,7 @@ public class Apriori {
      */
     private List<String> properties;
     /**
-     * input data, each transaction has list of properties
+     * input randomizer, each transaction has list of properties
      */
     private List<Transaction> transactions;
     /**

@@ -19,7 +19,7 @@ public class XValidationUtils {
     }
 
     public static <T> List<List<T>> splitToSubLists(List<T> source, int k) {
-        if (source.size() < k) throw new IllegalStateException("Invalid data: " + source + " < " + k);
+        if (source.size() < k) throw new IllegalStateException("Invalid randomizer: " + source + " < " + k);
         List<List<T>> outputLists = new ArrayList<>();
         //create n empty arrays
         for (int j = 0; j < k; j++) {

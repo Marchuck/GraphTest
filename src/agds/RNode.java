@@ -2,7 +2,6 @@ package agds;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RNode implements Node, Comparable<RNode>, Resetable {
 
@@ -17,7 +16,7 @@ public class RNode implements Node, Comparable<RNode>, Resetable {
     }
 
     private String name;
-    private Double totalWage;
+    private Double totalWeight;
     private ClassNode classNode;
     private List<ValueNode> valueNodeList;
 
@@ -26,7 +25,7 @@ public class RNode implements Node, Comparable<RNode>, Resetable {
      */
     public RNode(String name) {
         this.name = name;
-        this.totalWage = 0.0d;
+        this.totalWeight = 0.0d;
         this.valueNodeList = new ArrayList<>();
     }
 
@@ -38,8 +37,8 @@ public class RNode implements Node, Comparable<RNode>, Resetable {
         return name;
     }
 
-    public Double getTotalWage() {
-        return totalWage / valueNodeList.size();
+    public Double getTotalWeight() {
+        return totalWeight / valueNodeList.size();
     }
 
     public ClassNode getClassNode() {
@@ -48,12 +47,12 @@ public class RNode implements Node, Comparable<RNode>, Resetable {
 
     @Override
     public int compareTo(RNode o) {
-        return totalWage.compareTo(o.getTotalWage());
+        return totalWeight.compareTo(o.getTotalWeight());
     }
 
     @Override
     public void onResetValue() {
-        totalWage = 0.0d;
+        totalWeight = 0.0d;
     }
 
     /**
@@ -72,21 +71,22 @@ public class RNode implements Node, Comparable<RNode>, Resetable {
      * @param wage
      */
     public void addToTotalWage(Double wage) {
-        totalWage = totalWage + wage;
+        totalWeight = totalWeight + wage;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RNode that = (RNode) o;
-        return Objects.equals(name, that.name);
+
+        RNode rNode = (RNode) o;
+
+        return name.equals(rNode.name);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return name.hashCode();
     }
-
-
 }

@@ -1,3 +1,4 @@
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -16,6 +17,7 @@ import javax.swing.*;
  */
 public class DemoViewerJComponents {
     public DemoViewerJComponents() {
+
         Graph graph = new MultiGraph("main graph");
         ThreadProxyPipe toSwing = new ThreadProxyPipe(graph);
         Viewer viewer = new Viewer(toSwing);
@@ -29,7 +31,7 @@ public class DemoViewerJComponents {
         Node B = graph.addNode("B");
         Node C = graph.addNode("C");
 
-        graph.addEdge("AB", "A", "B");
+        Edge edge = graph.addEdge("AB", "A", "B");
         graph.addEdge("BC", "B", "C");
         graph.addEdge("CA", "C", "A");
 
@@ -98,7 +100,7 @@ public class DemoViewerJComponents {
                     angle = 0;
                 s1.setPosition(StyleConstants.Units.PX, 70, angle, angle);
                 /*
-				 * x += dir;
+                 * x += dir;
 				 *
 				 * if( x > 0.5f || x < -0.5f ) dir = -dir;
 				 *
@@ -115,11 +117,11 @@ public class DemoViewerJComponents {
 
     protected static String styleSheet = "graph {" + "	padding:      60px;"
             + "	stroke-width: 1px;" + "	stroke-color: rgb(200,200,200);"
-            + "	stroke-mode:  dots;" + "	fill-mode:    gradient-diagonal1;"
-            + "	fill-color:   white, rgb(230,230,230);" + "}" + "node {"
+            + "	stroke-mode:  dots;" + "	buildGraph-mode:    gradient-diagonal1;"
+            + "	buildGraph-color:   white, rgb(230,230,230);" + "}" + "node {"
             + "	shape:        jcomponent;" + "	jcomponent:   button;"
             + "	size:         100px, 30px;" + "	stroke-width: 2px;"
-            + "	stroke-color: rgb(180,180,180);" + "	fill-mode:    none;"
+            + "	stroke-color: rgb(180,180,180);" + "	buildGraph-mode:    none;"
             + "	text-font:    arial;" + "	text-size:    11;"
             + "	text-color:   rgb(30,30,30);" + "	text-style:   bold;" + " }"
             + "node#B {" + "	shape:      jcomponent;"
@@ -135,7 +137,7 @@ public class DemoViewerJComponents {
             + "	stroke-mode: plain; stroke-width: 5px; stroke-color: red;"
             + "}" + "sprite {" + "	shape:      jcomponent;"
             + "	jcomponent: button;" + "	size:       30px, 30px;"
-            + "	fill-mode:  none;" + "}";
+            + "	buildGraph-mode:  none;" + "}";
 
     protected static void setLAF() {
         try {

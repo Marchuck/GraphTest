@@ -1,13 +1,13 @@
 import agds.AGDS;
 import agds.GraphDrawer;
 import agds.Node;
+import common.DataReader;
 import common.Log;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.AGDS_Visualiser;
 import some_graphs.GraphVisualiser;
-import ui.AllAlgorithmsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +19,6 @@ import java.awt.*;
 public class Main {
     public static final String TAG = Main.class.getSimpleName();
 
-    public static JComponent createEmptyComponent(String name) {
-        return AllAlgorithmsPanel.makeTextPanel(name);
-    }
-
     static boolean runExample = false;
 
     public static void main(String[] args) {
@@ -32,9 +28,8 @@ public class Main {
         }
 
         final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS visualiser");
-//        graphVisualiser.setRefreshCount(10).setSleepTime(3000);
-        graphVisualiser.setStepsDisabled(false);
-        AGDS agds = new AGDS();
+//        graphVisualiser.setStepsDisabled(false);
+        AGDS agds = new AGDS().withData(DataReader.IRIS_DATA);
         agds.connectGraphDrawer(new GraphDrawer<Node>() {
 
             @Override
@@ -54,11 +49,9 @@ public class Main {
                 else
                     Log.e(TAG, "drawNode failed. Edge (" + nodeA.getValue()
                             + "," + nodeB.getValue() + ") already exists!");
-
             }
         });
         agds.drawData();
-//        graphVisualiser.showGraphWithLegend();
         graphVisualiser.showGraph();
     }
 

@@ -28,7 +28,7 @@ public class NearestKNeighbours {
         //create candidate
         Item candidate = new Item(new float[]{1f, 6f, 3f, 4f});
         //get all
-        List<Item> list = dataReader.read("data.txt");
+        List<Item> list = dataReader.read("randomizer.txt");
         if (list.size() < NEAREST_CANDIDATES || !DataReader.dataSetOk(list))
             DataReader.throwExc("Cannot classify. Not enough elements.");
 

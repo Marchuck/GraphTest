@@ -35,10 +35,10 @@ public class DataMining {
 
     public void run() {
 
-        //create data set
+        //create randomizer set
         List<List<String>> dataSet = prepareReader().read(FILE_TO_READ);
 
-        //create property manager and fill with properties
+        //create property manager and buildGraph with properties
         PropertyManager propertyManager = PropertyManager.create();
         propertyManager.addPropertiesFrom(dataSet);
         //create transactions for each row

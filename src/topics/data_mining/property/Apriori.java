@@ -263,7 +263,7 @@ class AprioriCalculation {
     private void calculateFrequentItemsets(int n) {
         Vector<String> frequentCandidates = new Vector<String>(); //the frequent candidates for the current itemset
         FileInputStream file_in; //file input stream
-        BufferedReader data_in; //data input stream
+        BufferedReader data_in; //randomizer input stream
         FileWriter fw;
         BufferedWriter file_out;
 

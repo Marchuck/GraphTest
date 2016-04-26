@@ -27,7 +27,7 @@ public class AttributeNode implements Node {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.ATTR_NODE_STYLESHEET;
+        return AGDS.PROPERTY_NODE_STYLESHEET;
     }
 
     public List<ValueNode> getValueNodeList() {

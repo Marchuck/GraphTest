@@ -2,6 +2,7 @@ package common;
 
 import com.sun.istack.internal.Nullable;
 import com.sun.javafx.beans.annotations.NonNull;
+import com.sun.javafx.geom.FlatteningPathIterator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,12 +10,13 @@ import java.util.*;
 
 public class DataReader<DESTINATION> {
     public static final String IRIS_DATA = "IrisData.txt";
-    public static final String WINE = "Wine.txt";
+    public static final String WINE_DATA = "Wine.txt";
     public static final String STUDENTS = "BazaStudenciAcces2002.mdb";
     private String firstLine;
 
     /**
      * if first line is skipped, its value is stored here
+     *
      * @return first Line of file
      */
     public String getFirstLine() {
@@ -67,7 +69,7 @@ public class DataReader<DESTINATION> {
 
         try {
             input = new Scanner(file);
-            input.nextLine();
+            //input.nextLine();
 
             while (input.hasNextLine()) {
                 //read next line
@@ -107,6 +109,21 @@ public class DataReader<DESTINATION> {
 
         float[] values = new float[]{first, sec, third, fourth};
         String name = arr[4];
+        return new Item(values, name);
+    }
+
+    public static String toDotted(String s) {
+        return s.replaceAll(",", ".");
+    }
+
+    public static Item newWineItemRow(String nextLine) {
+        nextLine = toDotted(nextLine);
+        String arr[] = nextLine.split("\t");
+        float[] values = new float[arr.length - 1];
+        String name = arr[0];
+        for (int j = 0; j < values.length; j++) {
+            values[j] = Float.parseFloat(arr[j + 1]);
+        }
         return new Item(values, name);
     }
 

@@ -27,16 +27,31 @@ public class KFoldCrossValidation {
         DataReader<Item> dataReader = new DataReader<>(readStrategy);
         return dataReader.skipFirstLine();
     }
+
     public static void main(String[] args) {
         new KFoldCrossValidation().run();
     }
 
     public void run() {
         //prepare dataSet
-        List<Item> dataSet = prepareReader().read("data.txt");
+        List<Item> dataSet = prepareReader().read("randomizer.txt");
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
 
         tenthCrossValidation(dataSet);
+        /**
+         * powinno być tak:
+         * wybieramy k
+         * dzielimy dataSet na K podprzedziałów o liczności L
+         * powstaje wówczas para podprzedziałów jeden o liczności
+         * size-L (zbiór uczący) oraz L (podzbiór walidacyjny)
+         * dla każdego elementu z podzbioru L liczymy odległości wg metryki
+         * sprawdzamy czy dla danego elementu nazwa jego klasy zgadza się z klasyfikacją (po metryce)
+         * na tej podstawie liczymy % ile się zgadza 1 : 1
+         * powtarzamy dla wszystkich podzbiorów
+         *
+         * porównujemy wyniki dla różnych k i różnej metody doboru podzbiorów
+         */
+
     }
 
     private void tenthCrossValidation(List<Item> dataSet) {

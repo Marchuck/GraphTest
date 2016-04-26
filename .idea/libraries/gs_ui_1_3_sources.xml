@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="gs-ui-1.3-sources">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" />
+    </NATIVE>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" />
+    </SOURCES>
+    <jarDirectory url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" recursive="false" />
+    <jarDirectory url="jar://$PROJECT_DIR$/libs/gs-ui-1.3-sources.jar!/" recursive="false" type="SOURCES" />
+  </library>
+</component>
