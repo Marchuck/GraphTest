@@ -5,6 +5,8 @@ import java.util.*;
 /**
  * @author Lukasz Marczak
  * @since 22.04.16.
+ *
+ * Utility which provides combinations of given set of objects
  */
 public class OrderedPowerSet<E> {
     public static final int ELEMENT_LIMIT = 12;

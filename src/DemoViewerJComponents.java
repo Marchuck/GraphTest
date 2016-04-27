@@ -15,6 +15,7 @@ import javax.swing.*;
  * @author Lukasz Marczak
  * @since 23.03.16.
  */
+@Deprecated
 public class DemoViewerJComponents {
     public DemoViewerJComponents() {
 

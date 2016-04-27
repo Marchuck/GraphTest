@@ -1,9 +1,6 @@
 package topics.sql;
 
-import scala.util.parsing.combinator.testing.Str;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,6 +11,7 @@ public class SqlColumn {
     private String name;
     private List<String> values = new ArrayList<>();
 
+    public String getName(){return name;}
     public SqlColumn(String name) {
         this.name = name;
     }

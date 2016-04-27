@@ -11,6 +11,7 @@ import javax.swing.*;
 /**
  * @author Lukasz Marczak
  * @since 12.04.16.
+ * Put together drawing graph and control parameters with buttons and other ui widgets
  */
 public class GraphMerger extends JComponent {
     public static final String TAG = GraphMerger.class.getSimpleName();

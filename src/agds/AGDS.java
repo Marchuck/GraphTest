@@ -2,7 +2,6 @@ package agds;
 
 import com.sun.istack.internal.Nullable;
 import common.Log;
-import utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,7 +46,6 @@ public class AGDS {
 
     private void readFromFile(File file) {
         NumberFormat commaDelimiterFormat = NumberFormat.getInstance(Locale.GERMAN);
-        System.out.println(Utils.getCurrentTimestamp() + "AGDS: Reading file: " + file.getPath() + " started.");
 
         try {
             FileReader fileReader = new FileReader(file);
@@ -100,7 +98,6 @@ public class AGDS {
                     itemCounter++;
                 }
             }
-            System.out.println(Utils.getCurrentTimestamp() + "AGDS: Reading finished.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,7 +199,6 @@ public class AGDS {
     private void readFromFileWithDrawing(File file) {
         Log.d(TAG, "readFromFileWithDrawing ");
         NumberFormat commaDelimiterFormat = NumberFormat.getInstance(Locale.GERMAN);
-        System.out.println(Utils.getCurrentTimestamp() + "AGDS: Reading file: " + file.getPath() + " started.");
 
         try {
             FileReader fileReader = new FileReader(file);
@@ -269,7 +265,6 @@ public class AGDS {
                     itemCounter++;
                 }
             }
-            System.out.println(Utils.getCurrentTimestamp() + "AGDS: Reading finished.");
         } catch (Exception e) {
             e.printStackTrace();
         }

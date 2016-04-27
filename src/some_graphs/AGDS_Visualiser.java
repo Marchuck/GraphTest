@@ -85,25 +85,6 @@ public class AGDS_Visualiser {
 
     }
 
-    /**
-     * "Walking" over whole graph, from one neighbour to another, starting from source AGDSNode
-     *
-     * @param source initial node from which exploration starts
-     */
-    public static void explore(Node source) {
-        Iterator<? extends Node> k = source.getBreadthFirstIterator();
-        Node currentNode = null;
-        while (k.hasNext()) {
-            if (currentNode != null) {
-                currentNode.setAttribute("ui.class", "unmarked");
-            }
-            Node next = k.next();
-            currentNode = next;
-            next.setAttribute("ui.class", "marked");
-            sleep(700);
-        }
-    }
-
     public static void sleep(long millis) {
         try {
             Thread.sleep(millis);
@@ -128,6 +109,6 @@ public class AGDS_Visualiser {
 
 //        graph.display();
 //        sleep(2000);
-        explore(graph.getNode("A"));
+        GraphVisualiser.explore(graph.getNode("A"));
     }
 }

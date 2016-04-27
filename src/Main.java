@@ -19,13 +19,9 @@ import java.awt.*;
 public class Main {
     public static final String TAG = Main.class.getSimpleName();
 
-    static boolean runExample = false;
 
     public static void main(String[] args) {
-        if (runExample) {
-            new AGDS_Visualiser(10).run();
-            return;
-        }
+         //   new AGDS_Visualiser(10).run();
 
         final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS visualiser");
 //        graphVisualiser.setStepsDisabled(false);
@@ -73,6 +69,7 @@ public class Main {
         SwingUtilities.invokeLater(new InitializeApplication(viewer, graph));
     }
 
+    @Deprecated
     static class InitializeApplication extends JFrame implements Runnable {
         private static final long serialVersionUID = -804177406404724792L;
         protected Graph graph;
