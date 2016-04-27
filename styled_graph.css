@@ -1,7 +1,24 @@
+graph {
+	fill-color: white;
+}
+
 node {
-	fill-color: blue;
-	size: 10px;
+	size: 10px, 15px;
+	shape: box;
+	fill-color: green;
 	stroke-mode: plain;
-	stroke-color: black;
-	stroke-width: 1px;
+	stroke-color: yellow;
+}
+
+node#A {
+	fill-color: blue;
+}
+
+node:clicked {
+	fill-color: red;
+}
+
+edge{
+    arrow-shape: arrow;
+    shape: cubic-curve;
 }
