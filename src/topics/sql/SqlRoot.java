@@ -1,8 +1,6 @@
 package topics.sql;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -14,6 +12,7 @@ public class SqlRoot {
     }
 
     private Set<SqlColumn> columns = new HashSet<>();
+
     public SqlRoot addColumn(SqlColumn column) {
         columns.add(column);
         return this;

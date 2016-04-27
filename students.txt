@@ -1,0 +1,1001 @@
+Id,Imię,Nazwisko,Stypendium,Rok,Kierunek,Miasto,Ulica
+1,Cezary,Popławski,true,5,Elektrotechnika,Szczecin,Lubelska
+2,Lidia,Walczak,false,1,Informatyka,Szczecin,Wita Stwosza
+3,Luiza,Kasprzak,false,5,Informatyka,Kraków,Henryka Sienkiewicza
+4,Natasza,Flis,false,4,Elektrotechnika,Bydgoszcz,Szczecińska
+5,Karyna,Gaweł,false,3,Automatyka i Robotyka,Kraków,Juliusza Słowackiego
+6,Gabriela,Zawadzki,true,1,Informatyka,Katowice,Adama Mickiewicza
+7,Wilma,Mielczarek,true,1,Mikroelektronika w technice i medycynie,Szczecin,Racławicka
+8,Oskar,Konieczny,false,5,Automatyka i Robotyka,Gdańsk,Kolejowa
+9,Igor,Adamski,false,2,Automatyka i Robotyka,Warszawa,Chłodna
+10,Martyna,Kruk,false,4,Informatyka,Bydgoszcz,Stefana Wyszyńskiego
+11,Weronika,Sikorski,false,2,Inżynieria Biomedyczna,Wrocław,Grunwaldzka
+12,Daria,Panek,false,2,Inżynieria Biomedyczna,Katowice,Jana Kasprowicza
+13,Mirosław,Zawadzki,false,2,Automatyka i Robotyka,Wrocław,Uniwersytecka
+14,Krzysztof,Tokarski,false,3,Mikroelektronika w technice i medycynie,Kraków,Janusza Korczaka
+15,Iza,Sobieraj,false,3,Mikroelektronika w technice i medycynie,Szczecin,Zamkowa
+16,Dominik,Jagodziński,false,3,Mikroelektronika w technice i medycynie,Warszawa,Stanisława Małachowskiego
+17,Łukasz,Turek,false,5,Informatyka,Kraków,3 Maja
+18,Monika,Adamski,false,2,Mikroelektronika w technice i medycynie,Poznań,Krakowska
+19,Łucja,Socha,false,5,Inżynieria Biomedyczna,Warszawa,Aleja 29 Listopada
+20,Łukasz,Paluch,false,3,Elektrotechnika,Kraków,Piekarska
+21,Elżbieta,Dudziak,false,2,Automatyka i Robotyka,Lublin,Grottgera
+22,Ada,Gawlik,false,1,Mikroelektronika w technice i medycynie,Kraków,Warszawska
+23,Maryla,Socha,false,1,Automatyka i Robotyka,Kraków,Browarna
+24,Hanna,Cichocki,false,1,Mikroelektronika w technice i medycynie,Kielce,Uniwersytecka
+25,Weronika,Michalik,true,1,Mikroelektronika w technice i medycynie,Kielce,Śląska
+26,Jan,Rakowski,false,4,Inżynieria Biomedyczna,Gdańsk,Stanisława Małachowskiego
+27,Cecylia,Bujak,true,5,Informatyka,Kielce,Szpitalna
+28,Pola,Morawski,false,1,Inżynieria Biomedyczna,Warszawa,Browarna
+29,Maurycy,Cieśla,true,5,Automatyka i Robotyka,Gdańsk,Bolesława Leśmiana
+30,Wanda,Sroka,false,3,Automatyka i Robotyka,Gdańsk,Tadeusza Kościuszki
+31,Samanta,Szymański,false,1,Elektrotechnika,Szczecin,Grottgera
+32,Walentyna,Popławski,true,3,Automatyka i Robotyka,Lublin,Andrzeja Struga
+33,Bogdan,Konieczny,false,1,Elektrotechnika,Kielce,Aleja Niepodległości
+34,Helga,Żurek,false,1,Mikroelektronika w technice i medycynie,Gdańsk,Piękna
+35,Mariola,Mikulski,false,4,Inżynieria Biomedyczna,Gdańsk,Obornicka
+36,Zuzanna,Mierzejewski,false,5,Informatyka,Warszawa,Powstańców Śląskich
+37,Joanna,Wojciechowski,false,3,Automatyka i Robotyka,Lublin,Wincentego Witosa
+38,Kamil,Socha,false,3,Informatyka,Katowice,Opolska
+39,Arkadiusz,Szulc,true,1,Inżynieria Biomedyczna,Katowice,Juliusza Słowackiego
+40,Feliks,Orzechowski,false,3,Informatyka,Kielce,Szewska
+41,Daniel,Polak,true,3,Inżynieria Biomedyczna,Kraków,Armii Krajowej
+42,Faustyna,Gutowski,false,3,Mikroelektronika w technice i medycynie,Kraków,Andrzeja Struga
+43,Weronika,Grzyb,false,3,Inżynieria Biomedyczna,Kraków,Browarna
+44,Alina,Fijałkowski,false,3,Mikroelektronika w technice i medycynie,Katowice,Toruńska
+45,Ewelina,Mielczarek,false,3,Mikroelektronika w technice i medycynie,Warszawa,Szczecińska
+46,Gabriela,Mikulski,false,3,Mikroelektronika w technice i medycynie,Kielce,Mikołaja Kopernika
+47,Irena,Marciniak,false,4,Automatyka i Robotyka,Poznań,Stanisława Małachowskiego
+48,Ilona,Nowicki,false,2,Elektrotechnika,Kraków,Juliusza Słowackiego
+49,Irena,Krupiński,false,5,Informatyka,Szczecin,11 Listopada
+50,Łukasz,Gawroński,false,2,Informatyka,Warszawa,Kamienna
+51,Mirosław,Kowalczyk,false,3,Elektrotechnika,Bydgoszcz,Stanisława Małachowskiego
+52,Celina,Czech,false,5,Inżynieria Biomedyczna,Gdańsk,Ogrodowa
+53,Paulina,Zaborowski,true,5,Informatyka,Lublin,11 Listopada
+54,Zofia,Bartczak,true,4,Automatyka i Robotyka,Poznań,Mostowa
+55,Julia,Rakowski,true,5,Informatyka,Bydgoszcz,Zamkowa
+56,Julia,Marciniak,false,2,Automatyka i Robotyka,Kielce,1 Maja
+57,Rachela,Matusiak,false,4,Mikroelektronika w technice i medycynie,Kielce,Francuska
+58,Maja,Rybak,true,2,Elektrotechnika,Gdańsk,Wawelska
+59,Elwira,Rogowski,true,4,Elektrotechnika,Poznań,Juliana Tuwima
+60,Sabina,Pluta,false,4,Inżynieria Biomedyczna,Bydgoszcz,Piękna
+61,Fabian,Jasiński,false,4,Informatyka,Kraków,Świętojańska
+62,Maurycy,Gołębiowski,true,3,Elektrotechnika,Katowice,Toruńska
+63,Faustyna,Burzyński,false,5,Elektrotechnika,Gdańsk,Wawelska
+64,Wiesław,Cybulski,false,3,Automatyka i Robotyka,Bydgoszcz,Ciasna
+65,Edmund,Mielczarek,false,3,Automatyka i Robotyka,Lublin,Siemianowicka
+66,Stefan,Dubiel,false,3,Elektrotechnika,Warszawa,Toruńska
+67,Magda,Czyżewski,false,5,Mikroelektronika w technice i medycynie,Poznań,Grodzka
+68,Ewa,Borowski,false,4,Informatyka,Kraków,Mikołowska
+69,Piotr,Malec,true,1,Inżynieria Biomedyczna,Kraków,Niestachowska
+70,Marcin,Zawadzki,false,1,Mikroelektronika w technice i medycynie,Kielce,Andrzeja Struga
+71,Bruno,Dominiak,false,3,Informatyka,Kraków,Francuska
+72,Waldemar,Wojciechowski,true,5,Mikroelektronika w technice i medycynie,Warszawa,Fabryczna
+73,Wiktor,Marczak,false,2,Informatyka,Lublin,Strzelecka
+74,Przemysław,Pawlak,false,1,Automatyka i Robotyka,Bydgoszcz,Bankowa
+75,Ludwik,Jarosz,false,5,Elektrotechnika,Poznań,Ogrodowa
+76,Monika,Tomaszewski,false,5,Automatyka i Robotyka,Bydgoszcz,Mikołaja Kopernika
+77,Radosław,Stasiak,true,5,Inżynieria Biomedyczna,Lublin,Juliana Tuwima
+78,Leon,Piórkowski,false,4,Automatyka i Robotyka,Kielce,Henryka Dąbrowskiego
+79,Justyna,Gajda,false,5,Automatyka i Robotyka,Wrocław,Szeroka
+80,Kornel,Pakuła,true,4,Inżynieria Biomedyczna,Kielce,Ignacego Paderewskiego
+81,Kalina,Stefaniak,false,1,Automatyka i Robotyka,Kraków,Poznańska
+82,Zbigniew,Kaczmarski,false,2,Elektrotechnika,Poznań,Dworcowa
+83,Włodzimierz,Czechowski,false,3,Elektrotechnika,Kraków,Katedralna
+84,Martyna,Twardowski,false,2,Inżynieria Biomedyczna,Wrocław,Bankowa
+85,Iza,Zaborowski,false,3,Inżynieria Biomedyczna,Kraków,Toruńska
+86,Ewa,Andrzejewski,false,2,Elektrotechnika,Gdańsk,Juliana Tuwima
+87,Grażyna,Pluta,false,2,Mikroelektronika w technice i medycynie,Wrocław,Aleksandra Fredry
+88,Gaweł,Bartczak,false,2,Automatyka i Robotyka,Poznań,Aleja Wolności
+89,Waldemar,Piekarski,false,2,Mikroelektronika w technice i medycynie,Kielce,Ciasna
+90,Damian,Czyż,false,5,Inżynieria Biomedyczna,Poznań,Miodowa
+91,Leon,Pawlak,true,5,Informatyka,Poznań,Krakowskie Przedmieście
+92,Albert,Bednarz,false,1,Informatyka,Lublin,Krupnicza
+93,Martyna,Urbańczyk,true,4,Informatyka,Katowice,Ignacego Paderewskiego
+94,Felicja,Mika,false,4,Mikroelektronika w technice i medycynie,Lublin,Szewska
+95,Bolesław,Muszyński,false,4,Mikroelektronika w technice i medycynie,Kraków,Mariacka
+96,Gertruda,Panek,true,4,Inżynieria Biomedyczna,Bydgoszcz,Okopowa
+97,Przemysław,Nowicki,false,3,Mikroelektronika w technice i medycynie,Wrocław,Grabarska
+98,Martyna,Wilczek,false,2,Informatyka,Warszawa,Niestachowska
+99,Izydor,Socha,false,3,Informatyka,Szczecin,Senatorska
+100,Walentyna,Szymczak,false,1,Elektrotechnika,Warszawa,Zamkowa
+101,Jadwiga,Stankiewicz,false,1,Elektrotechnika,Kielce,Strzelecka
+102,Dominik,Drozdowski,false,2,Elektrotechnika,Bydgoszcz,Oświęcimska
+103,Luiza,Mroczek,false,1,Inżynieria Biomedyczna,Katowice,Senatorska
+104,Judyta,Błaszczyk,false,5,Elektrotechnika,Kielce,Zdrowa
+105,Andżelika,Kuś,false,1,Inżynieria Biomedyczna,Kraków,Karola Świerczewskiego
+106,Zbigniew,Milewski,true,2,Inżynieria Biomedyczna,Bydgoszcz,Oświęcimska
+107,Irena,Kot,false,4,Elektrotechnika,Gdańsk,Bolesława Prusa
+108,Konrad,Krupiński,false,1,Informatyka,Szczecin,Obornicka
+109,Maurycy,Stępień,false,2,Automatyka i Robotyka,Wrocław,Zachodnia
+110,Albert,Skrzypek,false,4,Informatyka,Warszawa,1 Maja
+111,Albert,Kubicki,false,3,Informatyka,Gdańsk,Piotra Skargi
+112,Robert,Nowicki,false,5,Automatyka i Robotyka,Lublin,Zdrowa
+113,Michał,Antczak,false,1,Elektrotechnika,Poznań,Kijowska
+114,Zygmunt,Kalinowski,false,3,Automatyka i Robotyka,Kraków,Świętojańska
+115,Luiza,Matuszewski,false,1,Mikroelektronika w technice i medycynie,Gdańsk,Wita Stwosza
+116,Krystyna,Przybysz,false,4,Elektrotechnika,Warszawa,Towarowa
+117,Dagmara,Kaczmarski,false,5,Informatyka,Kraków,Kijowska
+118,Marzena,Biernat,false,1,Elektrotechnika,Szczecin,Grunwaldzka
+119,Patryk,Kubacki,false,2,Mikroelektronika w technice i medycynie,Szczecin,Krupnicza
+120,Julia,Kuś,false,2,Mikroelektronika w technice i medycynie,Gdańsk,Karmelicka
+121,Włodzimierz,Gąsiorowski,false,1,Inżynieria Biomedyczna,Katowice,Legionów
+122,Dorota,Pietras,true,1,Elektrotechnika,Gdańsk,Aleja Wolności
+123,Martyna,Łukasik,false,4,Mikroelektronika w technice i medycynie,Warszawa,Mostowa
+124,Mikołaj,Kubik,false,3,Mikroelektronika w technice i medycynie,Szczecin,Bracka
+125,Albert,Lach,false,2,Elektrotechnika,Warszawa,Franciszkańska
+126,Andżelika,Piasecki,false,5,Mikroelektronika w technice i medycynie,Katowice,Juliana Tuwima
+127,Bolesław,Krzemiński,false,5,Inżynieria Biomedyczna,Kielce,Katedralna
+128,Tytus,Skibiński,false,1,Automatyka i Robotyka,Wrocław,Adama Mickiewicza
+129,Gertruda,Czyżewski,false,3,Automatyka i Robotyka,Kraków,Gnieźnieńska
+130,Arkadiusz,Grzyb,false,4,Inżynieria Biomedyczna,Lublin,Legionów
+131,Gertruda,Jarosz,false,3,Automatyka i Robotyka,Wrocław,Oświęcimska
+132,Wilma,Mikulski,true,3,Elektrotechnika,Gdańsk,Senatorska
+133,Bruno,Kostrzewa,false,2,Mikroelektronika w technice i medycynie,Kielce,Kolejowa
+134,Horacy,Pawlik,false,2,Inżynieria Biomedyczna,Bydgoszcz,1 Maja
+135,Michał,Zawadzki,false,1,Elektrotechnika,Szczecin,Zdrowa
+136,Leon,Wilczyński,false,4,Automatyka i Robotyka,Szczecin,Lubelska
+137,Nikola,Leśniak,false,1,Automatyka i Robotyka,Bydgoszcz,Obornicka
+138,Martyna,Zaborowski,true,2,Inżynieria Biomedyczna,Kraków,Brzeska
+139,Janusz,Sikora,false,1,Elektrotechnika,Gdańsk,Obornicka
+140,Iza,Cygan,false,3,Inżynieria Biomedyczna,Katowice,Kolejowa
+141,Kamila,Bieniek,false,1,Elektrotechnika,Warszawa,Zachodnia
+142,Karolina,Głowacki,false,1,Informatyka,Bydgoszcz,Świętojańska
+143,Piotr,Kaźmierczak,true,4,Automatyka i Robotyka,Bydgoszcz,3 Maja
+144,Jeremiasz,Świątek,false,1,Elektrotechnika,Bydgoszcz,Nowowiejska
+145,Gertruda,Różański,false,2,Mikroelektronika w technice i medycynie,Warszawa,Okopowa
+146,Janina,Cichocki,false,3,Mikroelektronika w technice i medycynie,Poznań,Gdańska
+147,Hieronim,Juszczak,false,1,Automatyka i Robotyka,Gdańsk,Janusza Korczaka
+148,Kamila,Pakuła,false,3,Mikroelektronika w technice i medycynie,Lublin,Zachodnia
+149,Rafał,Ostrowski,true,2,Mikroelektronika w technice i medycynie,Gdańsk,Francuska
+150,Felicja,Wysocki,false,2,Inżynieria Biomedyczna,Poznań,Gabriela Narutowicza
+151,Oleg,Rogowski,false,4,Inżynieria Biomedyczna,Wrocław,Krakowska
+152,Edyta,Lach,false,1,Informatyka,Lublin,Wawelska
+153,Jolanta,Kowalewski,true,5,Informatyka,Lublin,Władysława Reymonta
+154,Leokadia,Czechowski,false,2,Elektrotechnika,Kielce,Henryka Sienkiewicza
+155,Edmund,Rosiński,false,5,Informatyka,Lublin,Bolesława Prusa
+156,Celina,Grzegorczyk,true,3,Elektrotechnika,Kraków,Hallera
+157,Kornel,Kamiński,false,5,Mikroelektronika w technice i medycynie,Katowice,Chłodna
+158,Edyta,Markiewicz,false,2,Elektrotechnika,Lublin,Ogrodowa
+159,Gertruda,Malinowski,false,3,Informatyka,Szczecin,Królowej Jadwigi
+160,Łukasz,Drozdowski,false,4,Automatyka i Robotyka,Wrocław,Hrubieszowska
+161,Samanta,Karwowski,true,5,Automatyka i Robotyka,Warszawa,Łódzka
+162,Róża,Stefański,false,1,Inżynieria Biomedyczna,Bydgoszcz,Ciasna
+163,Halina,Szulc,false,5,Inżynieria Biomedyczna,Warszawa,Aleja Wolności
+164,Filip,Głowacki,false,3,Mikroelektronika w technice i medycynie,Szczecin,Starowiejska
+165,Ada,Banach,false,5,Inżynieria Biomedyczna,Bydgoszcz,Aleja Wolności
+166,Kornel,Krupiński,false,2,Elektrotechnika,Poznań,Katowicka
+167,Teresa,Białas,false,4,Informatyka,Katowice,Kolejowa
+168,Łucja,Kowalczyk,true,3,Informatyka,Poznań,Dworcowa
+169,Agnieszka,Jastrzębski,false,5,Mikroelektronika w technice i medycynie,Kielce,Krupnicza
+170,Zofia,Kaczorowski,false,2,Elektrotechnika,Poznań,Wincentego Witosa
+171,Zenon,Staniszewski,true,4,Automatyka i Robotyka,Wrocław,Opolska
+172,Oskar,Bartczak,false,1,Automatyka i Robotyka,Kraków,1 Maja
+173,Walentyna,Piórkowski,false,4,Mikroelektronika w technice i medycynie,Kraków,Browarna
+174,Mirosław,Borowski,false,2,Mikroelektronika w technice i medycynie,Warszawa,Fabryczna
+175,Stefan,Kostrzewa,false,5,Inżynieria Biomedyczna,Poznań,Toruńska
+176,Justyna,Augustyniak,false,3,Mikroelektronika w technice i medycynie,Warszawa,Młyńska
+177,Szymon,Gajewski,true,5,Automatyka i Robotyka,Poznań,Ignacego Paderewskiego
+178,Krzysztof,Bartkowiak,false,4,Mikroelektronika w technice i medycynie,Katowice,Akademicka
+179,Feliks,Ziółkowski,false,1,Elektrotechnika,Katowice,Grodzka
+180,Łucja,Ratajczak,false,3,Informatyka,Kraków,ALeja Solidarności
+181,Gustaw,Dziedzic,false,5,Informatyka,Bydgoszcz,Aleja Wolności
+182,Bartosz,Wroński,true,3,Inżynieria Biomedyczna,Szczecin,Szpitalna
+183,Dawid,Pawelec,false,1,Informatyka,Kraków,Zdrowa
+184,Danuta,Cholewa,false,2,Mikroelektronika w technice i medycynie,Warszawa,Juliana Tuwima
+185,Leon,Mazurkiewicz,true,4,Elektrotechnika,Wrocław,Królowej Jadwigi
+186,Bogdan,Zych,false,4,Elektrotechnika,Kielce,Bolesława Leśmiana
+187,Samanta,Sroka,false,1,Inżynieria Biomedyczna,Gdańsk,Armii Krajowej
+188,Zygmunt,Kowalewski,false,4,Mikroelektronika w technice i medycynie,Kraków,Zdrowa
+189,Fryderyk,Czajkowski,false,5,Mikroelektronika w technice i medycynie,Szczecin,Katowicka
+190,Albert,Wolski,false,2,Elektrotechnika,Lublin,Fabryczna
+191,Kamil,Brzeziński,false,2,Automatyka i Robotyka,Szczecin,Śląska
+192,Faustyna,Urbański,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Grodzka
+193,Urszula,Zych,true,2,Inżynieria Biomedyczna,Warszawa,Zamkowa
+194,Bogumiła,Czaja,true,3,Automatyka i Robotyka,Warszawa,Świętojańska
+195,Mirosław,Szydłowski,false,5,Elektrotechnika,Kielce,Floriańska
+196,Rachela,Krysiak,false,1,Elektrotechnika,Kraków,Jacka Malczewskiego
+197,Edyta,Kołodziej,false,5,Automatyka i Robotyka,Kraków,Łódzka
+198,Zenobia,Kucharczyk,false,2,Inżynieria Biomedyczna,Kraków,Zachodnia
+199,Gabriel,Augustyniak,true,1,Automatyka i Robotyka,Szczecin,Katowicka
+200,Oktawia,Zakrzewski,false,5,Elektrotechnika,Kraków,Szpitalna
+201,Faustyna,Dubiel,true,5,Informatyka,Lublin,1 Maja
+202,Urszula,Domagała,false,5,Elektrotechnika,Kraków,Jagiellońska
+203,Oskar,Stachowiak,false,3,Automatyka i Robotyka,Gdańsk,Francuska
+204,Oktawia,Wojtczak,false,2,Informatyka,Kielce,Kolejowa
+205,Hanna,Rybak,false,3,Informatyka,Kraków,Królowej Jadwigi
+206,Józef,Niemiec,true,2,Elektrotechnika,Lublin,Bielska
+207,Wilma,Skiba,false,3,Inżynieria Biomedyczna,Bydgoszcz,Chmielna
+208,Ada,Marcinkowski,false,2,Mikroelektronika w technice i medycynie,Katowice,Kazimierza Pułaskiego
+209,Zofia,Stec,true,3,Elektrotechnika,Szczecin,Boh.Monte Cassino
+210,Mariola,Jagiełło,false,3,Automatyka i Robotyka,Kraków,Obozowa
+211,Hanna,Drozd,true,2,Automatyka i Robotyka,Bydgoszcz,Racławicka
+212,Kalina,Andrzejewski,false,5,Informatyka,Gdańsk,Pocztowa
+213,Edyta,Sikora,true,1,Automatyka i Robotyka,Wrocław,Jagiellońska
+214,Regina,Cieśla,false,2,Informatyka,Bydgoszcz,Bankowa
+215,Barbara,Sokół,true,2,Mikroelektronika w technice i medycynie,Poznań,Katedralna
+216,Maks,Dubiel,false,2,Mikroelektronika w technice i medycynie,Kraków,Aleja Niepodległości
+217,Olaf,Wieczorek,false,2,Mikroelektronika w technice i medycynie,Lublin,Starowiejska
+218,Norbert,Wiśniewski,false,1,Elektrotechnika,Szczecin,Żytnia
+219,Marcin,Chmiel,false,5,Automatyka i Robotyka,Kraków,Tadeusza Kościuszki
+220,Weronika,Zakrzewski,false,4,Automatyka i Robotyka,Szczecin,Łąkowa
+221,Oktawia,Konieczny,true,2,Mikroelektronika w technice i medycynie,Wrocław,Mikołaja Reja
+222,Marzena,Kasprzyk,false,2,Informatyka,Lublin,Krakowskie Przedmieście
+223,Oktawia,Bogucki,true,5,Elektrotechnika,Warszawa,Żytnia
+224,Samanta,Frąckowiak,false,2,Inżynieria Biomedyczna,Gdańsk,Juliusza Słowackiego
+225,Tadeusz,Mazurek,false,3,Inżynieria Biomedyczna,Warszawa,Towarowa
+226,Wioletta,Czerwiński,false,4,Informatyka,Kielce,Szpitalna
+227,Olaf,Andrzejewski,false,4,Mikroelektronika w technice i medycynie,Lublin,Jagiellońska
+228,Patryk,Drzewiecki,false,1,Inżynieria Biomedyczna,Kraków,Mostowa
+229,Berta,Pawelec,false,1,Automatyka i Robotyka,Warszawa,Gnieźnieńska
+230,Paulina,Krupiński,false,2,Mikroelektronika w technice i medycynie,Poznań,Towarowa
+231,Halina,Sobczak,false,1,Inżynieria Biomedyczna,Lublin,Chopina
+232,Alicja,Urbaniak,false,1,Inżynieria Biomedyczna,Poznań,Aleja 29 Listopada
+233,Przemysław,Pałka,true,1,Automatyka i Robotyka,Kraków,Targowa
+234,Felicja,Tomczyk,false,5,Inżynieria Biomedyczna,Kraków,Aleja Wolności
+235,Nina,Kubica,false,4,Inżynieria Biomedyczna,Kraków,Strzelecka
+236,Czesława,Długosz,true,2,Inżynieria Biomedyczna,Gdańsk,Strzelecka
+237,Izydor,Szymański,false,2,Inżynieria Biomedyczna,Lublin,Królowej Jadwigi
+238,Krzysztof,Mika,false,2,Inżynieria Biomedyczna,Szczecin,Puławska
+239,Klara,Banach,false,3,Mikroelektronika w technice i medycynie,Kraków,Józefa Dietla
+240,Judyta,Milewski,false,3,Elektrotechnika,Gdańsk,Krucza
+241,Leon,Cebula,false,1,Informatyka,Katowice,Janusza Korczaka
+242,Berta,Piątkowski,false,5,Inżynieria Biomedyczna,Kraków,Ogrodowa
+243,Krzysztof,Kubicki,false,3,Mikroelektronika w technice i medycynie,Warszawa,Francuska
+244,Mikołaj,Laskowski,false,5,Automatyka i Robotyka,Szczecin,Senatorska
+245,Olga,Sokół,false,1,Informatyka,Kraków,Franciszkańska
+246,Cecylia,Graczyk,false,5,Mikroelektronika w technice i medycynie,Szczecin,11 Listopada
+247,Alicja,Grzelak,false,2,Elektrotechnika,Szczecin,Henryka Dąbrowskiego
+248,Bożena,Węgrzyn,true,5,Informatyka,Wrocław,Tadeusza Kościuszki
+249,Bogdan,Krajewski,false,3,Informatyka,Gdańsk,Francuska
+250,Andżelika,Żak,false,4,Automatyka i Robotyka,Kraków,Szeroka
+251,Luiza,Mikołajczyk,false,1,Informatyka,Lublin,Fabryczna
+252,Włodzimierz,Ratajczak,false,1,Inżynieria Biomedyczna,Gdańsk,Stefana Wyszyńskiego
+253,Zenon,Rosiak,false,3,Mikroelektronika w technice i medycynie,Wrocław,Gliwicka
+254,Ewelina,Piórkowski,false,1,Inżynieria Biomedyczna,Kraków,Juliusza Słowackiego
+255,Hanna,Sienkiewicz,false,2,Elektrotechnika,Kraków,Szewska
+256,Lech,Witczak,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Lubelska
+257,Juliusz,Świątek,true,1,Informatyka,Kraków,Jana III Sobieskiego
+258,Maryla,Sadowski,true,5,Informatyka,Bydgoszcz,Targowa
+259,Radosław,Malec,false,2,Elektrotechnika,Kielce,Chmielna
+260,Barbara,Piwowarczyk,false,4,Automatyka i Robotyka,Szczecin,Jezuicka
+261,Krystian,Bartosik,true,1,Informatyka,Bydgoszcz,Jana Kasprowicza
+262,Maryla,Klimczak,false,2,Mikroelektronika w technice i medycynie,Katowice,Jana Kasprowicza
+263,Fabian,Krawczyk,true,4,Informatyka,Wrocław,Katowicka
+264,Halina,Twardowski,false,5,Automatyka i Robotyka,Lublin,Zwierzyniecka
+265,Łukasz,Kasprzyk,false,5,Inżynieria Biomedyczna,Poznań,Targowa
+266,Gabriela,Lisiecki,false,3,Automatyka i Robotyka,Bydgoszcz,Katowicka
+267,Wilma,Matysiak,false,5,Informatyka,Wrocław,Franciszkańska
+268,Monika,Górski,false,4,Informatyka,Warszawa,Mikołaja Kopernika
+269,Filip,Czerwiński,false,3,Informatyka,Wrocław,Gabriela Narutowicza
+270,Bogumiła,Węgrzyn,false,2,Automatyka i Robotyka,Kraków,Kazimierza Pułaskiego
+271,Justyna,Słowiński,true,5,Elektrotechnika,Kraków,Poznańska
+272,Aleksandra,Pietrzak,false,5,Informatyka,Kielce,11 Listopada
+273,Bruno,Żurek,true,1,Informatyka,Lublin,Wincentego Witosa
+274,Ludwik,Rybak,false,1,Mikroelektronika w technice i medycynie,Szczecin,Grodzka
+275,Agnieszka,Pietrzak,true,4,Inżynieria Biomedyczna,Kraków,Szewska
+276,Zuzanna,Kołodziejski,false,4,Automatyka i Robotyka,Gdańsk,Józefa Dietla
+277,Urszula,Duda,true,1,Automatyka i Robotyka,Kraków,Wojska Polskiego
+278,Faustyna,Kozioł,false,5,Elektrotechnika,Bydgoszcz,Bolesława Prusa
+279,Bogdan,Ciszewski,false,1,Automatyka i Robotyka,Katowice,Andrzeja Struga
+280,Maciej,Maciejewski,false,1,Elektrotechnika,Bydgoszcz,Szczecińska
+281,Adam,Sobieraj,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Wincentego Witosa
+282,Maks,Sadowski,false,2,Automatyka i Robotyka,Kraków,Bolesława Prusa
+283,Iwona,Głowacki,true,2,Elektrotechnika,Szczecin,Świętokrzyska
+284,Hilary,Dudziak,false,2,Automatyka i Robotyka,Kraków,Brzeska
+285,Waldemar,Konieczny,false,2,Elektrotechnika,Kraków,Szpitalna
+286,Pola,Stępień,false,1,Inżynieria Biomedyczna,Lublin,Hrubieszowska
+287,Alina,Kałuża,false,1,Automatyka i Robotyka,Kraków,Beskidzka
+288,Weronika,Szczepanik,false,2,Inżynieria Biomedyczna,Bydgoszcz,Ignacego Paderewskiego
+289,Łucja,Karaś,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Młyńska
+290,Wacław,Filipek,false,1,Elektrotechnika,Poznań,Obozowa
+291,Gustaw,Piekarski,true,4,Informatyka,Katowice,Uniwersytecka
+292,Monika,Grzesiak,false,2,Elektrotechnika,Wrocław,Świętojańska
+293,Regina,Mróz,false,1,Elektrotechnika,Bydgoszcz,Grottgera
+294,Denis,Madej,false,5,Informatyka,Warszawa,Hetmańska
+295,Szczepan,Wilczyński,false,3,Mikroelektronika w technice i medycynie,Wrocław,Władysława Reymonta
+296,Jadwiga,Sobczak,true,5,Informatyka,Poznań,Zdrowa
+297,Barbara,Szczepański,true,3,Mikroelektronika w technice i medycynie,Wrocław,Chłodna
+298,Bruno,Zawadzki,false,5,Elektrotechnika,Kraków,Żytnia
+299,Ludwik,Kowalik,false,2,Mikroelektronika w technice i medycynie,Gdańsk,Starowiejska
+300,Piotr,Kowalski,false,5,Elektrotechnika,Kraków,Kazimierza Pułaskiego
+301,Zenobia,Staniszewski,false,2,Automatyka i Robotyka,Szczecin,Królewska
+302,Henryk,Szczepański,true,1,Elektrotechnika,Poznań,Juliusza Słowackiego
+303,Walentyna,Jurkiewicz,false,4,Automatyka i Robotyka,Poznań,Aleja Wolności
+304,Tamara,Kowal,false,4,Elektrotechnika,Wrocław,Jacka Malczewskiego
+305,Robert,Majewski,false,1,Informatyka,Katowice,Ogrodowa
+306,Gabriel,Konopka,true,5,Informatyka,Warszawa,Puławska
+307,Zbigniew,Gajewski,true,4,Inżynieria Biomedyczna,Poznań,Świętokrzyska
+308,Kornel,Gruszczyński,false,5,Inżynieria Biomedyczna,Poznań,Młyńska
+309,Halina,Olejniczak,false,3,Inżynieria Biomedyczna,Warszawa,Krupnicza
+310,Zygmunt,Grzyb,false,2,Mikroelektronika w technice i medycynie,Szczecin,Andrzeja Struga
+311,Tytus,Mika,false,1,Elektrotechnika,Kielce,Katedralna
+312,Dagmara,Ciszewski,false,4,Automatyka i Robotyka,Poznań,Dworcowa
+313,Józef,Walkowiak,false,2,Mikroelektronika w technice i medycynie,Szczecin,Karmelicka
+314,Weronika,Milewski,false,3,Inżynieria Biomedyczna,Warszawa,Chopina
+315,Edyta,Sieradzki,false,3,Mikroelektronika w technice i medycynie,Wrocław,Konstytucji 3 Maja
+316,Ludwik,Drozdowski,false,2,Inżynieria Biomedyczna,Kraków,Chmielna
+317,Krystian,Dębski,false,2,Automatyka i Robotyka,Kielce,Aleja 29 Listopada
+318,Zenon,Marszałek,false,1,Inżynieria Biomedyczna,Kraków,Jana Kasprowicza
+319,Mariola,Kuś,false,5,Inżynieria Biomedyczna,Kielce,Brzeska
+320,Zdzisław,Kubicki,false,5,Inżynieria Biomedyczna,Gdańsk,Brzeska
+321,Arkadiusz,Winiarski,false,4,Elektrotechnika,Szczecin,Dworcowa
+322,Jakub,Kruk,true,5,Informatyka,Szczecin,Mikołaja Reja
+323,Olaf,Borkowski,false,2,Informatyka,Kielce,Powstańców Śląskich
+324,Iga,Kruk,false,3,Automatyka i Robotyka,Bydgoszcz,Pocztowa
+325,Zuzanna,Filipiak,false,3,Mikroelektronika w technice i medycynie,Szczecin,Powstańców Śląskich
+326,Faustyna,Leszczyński,false,1,Informatyka,Gdańsk,Żytnia
+327,Nadia,Krakowiak,false,2,Automatyka i Robotyka,Kraków,Bankowa
+328,Maks,Skibiński,false,2,Elektrotechnika,Kielce,11 Listopada
+329,Adrian,Witkowski,false,1,Inżynieria Biomedyczna,Kraków,Aleja Niepodległości
+330,Feliks,Maciejewski,false,4,Informatyka,Warszawa,Ogrodowa
+331,Gabriel,Pietrzyk,false,1,Inżynieria Biomedyczna,Kielce,Kazimierza Wielkiego
+332,Gertruda,Węgrzyn,true,2,Inżynieria Biomedyczna,Katowice,Pomorska
+333,Ewa,Matuszewski,true,1,Mikroelektronika w technice i medycynie,Kraków,Szczecińska
+334,Elżbieta,Borek,false,1,Informatyka,Bydgoszcz,Andrzeja Struga
+335,Karyna,Makowski,false,3,Inżynieria Biomedyczna,Kraków,Józefa Poniatowskiego
+336,Milena,Karpiński,false,4,Automatyka i Robotyka,Poznań,Beskidzka
+337,Michał,Skoczylas,false,4,Informatyka,Wrocław,Jagiellońska
+338,Kacper,Szczygieł,false,2,Informatyka,Warszawa,Szczecińska
+339,Dominik,Rakowski,false,4,Informatyka,Wrocław,Zamkowa
+340,Lech,Wróblewski,false,4,Inżynieria Biomedyczna,Katowice,Stefana Starzyńskiego
+341,Dominik,Nowak,false,3,Automatyka i Robotyka,Bydgoszcz,Lechicka
+342,Denis,Pluta,true,5,Inżynieria Biomedyczna,Lublin,Fabryczna
+343,Iwona,Piórkowski,false,4,Inżynieria Biomedyczna,Kraków,Zachodnia
+344,Elwira,Jędrzejczak,false,5,Inżynieria Biomedyczna,Szczecin,Katowicka
+345,Kacper,Dąbek,false,1,Elektrotechnika,Poznań,Gnieźnieńska
+346,Martyna,Chrzanowski,true,2,Automatyka i Robotyka,Kraków,Bytomska
+347,Łucja,Raczyński,true,4,Informatyka,Poznań,Konstytucji 3 Maja
+348,Irena,Rogowski,false,4,Elektrotechnika,Kraków,Francuska
+349,Alfred,Augustyniak,false,3,Inżynieria Biomedyczna,Gdańsk,Mikołaja Kopernika
+350,Berta,Jędrzejczak,true,4,Elektrotechnika,Kraków,Lipowa
+351,Jakub,Bogusz,false,5,Inżynieria Biomedyczna,Kraków,Chopina
+352,Bożena,Duda,true,1,Mikroelektronika w technice i medycynie,Kraków,Grottgera
+353,Magda,Gruszka,false,4,Mikroelektronika w technice i medycynie,Katowice,Legionów
+354,Cecylia,Filipek,false,5,Informatyka,Gdańsk,Ignacego Paderewskiego
+355,Ewelina,Janicki,true,1,Mikroelektronika w technice i medycynie,Katowice,Bolesława Leśmiana
+356,Robert,Kwiecień,false,2,Informatyka,Katowice,Beskidzka
+357,Daria,Szczepaniak,false,1,Mikroelektronika w technice i medycynie,Szczecin,Katowicka
+358,Olaf,Kurek,false,5,Mikroelektronika w technice i medycynie,Wrocław,Mikołaja Kopernika
+359,Bożena,Dziedzic,false,1,Inżynieria Biomedyczna,Wrocław,Andrzeja Struga
+360,Ada,Kosiński,false,2,Elektrotechnika,Wrocław,Andrzeja Struga
+361,Daria,Bogusz,false,3,Informatyka,Poznań,Śląska
+362,Paweł,Ostrowski,false,3,Inżynieria Biomedyczna,Poznań,Starowiejska
+363,Róża,Łukasiewicz,false,3,Mikroelektronika w technice i medycynie,Bydgoszcz,gen. Andersa
+364,Halina,Małek,false,2,Inżynieria Biomedyczna,Szczecin,Bracka
+365,Artur,Cygan,false,5,Elektrotechnika,Kielce,Boh.Monte Cassino
+366,Kalina,Dąbrowski,false,2,Automatyka i Robotyka,Katowice,Senatorska
+367,Bartosz,Szymczak,false,3,Automatyka i Robotyka,Wrocław,Wałowa
+368,Ewelina,Szafrański,false,3,Mikroelektronika w technice i medycynie,Poznań,Tadeusza Kościuszki
+369,Ludwik,Gąsiorowski,false,2,Mikroelektronika w technice i medycynie,Wrocław,Hrubieszowska
+370,Norbert,Kaczmarski,false,2,Elektrotechnika,Kraków,Konstytucji 3 Maja
+371,Waldemar,Sokołowski,false,4,Elektrotechnika,Szczecin,Juliana Tuwima
+372,Karolina,Bilski,false,1,Elektrotechnika,Kraków,Lwowska
+373,Albert,Kubacki,false,2,Automatyka i Robotyka,Warszawa,Henryka Sienkiewicza
+374,Hieronim,Woźniak,true,5,Elektrotechnika,Gdańsk,Północna
+375,Dominik,Czechowski,false,1,Informatyka,Kraków,Krucza
+376,Denis,Zarzycki,false,2,Elektrotechnika,Gdańsk,Katowicka
+377,Zygmunt,Janowski,true,5,Informatyka,Kielce,Piwna
+378,Feliks,Piątkowski,false,5,Informatyka,Lublin,Stefana Żeromskiego
+379,Zbigniew,Kowalczyk,false,1,Mikroelektronika w technice i medycynie,Poznań,Lubelska
+380,Oskar,Rudnicki,false,5,Elektrotechnika,Poznań,Kolejowa
+381,Hanna,Lech,false,4,Elektrotechnika,Kielce,Zdrowa
+382,Oskar,Piwowarczyk,false,1,Automatyka i Robotyka,Katowice,Kolejowa
+383,Celina,Misztal,false,2,Mikroelektronika w technice i medycynie,Szczecin,Ignacego Paderewskiego
+384,Szymon,Andrzejczak,false,4,Automatyka i Robotyka,Warszawa,Szewska
+385,Otylia,Wróbel,false,4,Automatyka i Robotyka,Katowice,Strzelecka
+386,Helga,Michałowski,false,5,Inżynieria Biomedyczna,Warszawa,Jana Pawła II
+387,Iwona,Sobczyk,false,5,Informatyka,Katowice,Juliusza Słowackiego
+388,Feliks,Drzewiecki,false,1,Automatyka i Robotyka,Poznań,Jezuicka
+389,Gabriela,Muszyński,false,5,Automatyka i Robotyka,Kraków,Bolesława Leśmiana
+390,Olga,Barański,false,5,Automatyka i Robotyka,Warszawa,Aleja Wolności
+391,Adam,Gaweł,true,5,Inżynieria Biomedyczna,Szczecin,Hrubieszowska
+392,Małgorzata,Mierzejewski,false,5,Informatyka,Wrocław,Browarna
+393,Jowita,Zaręba,true,4,Informatyka,Kraków,Juliana Tuwima
+394,Wacław,Szymczyk,false,3,Inżynieria Biomedyczna,Kielce,Pocztowa
+395,Wacław,Wasiak,false,4,Elektrotechnika,Katowice,Jezuicka
+396,Maciej,Olejniczak,false,1,Inżynieria Biomedyczna,Bydgoszcz,Krucza
+397,Igor,Przybylski,false,4,Mikroelektronika w technice i medycynie,Bydgoszcz,Starowiejska
+398,Rafał,Krakowiak,false,2,Elektrotechnika,Szczecin,Lechicka
+399,Martyna,Piórkowski,false,4,Informatyka,Lublin,Francuska
+400,Jolanta,Maćkowiak,false,2,Mikroelektronika w technice i medycynie,Poznań,Stefana Żeromskiego
+401,Aleksander,Staniszewski,false,5,Inżynieria Biomedyczna,Poznań,Zdrowa
+402,Bogdan,Mucha,false,1,Informatyka,Kielce,Lwowska
+403,Paweł,Szydłowski,false,3,Informatyka,Poznań,Ciasna
+404,Czesława,Kubicki,false,5,Elektrotechnika,Kielce,Ignacego Paderewskiego
+405,Mikołaj,Bednarek,false,1,Elektrotechnika,Bydgoszcz,Lechicka
+406,Irena,Kowalewski,false,2,Inżynieria Biomedyczna,Wrocław,Francuska
+407,Marek,Krakowiak,false,2,Informatyka,Lublin,Starowiejska
+408,Grażyna,Janiak,false,3,Inżynieria Biomedyczna,Poznań,Towarowa
+409,Dionizy,Polak,false,5,Inżynieria Biomedyczna,Kielce,Chłodna
+410,Grzegorz,Misztal,false,4,Inżynieria Biomedyczna,Bydgoszcz,Niestachowska
+411,Sylwia,Jędrzejewski,false,4,Elektrotechnika,Kraków,Królowej Jadwigi
+412,Jeremiasz,Marczak,false,3,Elektrotechnika,Poznań,Wrocławska
+413,Rafał,Banach,false,2,Inżynieria Biomedyczna,Poznań,Wojska Polskiego
+414,Jan,Filipek,true,2,Automatyka i Robotyka,Warszawa,Stefana Starzyńskiego
+415,Wilma,Banach,false,5,Elektrotechnika,Lublin,Henryka Dąbrowskiego
+416,Krystyna,Kaźmierczak,false,5,Inżynieria Biomedyczna,Lublin,Janusza Korczaka
+417,Radosław,Ratajczak,true,1,Inżynieria Biomedyczna,Katowice,Stanisława Małachowskiego
+418,Jan,Bochenek,false,2,Elektrotechnika,Kielce,Królewska
+419,Oleg,Czech,false,2,Informatyka,Gdańsk,Francuska
+420,Wilma,Żak,false,5,Informatyka,Kielce,Mikołaja Reja
+421,Eliasz,Kozak,false,5,Informatyka,Szczecin,Wojska Polskiego
+422,Maria,Kaczmarczyk,false,1,Informatyka,Kielce,Jana Kilińskiego
+423,Sabina,Łukasik,false,4,Inżynieria Biomedyczna,Gdańsk,Mikołowska
+424,Justyna,Janas,true,3,Informatyka,Warszawa,Gnieźnieńska
+425,Zenobia,Serafin,false,1,Informatyka,Katowice,Królowej Jadwigi
+426,Tamara,Cichoń,false,1,Informatyka,Katowice,Andrzeja Struga
+427,Tytus,Kurowski,false,1,Elektrotechnika,Kielce,Nowowiejska
+428,Jadwiga,Kaczyński,false,3,Inżynieria Biomedyczna,Kielce,Żytnia
+429,Elżbieta,Kania,true,1,Mikroelektronika w technice i medycynie,Warszawa,Obozowa
+430,Feliks,Grzelak,false,3,Informatyka,Kraków,Pocztowa
+431,Luiza,Stelmach,true,1,Informatyka,Kraków,Siemianowicka
+432,Bazyli,Zarzycki,false,2,Mikroelektronika w technice i medycynie,Poznań,gen. Andersa
+433,Wit,Kozłowski,false,1,Elektrotechnika,Szczecin,Gliwicka
+434,Marcin,Rosiński,false,3,Elektrotechnika,Gdańsk,Jana Pawła II
+435,Ludwik,Cichoń,false,3,Elektrotechnika,Lublin,Zwierzyniecka
+436,Jeremiasz,Czyż,false,1,Elektrotechnika,Wrocław,Szeroka
+437,Tadeusz,Gruszczyński,false,5,Automatyka i Robotyka,Poznań,Henryka Sienkiewicza
+438,Gertruda,Lewandowski,false,3,Elektrotechnika,Warszawa,Poznańska
+439,Zofia,Rak,false,1,Automatyka i Robotyka,Lublin,Akademicka
+440,Jolanta,Sadowski,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Henryka Dąbrowskiego
+441,Dorota,Brzeziński,false,1,Automatyka i Robotyka,Katowice,Grottgera
+442,Józef,Chrzanowski,false,4,Automatyka i Robotyka,Kraków,Aleja Wolności
+443,Jowita,Bielawski,false,2,Inżynieria Biomedyczna,Bydgoszcz,Browarna
+444,Elwira,Borek,false,1,Inżynieria Biomedyczna,Kielce,Aleja Wolności
+445,Laura,Krawczyk,false,2,Automatyka i Robotyka,Poznań,Świętokrzyska
+446,Paweł,Białek,false,3,Automatyka i Robotyka,Szczecin,1 Maja
+447,Leon,Flis,false,2,Inżynieria Biomedyczna,Kraków,Piękna
+448,Łucja,Kmiecik,false,2,Mikroelektronika w technice i medycynie,Poznań,3 Maja
+449,Dariusz,Żebrowski,false,3,Mikroelektronika w technice i medycynie,Poznań,Krucza
+450,Grzegorz,Stępień,false,2,Mikroelektronika w technice i medycynie,Lublin,Zwycięstwa
+451,Sebastian,Panek,false,5,Inżynieria Biomedyczna,Poznań,Chopina
+452,Maciej,Dziedzic,false,2,Informatyka,Kraków,Świętokrzyska
+453,Małgorzata,Wojciechowski,false,2,Automatyka i Robotyka,Lublin,Partyzantów
+454,Krystian,Kozak,false,5,Inżynieria Biomedyczna,Lublin,Okopowa
+455,Felicja,Skiba,false,3,Inżynieria Biomedyczna,Bydgoszcz,ALeja Solidarności
+456,Konrad,Czajka,false,3,Elektrotechnika,Poznań,Senatorska
+457,Weronika,Zawada,true,4,Elektrotechnika,Szczecin,Gdańska
+458,Nikola,Pietras,false,5,Inżynieria Biomedyczna,Poznań,Krakowska
+459,Leokadia,Witkowski,false,2,Inżynieria Biomedyczna,Kraków,Piekarska
+460,Michał,Osiński,false,3,Mikroelektronika w technice i medycynie,Kraków,Bielska
+461,Przemysław,Piórkowski,false,2,Elektrotechnika,Warszawa,Krakowskie Przedmieście
+462,Danuta,Nawrot,false,5,Inżynieria Biomedyczna,Wrocław,Dworcowa
+463,Adrian,Kowalczyk,false,2,Automatyka i Robotyka,Katowice,Bytomska
+464,Róża,Michałowski,true,4,Inżynieria Biomedyczna,Gdańsk,Długa
+465,Pamela,Kostrzewa,false,3,Elektrotechnika,Poznań,Śląska
+466,Kamil,Bogusz,true,5,Informatyka,Kielce,Wojska Polskiego
+467,Izydor,Frankowski,false,2,Elektrotechnika,Poznań,Boh.Monte Cassino
+468,Szymon,Ratajczak,false,5,Automatyka i Robotyka,Gdańsk,Towarowa
+469,Leszek,Chmiel,true,2,Inżynieria Biomedyczna,Warszawa,ks. Jerzego Popoiełuszki
+470,Faustyna,Szymczak,true,3,Automatyka i Robotyka,Poznań,Tadeusza Kościuszki
+471,Barbara,Milewski,true,3,Elektrotechnika,Warszawa,Piekarska
+472,Helga,Wilczek,true,2,Elektrotechnika,Kraków,Wincentego Witosa
+473,Danuta,Gąsiorowski,false,1,Mikroelektronika w technice i medycynie,Kraków,Świętojańska
+474,Iza,Urbański,false,5,Elektrotechnika,Szczecin,Andrzeja Struga
+475,Radosław,Pająk,true,5,Elektrotechnika,Kraków,Mikołaja Kopernika
+476,Dariusz,Bogusz,false,3,Inżynieria Biomedyczna,Gdańsk,Gliwicka
+477,Eliza,Dobrzyński,false,2,Informatyka,Katowice,Stefana Wyszyńskiego
+478,Walentyna,Grabowski,true,1,Informatyka,Bydgoszcz,Bankowa
+479,Daria,Zieliński,true,2,Informatyka,Kielce,Bytomska
+480,Grażyna,Czaja,false,3,Elektrotechnika,Szczecin,Wrocławska
+481,Przemysław,Sieradzki,false,3,Elektrotechnika,Poznań,Wojska Polskiego
+482,Kacper,Matuszewski,false,3,Automatyka i Robotyka,Katowice,Zdrowa
+483,Renata,Kowal,false,2,Mikroelektronika w technice i medycynie,Lublin,Józefa Piłsudskiego
+484,Leokadia,Krupa,true,1,Mikroelektronika w technice i medycynie,Szczecin,Gliwicka
+485,Otylia,Kaczmarski,false,3,Inżynieria Biomedyczna,Poznań,Wrocławska
+486,Arkadiusz,Bielecki,false,2,Elektrotechnika,Warszawa,Stefana Wyszyńskiego
+487,Eliza,Błaszczyk,false,5,Elektrotechnika,Wrocław,Janusza Korczaka
+488,Alfred,Kozak,false,2,Informatyka,Kielce,Złota
+489,Marcin,Nowicki,false,2,Informatyka,Bydgoszcz,Jana Kasprowicza
+490,Maja,Borowiec,false,2,Elektrotechnika,Kraków,Aleja 29 Listopada
+491,Julian,Maciejewski,false,3,Automatyka i Robotyka,Katowice,Karmelicka
+492,Agnieszka,Kucharczyk,false,5,Inżynieria Biomedyczna,Szczecin,Piękna
+493,Krystian,Niemiec,false,3,Informatyka,Katowice,Kijowska
+494,Bolesław,Nawrot,false,4,Automatyka i Robotyka,Lublin,Tadeusza Kościuszki
+495,Wacław,Kozak,true,4,Mikroelektronika w technice i medycynie,Poznań,Kolejowa
+496,Ewelina,Maćkowiak,false,3,Inżynieria Biomedyczna,Gdańsk,Mikołaja Kopernika
+497,Karolina,Marcinkowski,true,3,Automatyka i Robotyka,Bydgoszcz,Zdrowa
+498,Leszek,Mucha,false,2,Automatyka i Robotyka,Kraków,Obornicka
+499,Tytus,Falkowski,true,5,Elektrotechnika,Gdańsk,Obozowa
+500,Dorota,Wysocki,true,5,Inżynieria Biomedyczna,Kraków,Lwowska
+501,Oskar,Cebula,false,1,Automatyka i Robotyka,Szczecin,Tadeusza Kościuszki
+502,Łukasz,Graczyk,true,4,Elektrotechnika,Kraków,Powstańców Śląskich
+503,Alicja,Jędrzejczak,false,1,Automatyka i Robotyka,Kraków,Stefana Żeromskiego
+504,Tytus,Górski,false,3,Elektrotechnika,Lublin,Targowa
+505,Nina,Jezierski,false,1,Inżynieria Biomedyczna,Lublin,Karola Świerczewskiego
+506,Bogusław,Czerwiński,false,4,Elektrotechnika,Szczecin,Brzeska
+507,Paweł,Pietras,true,4,Elektrotechnika,Lublin,Armii Krajowej
+508,Wilma,Zaremba,false,5,Automatyka i Robotyka,Kraków,Opolska
+509,Edmund,Skrzypczak,false,4,Elektrotechnika,Gdańsk,Konstytucji 3 Maja
+510,Gaweł,Wawrzyniak,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Mikołaja Reja
+511,Fryderyk,Kowal,false,1,Mikroelektronika w technice i medycynie,Poznań,Ignacego Paderewskiego
+512,Norbert,Misiak,false,2,Elektrotechnika,Lublin,Toruńska
+513,Adrian,Sokołowski,true,4,Elektrotechnika,Kraków,Szeroka
+514,Józef,Banaś,true,2,Informatyka,Kraków,Towarowa
+515,Marek,Piórkowski,false,1,Automatyka i Robotyka,Bydgoszcz,Wrocławska
+516,Urszula,Grzyb,false,1,Automatyka i Robotyka,Gdańsk,Złota
+517,Kamila,Maćkowiak,false,2,Elektrotechnika,Katowice,Partyzantów
+518,Ewelina,Mroczek,true,5,Mikroelektronika w technice i medycynie,Kraków,Jana Pawła II
+519,Pola,Zakrzewski,true,3,Automatyka i Robotyka,Lublin,Fabryczna
+520,Walentyna,Śliwa,false,2,Mikroelektronika w technice i medycynie,Gdańsk,Bolesława Prusa
+521,Zdzisław,Domagała,true,4,Mikroelektronika w technice i medycynie,Bydgoszcz,Świętojańska
+522,Agata,Jarosz,true,1,Elektrotechnika,Poznań,Obozowa
+523,Wioletta,Czyż,false,2,Elektrotechnika,Bydgoszcz,Jana III Sobieskiego
+524,Danuta,Majewski,false,4,Automatyka i Robotyka,Kielce,Janusza Korczaka
+525,Tytus,Kędzierski,false,1,Automatyka i Robotyka,Warszawa,Bolesława Prusa
+526,Helga,Zaręba,false,4,Automatyka i Robotyka,Kraków,Jagiellońska
+527,Wiesław,Cieślak,false,3,Inżynieria Biomedyczna,Wrocław,Królewska
+528,Iga,Drzewiecki,true,1,Inżynieria Biomedyczna,Kielce,Towarowa
+529,Oliwia,Mikołajczak,false,5,Informatyka,Warszawa,Szewska
+530,Wanda,Stankiewicz,false,3,Elektrotechnika,Gdańsk,Hetmańska
+531,Wioletta,Zarzycki,false,3,Mikroelektronika w technice i medycynie,Gdańsk,Karmelicka
+532,Patryk,Drzewiecki,false,4,Mikroelektronika w technice i medycynie,Kraków,Jana Kasprowicza
+533,Iza,Madej,true,4,Inżynieria Biomedyczna,Katowice,Bolesława Prusa
+534,Radosław,Sowiński,false,4,Elektrotechnika,Bydgoszcz,Warszawska
+535,Eliasz,Kowalik,false,3,Informatyka,Katowice,Gnieźnieńska
+536,Aneta,Łukasiewicz,false,3,Mikroelektronika w technice i medycynie,Kielce,Szpitalna
+537,Seweryn,Borowiec,false,2,Mikroelektronika w technice i medycynie,Katowice,Senatorska
+538,Oliwia,Łuczak,true,4,Elektrotechnika,Wrocław,Złota
+539,Damian,Andrzejewski,false,3,Elektrotechnika,Katowice,ks. Jerzego Popoiełuszki
+540,Zygmunt,Dobrowolski,false,4,Automatyka i Robotyka,Kraków,Starowiejska
+541,Gertruda,Musiał,false,4,Inżynieria Biomedyczna,Gdańsk,Grunwaldzka
+542,Kalina,Mroczek,false,2,Inżynieria Biomedyczna,Lublin,Piekarska
+543,Justyna,Podgórski,true,1,Informatyka,Katowice,Aleja Niepodległości
+544,Martyna,Wiśniewski,false,4,Informatyka,Lublin,Targowa
+545,Zdzisław,Dubiel,false,4,Mikroelektronika w technice i medycynie,Warszawa,św Jana
+546,Łucja,Strzelczyk,false,5,Automatyka i Robotyka,Katowice,Adama Mickiewicza
+547,Ilona,Kaczyński,true,3,Inżynieria Biomedyczna,Kielce,Aleja Wolności
+548,Martyna,Chrzanowski,false,5,Automatyka i Robotyka,Szczecin,Jana Kasprowicza
+549,Bogumiła,Muszyński,false,4,Inżynieria Biomedyczna,Lublin,Karmelicka
+550,Edmund,Markowski,false,1,Inżynieria Biomedyczna,Bydgoszcz,Grunwaldzka
+551,Arkadiusz,Olejniczak,false,3,Inżynieria Biomedyczna,Poznań,gen. Andersa
+552,Teresa,Rogala,false,2,Inżynieria Biomedyczna,Kraków,Złota
+553,Tadeusz,Janas,false,1,Informatyka,Kraków,Henryka Dąbrowskiego
+554,Nikodem,Zaremba,false,5,Mikroelektronika w technice i medycynie,Poznań,Beskidzka
+555,Lech,Sieradzki,false,3,Informatyka,Bydgoszcz,Bytomska
+556,Igor,Wilk,false,5,Inżynieria Biomedyczna,Kraków,Andrzeja Struga
+557,Wilma,Kaczor,false,1,Automatyka i Robotyka,Szczecin,Partyzantów
+558,Eryk,Żebrowski,false,3,Mikroelektronika w technice i medycynie,Warszawa,Stefana Starzyńskiego
+559,Nikodem,Filipowicz,false,5,Mikroelektronika w technice i medycynie,Kraków,Janusza Korczaka
+560,Radosław,Skrzypczak,false,5,Inżynieria Biomedyczna,Katowice,Krucza
+561,Igor,Markiewicz,true,1,Inżynieria Biomedyczna,Katowice,Opolska
+562,Jan,Biernacki,false,4,Informatyka,Wrocław,Dworcowa
+563,Mirosław,Matuszak,false,3,Automatyka i Robotyka,Wrocław,Uniwersytecka
+564,Wacław,Bogusz,false,4,Inżynieria Biomedyczna,Kielce,Łąkowa
+565,Szczepan,Jagodziński,true,2,Inżynieria Biomedyczna,Kielce,1 Maja
+566,Judyta,Borowski,false,4,Mikroelektronika w technice i medycynie,Gdańsk,Młyńska
+567,Nina,Malinowski,true,4,Mikroelektronika w technice i medycynie,Kraków,Henryka Sienkiewicza
+568,Wiktor,Kubik,false,4,Informatyka,Bydgoszcz,Ignacego Paderewskiego
+569,Iwan,Sawicki,true,2,Automatyka i Robotyka,Kraków,Poznańska
+570,Laura,Cichoń,false,4,Mikroelektronika w technice i medycynie,Gdańsk,Towarowa
+571,Bogusław,Bednarz,false,2,Automatyka i Robotyka,Szczecin,Starowiejska
+572,Marek,Kaleta,false,3,Informatyka,Szczecin,Andrzeja Struga
+573,Horacy,Rzepka,true,2,Inżynieria Biomedyczna,Lublin,Miodowa
+574,Fryderyk,Sosnowski,true,4,Elektrotechnika,Bydgoszcz,Łąkowa
+575,Pola,Buczek,false,5,Elektrotechnika,Szczecin,1 Maja
+576,Jowita,Dobrzyński,true,1,Inżynieria Biomedyczna,Wrocław,Żytnia
+577,Artur,Ciesielski,false,4,Mikroelektronika w technice i medycynie,Kraków,Hallera
+578,Przemysław,Ptak,true,5,Elektrotechnika,Bydgoszcz,Opolska
+579,Bartosz,Szymański,false,3,Elektrotechnika,Lublin,Jana III Sobieskiego
+580,Bogusław,Bieniek,true,1,Mikroelektronika w technice i medycynie,Kraków,Lubelska
+581,Ada,Sikorski,false,2,Elektrotechnika,Kraków,Obozowa
+582,Iwona,Kałuża,true,5,Elektrotechnika,Warszawa,Krakowska
+583,Klara,Olczak,false,2,Inżynieria Biomedyczna,Kraków,Henryka Dąbrowskiego
+584,Michał,Dziuba,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Północna
+585,Wojciech,Pietras,false,1,Mikroelektronika w technice i medycynie,Szczecin,Pomorska
+586,Bogumiła,Stefaniak,false,3,Automatyka i Robotyka,Lublin,Obornicka
+587,Wacław,Sobolewski,false,2,Inżynieria Biomedyczna,Bydgoszcz,Aleja Niepodległości
+588,Szczepan,Wiśniewski,false,3,Inżynieria Biomedyczna,Warszawa,Francuska
+589,Judyta,Krysiak,false,5,Informatyka,Katowice,Chmielna
+590,Bruno,Przybyła,false,5,Inżynieria Biomedyczna,Warszawa,Młyńska
+591,Martyna,Kujawa,false,4,Informatyka,Warszawa,11 Listopada
+592,Zofia,Głowacki,false,1,Inżynieria Biomedyczna,Gdańsk,Piotra Skargi
+593,Irena,Kuczyński,false,4,Automatyka i Robotyka,Lublin,Szpitalna
+594,Bogdan,Dziuba,false,5,Mikroelektronika w technice i medycynie,Katowice,Krakowskie Przedmieście
+595,Bogdan,Bednarek,false,2,Automatyka i Robotyka,Kraków,Armii Krajowej
+596,Konrad,Krzyżanowski,false,2,Automatyka i Robotyka,Kraków,Piotra Skargi
+597,Łucja,Kaczor,false,4,Inżynieria Biomedyczna,Katowice,Piotra Skargi
+598,Edyta,Sroka,false,4,Informatyka,Kraków,Grottgera
+599,Horacy,Kania,false,2,Inżynieria Biomedyczna,Szczecin,Adama Mickiewicza
+600,Maks,Wójcicki,false,5,Automatyka i Robotyka,Szczecin,św Jana
+601,Bruno,Bednarek,true,2,Informatyka,Bydgoszcz,Długa
+602,Martyna,Żmuda,false,3,Automatyka i Robotyka,Wrocław,Bielska
+603,Damian,Wroński,false,1,Informatyka,Lublin,Śląska
+604,Faustyna,Malinowski,false,1,Elektrotechnika,Poznań,Aleja Wolności
+605,Magda,Michalak,true,5,Mikroelektronika w technice i medycynie,Kielce,Tadeusza Kościuszki
+606,Włodzimierz,Dudek,false,5,Automatyka i Robotyka,Kraków,Józefa Dietla
+607,Sabina,Dobrowolski,false,3,Informatyka,Lublin,Piekarska
+608,Eliza,Pawlik,false,1,Informatyka,Katowice,Hrubieszowska
+609,Maks,Kwiatkowski,false,1,Mikroelektronika w technice i medycynie,Wrocław,Józefa Poniatowskiego
+610,Renata,Dobrzyński,true,3,Mikroelektronika w technice i medycynie,Wrocław,Bankowa
+611,Weronika,Buczek,false,2,Elektrotechnika,Katowice,Lipowa
+612,Arkadiusz,Mazurkiewicz,false,1,Mikroelektronika w technice i medycynie,Kraków,Wojska Polskiego
+613,Dorota,Szafrański,false,4,Informatyka,Gdańsk,Kazimierza Pułaskiego
+614,Sabina,Szczygieł,false,2,Automatyka i Robotyka,Katowice,Strzelecka
+615,Ilona,Stefaniak,false,1,Mikroelektronika w technice i medycynie,Kielce,Ignacego Paderewskiego
+616,Szczepan,Żak,true,1,Elektrotechnika,Kielce,Puławska
+617,Agata,Kurek,false,2,Informatyka,Warszawa,Partyzantów
+618,Nikola,Szydłowski,false,3,Elektrotechnika,Kraków,Bracka
+619,Bruno,Lewandowski,false,5,Automatyka i Robotyka,Warszawa,Gabriela Narutowicza
+620,Iwona,Kaczor,false,4,Automatyka i Robotyka,Warszawa,Hetmańska
+621,Faustyna,Cygan,false,1,Automatyka i Robotyka,Bydgoszcz,ALeja Solidarności
+622,Gabriela,Leśniewski,true,2,Inżynieria Biomedyczna,Kielce,Stefana Wyszyńskiego
+623,Bruno,Tomczyk,false,5,Mikroelektronika w technice i medycynie,Kraków,Toruńska
+624,Paweł,Lach,false,5,Mikroelektronika w technice i medycynie,Lublin,Nowowiejska
+625,Rachela,Bieniek,false,4,Mikroelektronika w technice i medycynie,Gdańsk,Kolejowa
+626,Cecylia,Jędrzejczyk,false,4,Elektrotechnika,Katowice,Żytnia
+627,Renata,Bednarski,true,3,Informatyka,Lublin,Oświęcimska
+628,Halina,Adamczyk,false,5,Automatyka i Robotyka,Lublin,Grabarska
+629,Łucja,Kopeć,false,2,Elektrotechnika,Gdańsk,Miodowa
+630,Mariola,Zając,false,1,Informatyka,Gdańsk,Ignacego Paderewskiego
+631,Leon,Kujawa,false,1,Informatyka,Wrocław,Franciszkańska
+632,Krystian,Maliszewski,false,1,Mikroelektronika w technice i medycynie,Katowice,Jana III Sobieskiego
+633,Tytus,Muszyński,true,5,Inżynieria Biomedyczna,Bydgoszcz,Katowicka
+634,Maja,Kuś,true,5,Informatyka,Lublin,Juliana Tuwima
+635,Lech,Łukaszewski,true,5,Informatyka,Katowice,Długa
+636,Krystian,Przybysz,false,1,Mikroelektronika w technice i medycynie,Kraków,Józefa Dietla
+637,Denis,Jastrzębski,false,1,Automatyka i Robotyka,Kraków,Bracka
+638,Janusz,Szczepaniak,false,2,Elektrotechnika,Szczecin,Bracka
+639,Rafał,Duda,false,3,Elektrotechnika,Gdańsk,Henryka Dąbrowskiego
+640,Gabriela,Bąk,false,2,Mikroelektronika w technice i medycynie,Szczecin,Poznańska
+641,Wanda,Sławiński,false,5,Mikroelektronika w technice i medycynie,Kraków,Senatorska
+642,Irena,Lewicki,false,3,Informatyka,Gdańsk,ks. Jerzego Popoiełuszki
+643,Norbert,Maliszewski,false,5,Inżynieria Biomedyczna,Bydgoszcz,Opolska
+644,Bogdan,Stasiak,false,5,Elektrotechnika,Bydgoszcz,1 Maja
+645,Grażyna,Żurawski,false,1,Elektrotechnika,Katowice,Bracka
+646,Marzena,Dziedzic,true,2,Informatyka,Kraków,Boh.Monte Cassino
+647,Aleksandra,Karwowski,true,1,Automatyka i Robotyka,Poznań,Jacka Malczewskiego
+648,Karolina,Cieślik,false,3,Informatyka,Kielce,Jana Kilińskiego
+649,Justyna,Borkowski,false,4,Automatyka i Robotyka,Katowice,Bytomska
+650,Gabriela,Rzepka,true,4,Elektrotechnika,Katowice,Kijowska
+651,Paweł,Maj,false,4,Elektrotechnika,Kraków,Ogrodowa
+652,Jowita,Dudziński,true,3,Automatyka i Robotyka,Wrocław,ALeja Solidarności
+653,Arkadiusz,Świątek,false,4,Informatyka,Gdańsk,Piękna
+654,Faustyna,Pietrzak,true,3,Mikroelektronika w technice i medycynie,Kraków,Piękna
+655,Pola,Twardowski,false,1,Mikroelektronika w technice i medycynie,Poznań,Stanisława Małachowskiego
+656,Robert,Biernacki,false,2,Inżynieria Biomedyczna,Kraków,Wiejska
+657,Danuta,Jakubowski,false,2,Mikroelektronika w technice i medycynie,Gdańsk,Stefana Starzyńskiego
+658,Samanta,Krupa,false,1,Mikroelektronika w technice i medycynie,Wrocław,Henryka Dąbrowskiego
+659,Patrycja,Lasota,false,4,Informatyka,Katowice,Akademicka
+660,Leon,Kmiecik,true,4,Informatyka,Katowice,3 Maja
+661,Norbert,Łukaszewski,false,2,Mikroelektronika w technice i medycynie,Wrocław,Nowowiejska
+662,Samanta,Grzybowski,false,1,Elektrotechnika,Wrocław,Bolesława Leśmiana
+663,Judyta,Cichocki,true,5,Mikroelektronika w technice i medycynie,Kraków,Tadeusza Kościuszki
+664,Igor,Dudziński,false,5,Elektrotechnika,Wrocław,Stanisława Małachowskiego
+665,Olga,Jędrzejewski,false,4,Automatyka i Robotyka,Kraków,Wincentego Witosa
+666,Hieronim,Rudnicki,false,1,Inżynieria Biomedyczna,Kielce,gen. Andersa
+667,Monika,Kaczorowski,true,2,Informatyka,Poznań,Adama Mickiewicza
+668,Luiza,Szczepański,false,4,Informatyka,Lublin,Szpitalna
+669,Waldemar,Chmielewski,false,5,Automatyka i Robotyka,Bydgoszcz,ks. Jerzego Popoiełuszki
+670,Aleksander,Stec,false,4,Inżynieria Biomedyczna,Kraków,Partyzantów
+671,Kamil,Piórkowski,false,3,Informatyka,Bydgoszcz,Złota
+672,Joanna,Kaczmarek,true,3,Automatyka i Robotyka,Warszawa,Fabryczna
+673,Sabina,Skiba,false,3,Mikroelektronika w technice i medycynie,Bydgoszcz,Grottgera
+674,Faustyna,Witek,true,3,Elektrotechnika,Wrocław,Uniwersytecka
+675,Jolanta,Cichocki,false,5,Inżynieria Biomedyczna,Kraków,Bracka
+676,Ewa,Czech,false,1,Automatyka i Robotyka,Szczecin,Józefa Poniatowskiego
+677,Hilary,Michalak,false,3,Elektrotechnika,Warszawa,Piękna
+678,Teresa,Banaś,false,1,Inżynieria Biomedyczna,Wrocław,Andrzeja Struga
+679,Dominika,Kubacki,false,5,Inżynieria Biomedyczna,Wrocław,Długa
+680,Magda,Niemiec,false,1,Inżynieria Biomedyczna,Lublin,Wiejska
+681,Rafał,Nowacki,false,3,Elektrotechnika,Kraków,Krupnicza
+682,Zdzisław,Skrzypczak,true,1,Mikroelektronika w technice i medycynie,Szczecin,Szeroka
+683,Leon,Grzegorczyk,true,3,Automatyka i Robotyka,Bydgoszcz,Dworcowa
+684,Dominik,Kula,false,5,Informatyka,Kielce,Powstańców Śląskich
+685,Weronika,Mroczek,false,4,Inżynieria Biomedyczna,Katowice,Warszawska
+686,Oleg,Śliwiński,false,4,Informatyka,Wrocław,Grottgera
+687,Oleg,Kasprzak,false,3,Mikroelektronika w technice i medycynie,Kraków,Armii Krajowej
+688,Konrad,Rak,false,2,Mikroelektronika w technice i medycynie,Szczecin,Bracka
+689,Walentyna,Głowacki,true,2,Informatyka,Katowice,Bracka
+690,Bartosz,Kasprzak,false,3,Informatyka,Kraków,Juliana Tuwima
+691,Otylia,Konopka,true,4,Inżynieria Biomedyczna,Kraków,3 Maja
+692,Damian,Grzesiak,false,1,Inżynieria Biomedyczna,Kielce,Jana Kasprowicza
+693,Samanta,Gałązka,true,5,Elektrotechnika,Bydgoszcz,Królowej Jadwigi
+694,Rafał,Gołębiewski,false,3,Mikroelektronika w technice i medycynie,Katowice,Piękna
+695,Radosław,Mazurkiewicz,true,3,Mikroelektronika w technice i medycynie,Gdańsk,Kazimierza Wielkiego
+696,Fabian,Zaborowski,false,4,Inżynieria Biomedyczna,Bydgoszcz,Zwycięstwa
+697,Hanna,Murawski,true,1,Informatyka,Kielce,Łódzka
+698,Faustyna,Grzybowski,false,2,Inżynieria Biomedyczna,Warszawa,Puławska
+699,Leokadia,Zawada,false,5,Inżynieria Biomedyczna,Wrocław,Młyńska
+700,Wit,Trojanowski,false,5,Elektrotechnika,Szczecin,Mariacka
+701,Pola,Świderski,false,4,Elektrotechnika,Warszawa,Kolejowa
+702,Bolesław,Wojtczak,false,2,Elektrotechnika,Kraków,Szeroka
+703,Rachela,Różycki,false,4,Automatyka i Robotyka,Poznań,Kolejowa
+704,Karolina,Kaczorowski,false,2,Elektrotechnika,Warszawa,Józefa Dietla
+705,Jeremiasz,Bednarek,true,1,Automatyka i Robotyka,Kraków,ks. Jerzego Popoiełuszki
+706,Gertruda,Zaborowski,false,2,Mikroelektronika w technice i medycynie,Kraków,Grabarska
+707,Ewa,Różycki,false,1,Elektrotechnika,Szczecin,Ciasna
+708,Andżelika,Kurek,false,4,Mikroelektronika w technice i medycynie,Gdańsk,Józefa Dietla
+709,Alicja,Szczygieł,false,1,Informatyka,Szczecin,Targowa
+710,Robert,Czajka,true,4,Elektrotechnika,Bydgoszcz,Uniwersytecka
+711,Bogdan,Jarosz,false,5,Elektrotechnika,Kraków,Żytnia
+712,Olga,Dobosz,false,4,Mikroelektronika w technice i medycynie,Katowice,Targowa
+713,Przemysław,Olejniczak,false,2,Elektrotechnika,Szczecin,Juliana Tuwima
+714,Waldemar,Bartczak,false,4,Mikroelektronika w technice i medycynie,Katowice,gen. Andersa
+715,Grażyna,Kubik,false,3,Elektrotechnika,Kielce,Mikołowska
+716,Magda,Szewczyk,false,4,Automatyka i Robotyka,Szczecin,Hallera
+717,Wojciech,Kasprzak,false,4,Elektrotechnika,Lublin,Stefana Starzyńskiego
+718,Maks,Duda,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Uniwersytecka
+719,Tomasz,Białek,false,3,Automatyka i Robotyka,Kraków,Wojska Polskiego
+720,Agnieszka,Andrzejczak,false,2,Elektrotechnika,Warszawa,Ciasna
+721,Berta,Tkaczyk,false,3,Elektrotechnika,Kraków,Królowej Jadwigi
+722,Agata,Trojanowski,false,2,Elektrotechnika,Katowice,Żytnia
+723,Michał,Jaśkiewicz,false,4,Informatyka,Kraków,Północna
+724,Julia,Krzemiński,false,5,Automatyka i Robotyka,Bydgoszcz,Grunwaldzka
+725,Bolesław,Lisiecki,true,2,Elektrotechnika,Kraków,Gabriela Narutowicza
+726,Sabina,Smoliński,false,2,Inżynieria Biomedyczna,Wrocław,Juliusza Słowackiego
+727,Rachela,Janowski,true,5,Automatyka i Robotyka,Kraków,Wawelska
+728,Wojciech,Morawski,false,1,Elektrotechnika,Warszawa,Gabriela Narutowicza
+729,Czesław,Tokarski,false,2,Informatyka,Bydgoszcz,Katedralna
+730,Ignacy,Winiarski,true,2,Informatyka,Wrocław,Krupnicza
+731,Sara,Szulc,false,2,Informatyka,Katowice,Poznańska
+732,Elżbieta,Zajączkowski,false,3,Elektrotechnika,Poznań,Szewska
+733,Kamil,Laskowski,false,4,Inżynieria Biomedyczna,Poznań,Młyńska
+734,Marzena,Słowiński,false,4,Automatyka i Robotyka,Lublin,Kazimierza Pułaskiego
+735,Sabina,Pietrzyk,false,5,Mikroelektronika w technice i medycynie,Warszawa,11 Listopada
+736,Otylia,Mika,false,1,Mikroelektronika w technice i medycynie,Poznań,Wawelska
+737,Seweryn,Zalewski,false,2,Mikroelektronika w technice i medycynie,Gdańsk,Nowowiejska
+738,Waldemar,Sokół,true,4,Elektrotechnika,Bydgoszcz,Bolesława Leśmiana
+739,Łucja,Borek,true,4,Inżynieria Biomedyczna,Katowice,Brzeska
+740,Alina,Różycki,false,3,Informatyka,Szczecin,Oświęcimska
+741,Damian,Szymczyk,true,5,Automatyka i Robotyka,Szczecin,Wiejska
+742,Iga,Drozdowski,false,3,Mikroelektronika w technice i medycynie,Szczecin,Szpitalna
+743,Elżbieta,Niemiec,false,1,Elektrotechnika,Kraków,Kijowska
+744,Łukasz,Marek,false,4,Mikroelektronika w technice i medycynie,Wrocław,Kijowska
+745,Maks,Owczarek,false,1,Informatyka,Kraków,ALeja Solidarności
+746,Nikola,Bartkowiak,true,2,Informatyka,Gdańsk,Henryka Sienkiewicza
+747,Wit,Zaremba,true,3,Mikroelektronika w technice i medycynie,Gdańsk,Juliusza Słowackiego
+748,Maria,Górka,false,3,Automatyka i Robotyka,Kraków,Pocztowa
+749,Paulina,Zych,false,4,Mikroelektronika w technice i medycynie,Szczecin,Gdańska
+750,Judyta,Błaszczyk,false,2,Elektrotechnika,Szczecin,Grottgera
+751,Walentyna,Nawrocki,true,4,Elektrotechnika,Lublin,Andrzeja Struga
+752,Samanta,Orzechowski,false,3,Automatyka i Robotyka,Lublin,Ogrodowa
+753,Bruno,Andrzejczak,false,3,Mikroelektronika w technice i medycynie,Kielce,Lechicka
+754,Maurycy,Olczak,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Gnieźnieńska
+755,Mirosław,Wiśniewski,false,5,Elektrotechnika,Katowice,Henryka Sienkiewicza
+756,Sebastian,Różycki,false,2,Inżynieria Biomedyczna,Poznań,Piękna
+757,Janina,Borowiec,false,4,Informatyka,Warszawa,Kolejowa
+758,Edyta,Rojek,false,1,Automatyka i Robotyka,Kielce,Adama Mickiewicza
+759,Adam,Pałka,true,2,Automatyka i Robotyka,Kielce,Stefana Żeromskiego
+760,Feliks,Gutowski,false,5,Automatyka i Robotyka,Kielce,Toruńska
+761,Joanna,Kaczyński,false,5,Informatyka,Warszawa,Opolska
+762,Faustyna,Makowski,true,2,Informatyka,Kielce,Andrzeja Struga
+763,Damian,Serafin,false,2,Inżynieria Biomedyczna,Bydgoszcz,Wojska Polskiego
+764,Sylwia,Grzesiak,false,5,Automatyka i Robotyka,Warszawa,Katedralna
+765,Juliusz,Kędziora,false,2,Automatyka i Robotyka,Wrocław,Świętojańska
+766,Róża,Wilczyński,false,1,Inżynieria Biomedyczna,Warszawa,Janusza Korczaka
+767,Milena,Kędzierski,false,5,Informatyka,Poznań,Zdrowa
+768,Małgorzata,Żebrowski,false,3,Elektrotechnika,Wrocław,Zamkowa
+769,Artur,Nowaczyk,false,5,Automatyka i Robotyka,Gdańsk,Grabarska
+770,Maciej,Dębowski,false,3,Inżynieria Biomedyczna,Gdańsk,Jana Kasprowicza
+771,Otylia,Bujak,true,3,Elektrotechnika,Wrocław,Pocztowa
+772,Iwona,Marczak,false,2,Inżynieria Biomedyczna,Kielce,Mostowa
+773,Waldemar,Małecki,false,4,Informatyka,Kraków,Karmelicka
+774,Damian,Sobieraj,true,3,Inżynieria Biomedyczna,Warszawa,Uniwersytecka
+775,Włodzimierz,Łukaszewski,false,2,Mikroelektronika w technice i medycynie,Szczecin,Zdrowa
+776,Aleksandra,Skrzypczak,false,4,Inżynieria Biomedyczna,Poznań,ALeja Solidarności
+777,Karyna,Słowik,false,5,Informatyka,Wrocław,Senatorska
+778,Walentyna,Gałązka,false,3,Elektrotechnika,Szczecin,Towarowa
+779,Bonifacy,Antczak,false,1,Mikroelektronika w technice i medycynie,Lublin,Starowiejska
+780,Piotr,Sieradzki,false,2,Informatyka,Bydgoszcz,Katowicka
+781,Laura,Skoczylas,false,1,Elektrotechnika,Kraków,Mikołaja Kopernika
+782,Laura,Kula,true,4,Automatyka i Robotyka,Szczecin,Grodzka
+783,Bonifacy,Kędziora,false,5,Elektrotechnika,Warszawa,Mikołaja Kopernika
+784,Zuzanna,Jakubiak,false,4,Elektrotechnika,Warszawa,Królowej Jadwigi
+785,Sylwia,Michalak,false,5,Inżynieria Biomedyczna,Kraków,Lechicka
+786,Iwan,Wójcicki,false,2,Elektrotechnika,Kraków,Katowicka
+787,Szczepan,Drozdowski,false,4,Informatyka,Kraków,Śląska
+788,Ewa,Wilk,false,3,Automatyka i Robotyka,Lublin,Janusza Korczaka
+789,Luiza,Lewicki,true,1,Automatyka i Robotyka,Warszawa,Grabarska
+790,Czesława,Jankowiak,false,2,Elektrotechnika,Bydgoszcz,Strzelecka
+791,Karol,Matuszewski,false,1,Informatyka,Gdańsk,Jana Pawła II
+792,Zbigniew,Maj,false,3,Informatyka,Kraków,Kazimierza Pułaskiego
+793,Zofia,Rakowski,false,3,Informatyka,Kraków,Zwycięstwa
+794,Nadia,Marczak,false,1,Informatyka,Gdańsk,Oświęcimska
+795,Dionizy,Sieradzki,false,2,Inżynieria Biomedyczna,Gdańsk,Szczecińska
+796,Felicja,Jakubowski,true,5,Elektrotechnika,Wrocław,Miodowa
+797,Stefan,Drzewiecki,false,2,Informatyka,Katowice,Lwowska
+798,Walentyna,Masłowski,false,1,Inżynieria Biomedyczna,Kraków,Racławicka
+799,Dagmara,Osiński,false,5,Inżynieria Biomedyczna,Kraków,Grottgera
+800,Michał,Szewczyk,false,1,Inżynieria Biomedyczna,Warszawa,Krucza
+801,Damian,Janiszewski,false,3,Mikroelektronika w technice i medycynie,Bydgoszcz,Józefa Poniatowskiego
+802,Celina,Maliszewski,true,1,Mikroelektronika w technice i medycynie,Wrocław,Szpitalna
+803,Aleksander,Mika,false,4,Automatyka i Robotyka,Wrocław,ks. Jerzego Popoiełuszki
+804,Paweł,Szczygieł,true,4,Elektrotechnika,Lublin,Dworcowa
+805,Rachela,Różycki,true,4,Automatyka i Robotyka,Katowice,Jagiellońska
+806,Cezary,Matysiak,false,2,Inżynieria Biomedyczna,Kraków,Młyńska
+807,Paweł,Sobolewski,false,2,Elektrotechnika,Szczecin,Tadeusza Kościuszki
+808,Czesław,Sroka,false,4,Informatyka,Bydgoszcz,Ciasna
+809,Teresa,Trojanowski,true,4,Mikroelektronika w technice i medycynie,Kielce,Piękna
+810,Przemysław,Łukasiewicz,false,1,Mikroelektronika w technice i medycynie,Wrocław,Zwierzyniecka
+811,Seweryn,Jarosz,false,2,Inżynieria Biomedyczna,Katowice,Lubelska
+812,Olaf,Osiński,false,5,Informatyka,Katowice,Kijowska
+813,Irena,Czech,true,5,Mikroelektronika w technice i medycynie,Szczecin,Wrocławska
+814,Tomasz,Gołębiowski,false,2,Automatyka i Robotyka,Poznań,Wita Stwosza
+815,Sara,Frąckowiak,false,1,Inżynieria Biomedyczna,Kraków,Legionów
+816,Barbara,Zaręba,false,5,Automatyka i Robotyka,Kraków,Lipowa
+817,Wioletta,Ptak,false,4,Informatyka,Wrocław,Aleja Wolności
+818,Waldemar,Białas,false,4,Mikroelektronika w technice i medycynie,Poznań,Kazimierza Pułaskiego
+819,Celina,Małecki,false,1,Elektrotechnika,Wrocław,Ignacego Paderewskiego
+820,Kamil,Godlewski,false,3,Automatyka i Robotyka,Gdańsk,Józefa Piłsudskiego
+821,Edmund,Walkowiak,false,5,Automatyka i Robotyka,Gdańsk,Legionów
+822,Karolina,Stasiak,false,1,Informatyka,Katowice,Racławicka
+823,Nikodem,Kamiński,false,4,Elektrotechnika,Poznań,Jezuicka
+824,Mikołaj,Skoczylas,false,3,Inżynieria Biomedyczna,Poznań,Grodzka
+825,Zuzanna,Bieniek,false,5,Elektrotechnika,Katowice,Juliana Tuwima
+826,Gertruda,Gajewski,false,5,Mikroelektronika w technice i medycynie,Kielce,Warszawska
+827,Czesława,Czech,false,1,Automatyka i Robotyka,Szczecin,Wawelska
+828,Faustyna,Murawski,true,4,Mikroelektronika w technice i medycynie,Bydgoszcz,Francuska
+829,Waldemar,Szczepanik,true,4,Informatyka,Kraków,3 Maja
+830,Zuzanna,Andrzejewski,true,4,Inżynieria Biomedyczna,Wrocław,Krucza
+831,Włodzimierz,Lipiński,false,5,Informatyka,Lublin,Bankowa
+832,Włodzimierz,Wilczyński,true,5,Inżynieria Biomedyczna,Kielce,Beskidzka
+833,Iwan,Piekarski,false,1,Informatyka,Kielce,Józefa Poniatowskiego
+834,Sylwia,Kucharski,false,3,Informatyka,Gdańsk,Wincentego Witosa
+835,Mikołaj,Gruszka,false,1,Elektrotechnika,Bydgoszcz,Katowicka
+836,Hanna,Raczyński,false,3,Elektrotechnika,Bydgoszcz,Targowa
+837,Maja,Siwek,false,1,Inżynieria Biomedyczna,Lublin,Okopowa
+838,Olga,Włodarczyk,false,4,Elektrotechnika,Szczecin,gen. Andersa
+839,Klara,Kowalski,false,4,Elektrotechnika,Poznań,Obozowa
+840,Eliza,Sowa,false,4,Informatyka,Szczecin,Siemianowicka
+841,Leszek,Biernacki,false,1,Elektrotechnika,Warszawa,Lechicka
+842,Kamil,Stefański,false,5,Elektrotechnika,Gdańsk,Aleja Niepodległości
+843,Konrad,Żebrowski,false,5,Inżynieria Biomedyczna,Warszawa,Hallera
+844,Jolanta,Urban,false,3,Elektrotechnika,Kielce,Katowicka
+845,Tytus,Romanowski,false,5,Mikroelektronika w technice i medycynie,Lublin,Floriańska
+846,Olaf,Gaweł,true,5,Informatyka,Kielce,Łódzka
+847,Krzysztof,Panek,false,3,Informatyka,Szczecin,Jacka Malczewskiego
+848,Marek,Rosiak,false,4,Mikroelektronika w technice i medycynie,Poznań,Jana Kasprowicza
+849,Mirosław,Nowacki,true,5,Informatyka,Kraków,Krucza
+850,Józef,Adamus,false,5,Elektrotechnika,Poznań,Krupnicza
+851,Alfred,Brzeziński,false,3,Inżynieria Biomedyczna,Lublin,Chmielna
+852,Nina,Mazur,false,2,Inżynieria Biomedyczna,Kielce,Północna
+853,Karol,Skowroński,false,5,Inżynieria Biomedyczna,Wrocław,Obozowa
+854,Martyna,Leszczyński,true,2,Inżynieria Biomedyczna,Kielce,Zwycięstwa
+855,Dariusz,Maliszewski,false,3,Informatyka,Lublin,ks. Jerzego Popoiełuszki
+856,Dominika,Olczak,false,1,Automatyka i Robotyka,Warszawa,Hrubieszowska
+857,Oliwia,Skrzypczak,false,4,Mikroelektronika w technice i medycynie,Kielce,Szpitalna
+858,Monika,Urbańczyk,false,4,Inżynieria Biomedyczna,Kraków,Zachodnia
+859,Ada,Niewiadomski,true,5,Automatyka i Robotyka,Szczecin,Stefana Starzyńskiego
+860,Sylwia,Janik,false,4,Inżynieria Biomedyczna,Gdańsk,Boh.Monte Cassino
+861,Oskar,Serafin,false,2,Elektrotechnika,Kraków,Władysława Reymonta
+862,Elwira,Rogala,false,4,Informatyka,Gdańsk,Jagiellońska
+863,Małgorzata,Cieślik,false,4,Automatyka i Robotyka,Kraków,Floriańska
+864,Wilma,Filipiak,false,2,Automatyka i Robotyka,Gdańsk,Starowiejska
+865,Sabina,Wrona,false,1,Informatyka,Warszawa,Kolejowa
+866,Bartosz,Bogucki,false,5,Mikroelektronika w technice i medycynie,Kielce,Okopowa
+867,Filip,Wolski,false,2,Elektrotechnika,Poznań,Puławska
+868,Maryla,Popławski,false,1,Informatyka,Wrocław,Północna
+869,Krystyna,Cichocki,false,3,Informatyka,Katowice,Armii Krajowej
+870,Maria,Michalik,false,2,Automatyka i Robotyka,Gdańsk,Toruńska
+871,Włodzimierz,Rogowski,false,4,Elektrotechnika,Szczecin,Boh.Monte Cassino
+872,Nikodem,Czyż,false,3,Automatyka i Robotyka,Lublin,Warszawska
+873,Zenon,Andrzejczak,true,3,Elektrotechnika,Lublin,Karmelicka
+874,Alina,Wójcicki,false,5,Informatyka,Kielce,Aleja Niepodległości
+875,Nikola,Kaczmarski,false,4,Automatyka i Robotyka,Gdańsk,Brzeska
+876,Helga,Sikora,false,3,Inżynieria Biomedyczna,Poznań,Miodowa
+877,Alina,Zielonka,true,1,Automatyka i Robotyka,Szczecin,Długa
+878,Robert,Górniak,true,2,Elektrotechnika,Lublin,Krakowska
+879,Tamara,Żak,false,4,Inżynieria Biomedyczna,Kraków,Władysława Reymonta
+880,Kamil,Skiba,true,1,Inżynieria Biomedyczna,Kraków,Krupnicza
+881,Zygmunt,Karaś,false,4,Automatyka i Robotyka,Kraków,Bolesława Leśmiana
+882,Marek,Godlewski,true,3,Mikroelektronika w technice i medycynie,Gdańsk,Grabarska
+883,Igor,Kubica,false,1,Mikroelektronika w technice i medycynie,Poznań,Wincentego Witosa
+884,Paulina,Tomczak,true,5,Informatyka,Kielce,Bolesława Prusa
+885,Igor,Białas,false,5,Informatyka,Gdańsk,Szczecińska
+886,Bolesław,Flis,false,2,Automatyka i Robotyka,Wrocław,Beskidzka
+887,Maks,Pawelec,false,2,Elektrotechnika,Szczecin,Mikołowska
+888,Jowita,Bielawski,false,4,Automatyka i Robotyka,Warszawa,Szeroka
+889,Jadwiga,Kopczyński,false,3,Inżynieria Biomedyczna,Poznań,Żytnia
+890,Maria,Gutowski,false,2,Informatyka,Szczecin,Krakowska
+891,Walentyna,Krajewski,false,5,Automatyka i Robotyka,Poznań,Królewska
+892,Seweryn,Markiewicz,true,2,Automatyka i Robotyka,Gdańsk,Obozowa
+893,Zofia,Olczak,false,4,Elektrotechnika,Kraków,Jana Kilińskiego
+894,Leszek,Sawicki,false,3,Mikroelektronika w technice i medycynie,Katowice,Gliwicka
+895,Iwan,Polak,false,5,Inżynieria Biomedyczna,Lublin,Henryka Sienkiewicza
+896,Julia,Błaszczyk,true,5,Informatyka,Kraków,Józefa Poniatowskiego
+897,Marek,Grzyb,false,1,Mikroelektronika w technice i medycynie,Kraków,Kijowska
+898,Maurycy,Zając,false,4,Mikroelektronika w technice i medycynie,Bydgoszcz,Katowicka
+899,Wanda,Kowalik,false,4,Automatyka i Robotyka,Gdańsk,Floriańska
+900,Łucja,Dudziński,false,2,Inżynieria Biomedyczna,Kielce,Ignacego Paderewskiego
+901,Sylwia,Olszewski,false,2,Elektrotechnika,Kraków,Katowicka
+902,Wiktor,Majewski,false,1,Elektrotechnika,Lublin,Partyzantów
+903,Oskar,Kmiecik,false,2,Inżynieria Biomedyczna,Warszawa,Browarna
+904,Joanna,Konieczny,true,4,Mikroelektronika w technice i medycynie,Kielce,Bolesława Leśmiana
+905,Mikołaj,Ptak,false,3,Mikroelektronika w technice i medycynie,Kraków,Aleja Niepodległości
+906,Paulina,Łukaszewski,false,4,Mikroelektronika w technice i medycynie,Kraków,Zamkowa
+907,Zuzanna,Kołodziej,false,2,Informatyka,Kraków,Gliwicka
+908,Teresa,Jagodziński,false,5,Informatyka,Poznań,Lwowska
+909,Albert,Maliszewski,true,5,Mikroelektronika w technice i medycynie,Szczecin,Szczecińska
+910,Mikołaj,Mielczarek,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Józefa Poniatowskiego
+911,Zofia,Mierzejewski,false,5,Elektrotechnika,Bydgoszcz,Lechicka
+912,Ada,Sobczak,true,5,Informatyka,Bydgoszcz,Mikołaja Kopernika
+913,Włodzimierz,Łukasiewicz,false,3,Inżynieria Biomedyczna,Kraków,Kamienna
+914,Mirosław,Klimczak,false,1,Mikroelektronika w technice i medycynie,Katowice,Jacka Malczewskiego
+915,Szymon,Urbańczyk,false,2,Informatyka,Poznań,Hetmańska
+916,Fabian,Karwowski,false,1,Informatyka,Lublin,Katedralna
+917,Gaweł,Jurkiewicz,false,4,Automatyka i Robotyka,Kielce,Piwna
+918,Leszek,Muszyński,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Browarna
+919,Sara,Ratajczak,false,1,Automatyka i Robotyka,Poznań,Krakowska
+920,Helga,Krajewski,true,5,Mikroelektronika w technice i medycynie,Lublin,Chłodna
+921,Agnieszka,Zych,false,4,Automatyka i Robotyka,Szczecin,Gnieźnieńska
+922,Gaweł,Rak,false,5,Inżynieria Biomedyczna,Wrocław,Adama Mickiewicza
+923,Eliza,Sienkiewicz,true,4,Informatyka,Kielce,Grodzka
+924,Agnieszka,Lisowski,false,5,Elektrotechnika,Lublin,Francuska
+925,Maria,Świątek,false,1,Elektrotechnika,Gdańsk,1 Maja
+926,Tomasz,Małek,false,2,Automatyka i Robotyka,Kielce,Piękna
+927,Samanta,Tomaszewski,false,5,Informatyka,Szczecin,Fabryczna
+928,Paulina,Malec,true,2,Inżynieria Biomedyczna,Wrocław,Starowiejska
+929,Walentyna,Zych,false,4,Informatyka,Kraków,Świętojańska
+930,Iza,Przybyła,false,4,Inżynieria Biomedyczna,Szczecin,Zwycięstwa
+931,Magda,Młynarczyk,false,3,Elektrotechnika,Kraków,Zwierzyniecka
+932,Eliza,Sokół,false,3,Elektrotechnika,Warszawa,11 Listopada
+933,Wiesław,Szydłowski,false,1,Informatyka,Lublin,Bielska
+934,Nikodem,Sawicki,false,4,Informatyka,Wrocław,Konstytucji 3 Maja
+935,Magda,Skrzypek,false,5,Inżynieria Biomedyczna,Katowice,ks. Jerzego Popoiełuszki
+936,Maurycy,Wierzbicki,false,4,Mikroelektronika w technice i medycynie,Kraków,Juliusza Słowackiego
+937,Edyta,Lasota,false,4,Automatyka i Robotyka,Lublin,Jana Pawła II
+938,Sebastian,Borek,false,4,Elektrotechnika,Katowice,Konstytucji 3 Maja
+939,Tytus,Szulc,false,1,Elektrotechnika,Katowice,Browarna
+940,Pola,Kwiecień,true,5,Inżynieria Biomedyczna,Wrocław,Aleja 29 Listopada
+941,Julian,Buczek,false,1,Elektrotechnika,Wrocław,Wrocławska
+942,Szymon,Żmuda,false,4,Automatyka i Robotyka,Kraków,Jana Kilińskiego
+943,Patrycja,Noga,false,2,Elektrotechnika,Warszawa,Aleksandra Fredry
+944,Bartosz,Janik,false,2,Mikroelektronika w technice i medycynie,Szczecin,Dworcowa
+945,Wilma,Dudziak,true,2,Automatyka i Robotyka,Wrocław,Józefa Dietla
+946,Julia,Pietrzak,false,4,Elektrotechnika,Kraków,Opolska
+947,Krystian,Zych,false,3,Mikroelektronika w technice i medycynie,Wrocław,Jacka Malczewskiego
+948,Hilary,Cholewa,false,1,Informatyka,Warszawa,Brzeska
+949,Jeremiasz,Stec,false,4,Mikroelektronika w technice i medycynie,Kraków,ALeja Solidarności
+950,Agata,Jaworski,true,4,Inżynieria Biomedyczna,Gdańsk,Wiejska
+951,Weronika,Kurek,true,4,Informatyka,Warszawa,ks. Jerzego Popoiełuszki
+952,Gaweł,Bilski,false,4,Inżynieria Biomedyczna,Lublin,Jana Kasprowicza
+953,Izydor,Górka,false,5,Automatyka i Robotyka,Kraków,ks. Jerzego Popoiełuszki
+954,Zenon,Ciszewski,false,2,Elektrotechnika,Wrocław,ALeja Solidarności
+955,Aleksandra,Królikowski,false,3,Inżynieria Biomedyczna,Wrocław,Żytnia
+956,Sebastian,Sokół,false,2,Elektrotechnika,Kielce,Aleja 29 Listopada
+957,Walentyna,Stasiak,false,5,Mikroelektronika w technice i medycynie,Bydgoszcz,Stefana Żeromskiego
+958,Bonifacy,Góra,false,2,Inżynieria Biomedyczna,Kraków,Zachodnia
+959,Rachela,Pilarski,false,5,Mikroelektronika w technice i medycynie,Gdańsk,Bielska
+960,Ludwik,Wilczek,false,1,Mikroelektronika w technice i medycynie,Wrocław,Hallera
+961,Justyna,Rogala,false,2,Automatyka i Robotyka,Kraków,Poznańska
+962,Kornel,Domański,false,5,Automatyka i Robotyka,Lublin,Partyzantów
+963,Oktawia,Szymański,false,2,Inżynieria Biomedyczna,Gdańsk,Poznańska
+964,Aleksandra,Bąk,false,5,Inżynieria Biomedyczna,Szczecin,Krakowskie Przedmieście
+965,Grzegorz,Lasota,false,3,Inżynieria Biomedyczna,Lublin,Aleja Niepodległości
+966,Bolesław,Mikulski,false,2,Mikroelektronika w technice i medycynie,Kraków,Juliusza Słowackiego
+967,Weronika,Żukowski,true,5,Informatyka,Katowice,Szewska
+968,Oskar,Pietrzak,true,5,Inżynieria Biomedyczna,Kraków,Juliusza Słowackiego
+969,Filip,Kubacki,true,1,Mikroelektronika w technice i medycynie,Wrocław,Juliusza Słowackiego
+970,Gertruda,Kołodziej,false,5,Informatyka,Poznań,Lipowa
+971,Mirosław,Król,true,2,Elektrotechnika,Katowice,Jana Kilińskiego
+972,Joanna,Laskowski,false,2,Inżynieria Biomedyczna,Kraków,Aleksandra Fredry
+973,Maks,Sobieraj,false,3,Informatyka,Katowice,Okopowa
+974,Maurycy,Sikora,false,5,Elektrotechnika,Wrocław,Stefana Starzyńskiego
+975,Dagmara,Cichocki,false,2,Elektrotechnika,Warszawa,Bankowa
+976,Małgorzata,Bartczak,false,5,Automatyka i Robotyka,Katowice,Poznańska
+977,Dominika,Nowakowski,false,5,Informatyka,Katowice,Chmielna
+978,Wiktor,Czapla,false,3,Elektrotechnika,Lublin,Piwna
+979,Maria,Ślusarczyk,false,5,Mikroelektronika w technice i medycynie,Szczecin,Bolesława Prusa
+980,Przemysław,Piórkowski,false,1,Informatyka,Bydgoszcz,Juliusza Słowackiego
+981,Wojciech,Sokół,false,4,Mikroelektronika w technice i medycynie,Poznań,Gliwicka
+982,Marcin,Mikulski,true,5,Inżynieria Biomedyczna,Katowice,Bolesława Leśmiana
+983,Leokadia,Michalski,false,3,Informatyka,Kraków,Szpitalna
+984,Robert,Sienkiewicz,false,3,Mikroelektronika w technice i medycynie,Wrocław,Armii Krajowej
+985,Tadeusz,Baran,false,2,Inżynieria Biomedyczna,Kraków,Oświęcimska
+986,Patrycja,Kulesza,true,2,Elektrotechnika,Szczecin,Krakowskie Przedmieście
+987,Zygmunt,Żebrowski,false,1,Inżynieria Biomedyczna,Bydgoszcz,Obornicka
+988,Hieronim,Domański,false,5,Elektrotechnika,Kielce,Kazimierza Pułaskiego
+989,Ludwik,Krzyżanowski,false,4,Mikroelektronika w technice i medycynie,Bydgoszcz,Lubelska
+990,Elżbieta,Jędrzejewski,false,5,Elektrotechnika,Kraków,Targowa
+991,Celina,Jędrzejczyk,false,2,Inżynieria Biomedyczna,Bydgoszcz,Piwna
+992,Renata,Brzeziński,true,4,Elektrotechnika,Kielce,Juliusza Słowackiego
+993,Wilma,Domagała,true,4,Automatyka i Robotyka,Kraków,św Jana
+994,Zygmunt,Lipiński,false,4,Elektrotechnika,Gdańsk,Puławska
+995,Bonifacy,Pająk,false,4,Informatyka,Kraków,Stefana Żeromskiego
+996,Artur,Zięba,false,5,Mikroelektronika w technice i medycynie,Warszawa,Henryka Sienkiewicza
+997,Helga,Banach,false,4,Inżynieria Biomedyczna,Kielce,Wojska Polskiego
+998,Alfred,Kalinowski,true,1,Informatyka,Bydgoszcz,Puławska
+999,Ewelina,Leszczyński,false,5,Informatyka,Kielce,Jezuicka
+1000,Karyna,Stasiak,false,5,Mikroelektronika w technice i medycynie,Lublin,Mikołaja Kopernika
