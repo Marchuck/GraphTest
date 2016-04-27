@@ -2,6 +2,7 @@ package some_graphs;
 
 import agds.AGDS;
 import agds.GraphDrawer;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -43,7 +44,12 @@ public class GraphVisualiser {
     }
 
     public void drawEdge(String firstNodeTag, String secondNodeTag) {
-        addElementWithLabel(graph.addEdge(firstNodeTag + secondNodeTag, firstNodeTag, secondNodeTag));
+        Edge edge = graph.addEdge(firstNodeTag + secondNodeTag, firstNodeTag, secondNodeTag);
+//        edge.addAttribute("ui.style", "fill-color: rgb(233,33,99);");
+        edge.addAttribute("ui.style", "fill-color: rgb(233,33,80);");
+        edge.addAttribute("ui.style", "padding: 5px;");
+        edge.addAttribute("ui.style", "shape: cubic-curve;");
+        addElementWithLabel(edge);
     }
 
     public void displayGraph() {
@@ -119,6 +125,7 @@ public class GraphVisualiser {
     }
 
     public void showGraph() {
+
         graph.display();
         if (isLegend) showLegend();
     }
@@ -148,6 +155,7 @@ public class GraphVisualiser {
         Node node = graph.addNode(value);
         String id = node.getId();
         node.addAttribute("ui.label", id);
+//        node.addAttribute("ui.style", "text-alignment: top;");
         node.addAttribute("ui.style", styleSheet);
         if (stepsEnabled) {
             if (invalidatorIndex == REFRESH_COUNT) {
