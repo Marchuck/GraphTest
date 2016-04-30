@@ -16,14 +16,20 @@ public class AGDS {
     public static final String RECORD_NODE_STYLESHEET = "fill-color: rgb(255,87,34);";
     public static final String VALUE_NODE_STYLESHEET = "fill-color: rgb(63,81,181);";
 
+    public static final int CLASS_NODE_WEIGHT = 16;
+    public static final int PROPERTY_NODE_WEIGHT = 4;
+    public static final int RECORD_NODE_WEIGHT = 3;
+    public static final int VALUE_NODE_WEIGHT = 2;
+
+
     @Nullable
-    private GraphDrawer<Node> graphDrawer;
+    private GraphDrawer<DrawableNode> graphDrawer;
 
     public GraphDrawer getGraphDrawer() {
         return graphDrawer;
     }
 
-    public void connectGraphDrawer(GraphDrawer<Node> graphDrawer) {
+    public void connectGraphDrawer(GraphDrawer<DrawableNode> graphDrawer) {
         this.graphDrawer = graphDrawer;
     }
 
@@ -34,10 +40,10 @@ public class AGDS {
      * grupowanie względem przedziałów
      */
     private static final String TAB_WHITESPACE = "\t";
-    public static final String IRIS_DATA_PATH = "IrisDataSimplified2.txt"; //or without -Simplified- suffix
+    public static final String IRIS_DATA_PATH = "IrisDataTwiceSimplified.txt"; //or without -Simplified- suffix
 
-    public List<AttributeNode> param;
-    public Map<String, ClassNode> newClassValues;
+    public List<PropertyDrawableNode> param;
+    public Map<String, ClassDrawableNode> newClassValues;
 
     public AGDS() {
         this.param = new ArrayList<>();
@@ -58,7 +64,7 @@ public class AGDS {
                 if (itemCounter == 0) {
                     String[] objectRawValues = nextObjectLine.split(TAB_WHITESPACE);
                     for (int i = 0; i < objectRawValues.length - 1; i++) {
-                        param.add(new AttributeNode(objectRawValues[i]));
+                        param.add(new PropertyDrawableNode(objectRawValues[i]));
                     }
                     itemCounter++;
                 }
@@ -70,25 +76,25 @@ public class AGDS {
 
                     //If read class doesn't exist in Map, put it there.
                     if (!newClassValues.containsKey(className)) {
-                        ClassNode classValueNode = new ClassNode(className);
+                        ClassDrawableNode classValueNode = new ClassDrawableNode(className);
                         newClassValues.put(className, classValueNode);
                     }
 
                     //Matching record node to class node.
-                    ClassNode classValueNode = newClassValues.get(className);
-                    RNode rNode = new RNode("Record " + String.valueOf(itemCounter));
+                    ClassDrawableNode classValueNode = newClassValues.get(className);
+                    RDrawableNode rNode = new RDrawableNode("Record " + String.valueOf(itemCounter));
                     rNode.addClassNode(classValueNode);
                     classValueNode.addRecordNode(rNode);
 
-                    List<ValueNode> valueNodeList = new ArrayList<>();
+                    List<ValueDrawableNode> valueNodeList = new ArrayList<>();
 
                     //Adding value nodes.
                     for (int i = 0; i < objectRawValues.length - 1; i++) {
                         objectDoubleValues[i] = commaDelimiterFormat.parse(objectRawValues[i]).doubleValue();
 
-                        ValueNode newValueNode = new ValueNode(objectDoubleValues[i]);
+                        ValueDrawableNode newValueNode = new ValueDrawableNode(objectDoubleValues[i]);
                         newValueNode.addRecordNode(rNode);
-                        newValueNode.setAttributeNode(param.get(i));
+                        newValueNode.setPropertyNode(param.get(i));
 
                         int indexValue = param.get(i).getValueNodeList().indexOf(newValueNode);
                         param.get(i).addNode(newValueNode);
@@ -110,20 +116,20 @@ public class AGDS {
     }
 
 
-    public RNode findMostSimilarElement(double[] scannedValues) {
-        ClassNode mostSimilarClass = null;
-//        ClassNode mostSimilarClass =newClassValues.values().iterator().next();
+    public RDrawableNode findMostSimilarElement(double[] scannedValues) {
+        ClassDrawableNode mostSimilarClass = null;
+//        ClassDrawableNode mostSimilarClass =newClassValues.values().iterator().next();
         resetNodesWages();
 
         for (int j = 0; j < param.size(); j++) {
-            AttributeNode attributeNode = param.get(j);
+            PropertyDrawableNode propertyNode = param.get(j);
 
-            int foundIndex = findNearestAttributeValueIndex(attributeNode,
-                    new ValueNode(scannedValues[j]));
-            attributeNode.calculateWages(foundIndex);
+            int foundIndex = findNearestAttributeValueIndex(propertyNode,
+                    new ValueDrawableNode(scannedValues[j]));
+            propertyNode.calculateWages(foundIndex);
         }
 
-        for (ClassNode newClassNode : newClassValues.values()) {
+        for (ClassDrawableNode newClassNode : newClassValues.values()) {
             newClassNode.sortNodes();
 
             if (mostSimilarClass == null) {
@@ -147,8 +153,8 @@ public class AGDS {
         return selectedValues;
     }
 
-    private int findNearestAttributeValueIndex(AttributeNode attributeNode, ValueNode searchedValue) {
-        List<ValueNode> newValueNodes = attributeNode.getValueNodeList();
+    private int findNearestAttributeValueIndex(PropertyDrawableNode propertyNode, ValueDrawableNode searchedValue) {
+        List<ValueDrawableNode> newValueNodes = propertyNode.getValueNodeList();
         int foundIndex = Collections.binarySearch(newValueNodes, searchedValue);
 
         if (foundIndex < 0) {
@@ -167,23 +173,23 @@ public class AGDS {
     }
 
     private void prepareValueNodes() {
-        for (AttributeNode attributeNode : param) {
-            attributeNode.sortValueNodes();
+        for (PropertyDrawableNode propertyNode : param) {
+            propertyNode.sortValueNodes();
         }
     }
 
     private void resetNodesWages() {
-        for (AttributeNode attributeNode : param)
-            attributeNode.resetValueNodes();
+        for (PropertyDrawableNode propertyNode : param)
+            propertyNode.resetValueNodes();
 
-        for (ClassNode newClassNode : newClassValues.values())
+        for (ClassDrawableNode newClassNode : newClassValues.values())
             newClassNode.resetRecordNodes();
     }
 
     public static void main(String[] args) {
         AGDS irisAgds = new AGDS();
         irisAgds.launchAGDSStructureFromFile(new File(IRIS_DATA_PATH));
-        RNode mostSimilarClassNode = irisAgds.findMostSimilarElement(irisAgds.loadNextDoubleRecord());
+        RDrawableNode mostSimilarClassNode = irisAgds.findMostSimilarElement(irisAgds.loadNextDoubleRecord());
         System.out.println("Most similar class: "
                 + mostSimilarClassNode.getClassNode().getClassName()
                 + "(" + mostSimilarClassNode.getTotalWeight() + ")");
@@ -211,7 +217,7 @@ public class AGDS {
                 if (itemCounter == 0) {
                     String[] objectRawValues = nextObjectLine.split(TAB_WHITESPACE);
                     for (int i = 0; i < objectRawValues.length - 1; i++) {
-                        AttributeNode node = new AttributeNode(objectRawValues[i]);
+                        PropertyDrawableNode node = new PropertyDrawableNode(objectRawValues[i]);
                         param.add(node);
                         safeDrawNode(node);
                     }
@@ -225,14 +231,14 @@ public class AGDS {
 
                     //If read class doesn't exist in Map, put it there.
                     if (!newClassValues.containsKey(className)) {
-                        ClassNode classValueNode = new ClassNode(className);
+                        ClassDrawableNode classValueNode = new ClassDrawableNode(className);
                         newClassValues.put(className, classValueNode);
                         safeDrawNode(classValueNode);
                     }
 
                     //Matching record node to class node.
-                    ClassNode classValueNode = newClassValues.get(className);
-                    RNode rNode = new RNode("Record " + String.valueOf(itemCounter));
+                    ClassDrawableNode classValueNode = newClassValues.get(className);
+                    RDrawableNode rNode = new RDrawableNode("Record " + String.valueOf(itemCounter));
                     rNode.addClassNode(classValueNode);
                     classValueNode.addRecordNode(rNode);
 
@@ -240,15 +246,15 @@ public class AGDS {
                     safeDrawNode(classValueNode);
                     safeDrawEdge(classValueNode, rNode);
 
-                    List<ValueNode> valueNodeList = new ArrayList<>();
+                    List<ValueDrawableNode> valueNodeList = new ArrayList<>();
 
                     //Adding value nodes.
                     for (int i = 0; i < objectRawValues.length - 1; i++) {
                         objectDoubleValues[i] = commaDelimiterFormat.parse(objectRawValues[i]).doubleValue();
 
-                        ValueNode newValueNode = new ValueNode(objectDoubleValues[i]);
+                        ValueDrawableNode newValueNode = new ValueDrawableNode(objectDoubleValues[i]);
                         newValueNode.addRecordNode(rNode);
-                        newValueNode.setAttributeNode(param.get(i));
+                        newValueNode.setPropertyNode(param.get(i));
 
                         int indexValue = param.get(i).getValueNodeList().indexOf(newValueNode);
                         param.get(i).addNode(newValueNode);
@@ -270,12 +276,12 @@ public class AGDS {
         }
     }
 
-    private void safeDrawNode(Node node) {
-        if (graphDrawer != null) graphDrawer.drawNode(node);
+    private void safeDrawNode(DrawableNode drawableNode) {
+        if (graphDrawer != null) graphDrawer.drawNode(drawableNode);
     }
 
-    private void safeDrawEdge(Node nodeA, Node nodeB) {
-        if (graphDrawer != null) graphDrawer.drawEdge(nodeA, nodeB);
+    private void safeDrawEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
+        if (graphDrawer != null) graphDrawer.drawEdge(drawableNodeA, drawableNodeB);
     }
 
     public AGDS withData(String txtFileNameData) {

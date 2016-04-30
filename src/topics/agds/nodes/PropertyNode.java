@@ -45,8 +45,8 @@ public class PropertyNode extends AbstractNode implements Extremable {
     }
 
     @Override
-    public float getEdgeLength() {
-        return 3;
+    public int getEdgeWeight() {
+        return AGDS.PROPERTY_NODE_WEIGHT;
     }
 
     @Override

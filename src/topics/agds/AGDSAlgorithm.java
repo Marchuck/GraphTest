@@ -1,8 +1,11 @@
 package topics.agds;
 
+import agds.GraphDrawer;
 import common.DataReader;
 import common.Item;
 import common.Log;
+import some_graphs.GraphVisualiser;
+import topics.agds.nodes.AbstractNode;
 
 import java.util.*;
 
@@ -12,11 +15,23 @@ import java.util.*;
  */
 public class AGDSAlgorithm {
 
-    private DataReader<Item> prepareReader() {
+    private DataReader<Item> prepareWineReader() {
         DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
             @Override
             public Item createNewRow(String line) {
                 return DataReader.newWineItemRow(line);
+            }
+        };
+
+        DataReader<Item> dataReader = new DataReader<>(readStrategy);
+        return dataReader.skipFirstLine();
+    }
+
+    private DataReader<Item> prepareIrisReader() {
+        DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
+            @Override
+            public Item createNewRow(String line) {
+                return DataReader.newCommaItemRow(line);
             }
         };
 
@@ -29,8 +44,8 @@ public class AGDSAlgorithm {
     }
 
     public void run() {
-        DataReader<Item> reader = prepareReader();
-        List<Item> dataSet = reader.read(DataReader.WINE_DATA);
+        DataReader<Item> reader = prepareIrisReader();
+        List<Item> dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
 
         List<String> propertyNames = getPropertyNames(reader.getFirstLine());
@@ -57,10 +72,18 @@ public class AGDSAlgorithm {
         }
         Log.d("min = " + min + ", time elapsed: " + (System.currentTimeMillis() - minTimeElapsed));
 
+
+        final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS with Iris data");
+
+        GraphDrawer<AbstractNode> graphDrawer = buildGraphDrawer(graphVisualiser);
+
         GenericAgdsEngine engine = GenericAgdsEngine.initWith(propertyNames, classNames, dataSet)
+                .withGraphDrawer(graphDrawer)
                 .buildGraph()
                 .printMax()
                 .printMin();
+        graphVisualiser.enableLegend();
+        graphVisualiser.showGraph();
 
 
 //        AGDSGraphEngine engine = AGDSGraphEngine.initWith(classNames,dataSet)
@@ -70,6 +93,20 @@ public class AGDSAlgorithm {
 //                .printVirginicas();
 
 
+    }
+
+    private GraphDrawer<AbstractNode> buildGraphDrawer(final GraphVisualiser graphVisualiser) {
+        return new GraphDrawer<AbstractNode>() {
+            @Override
+            public void drawNode(AbstractNode nodeName) {
+                graphVisualiser.drawNode(nodeName);
+            }
+
+            @Override
+            public void drawEdge(AbstractNode nodeA, AbstractNode nodeB) {
+                graphVisualiser.drawEdge(nodeA, nodeB);
+            }
+        };
     }
 
     private List<String> getPropertyNames(String firstLine) {

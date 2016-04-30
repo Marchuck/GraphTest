@@ -1,7 +1,6 @@
 package topics.agds.nodes;
 
 import agds.AGDS;
-import agds.RNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,8 +44,8 @@ public class ClassNode extends AbstractNode {
     }
 
     @Override
-    public float getEdgeLength() {
-        return 5;
+    public int getEdgeWeight() {
+        return AGDS.CLASS_NODE_WEIGHT;
     }
 
     @Override

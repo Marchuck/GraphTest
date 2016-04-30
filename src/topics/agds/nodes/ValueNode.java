@@ -48,8 +48,8 @@ public class ValueNode extends AbstractNode {
     }
 
     @Override
-    public float getEdgeLength() {
-        return 0.5f;
+    public int getEdgeWeight() {
+        return AGDS.VALUE_NODE_WEIGHT;
     }
 
     @Override

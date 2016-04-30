@@ -5,26 +5,26 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class ClassNode implements Node {
+public class ClassDrawableNode implements DrawableNode {
 
     private String className;
-    private List<RNode> rNodeList;
+    private List<RDrawableNode> rNodeList;
 
 
     /**
      * Constructor, getter & setter.
      */
-    public ClassNode(String className) {
+    public ClassDrawableNode(String className) {
         this.className = className;
         this.rNodeList = new ArrayList<>();
     }
 
-    public void addRecordNode(RNode rNode) {
+    public void addRecordNode(RDrawableNode rNode) {
         if (!rNodeList.contains(rNode))
             rNodeList.add(rNode);
     }
 
-    public List<RNode> getrNodeList() {
+    public List<RDrawableNode> getrNodeList() {
         return rNodeList;
     }
 
@@ -36,14 +36,14 @@ public class ClassNode implements Node {
      * Sorting nodes in descending order - first element is the most similar element from that class.
      */
     public void sortNodes() {
-        Collections.sort(rNodeList, Collections.<RNode>reverseOrder());
+        Collections.sort(rNodeList, Collections.<RDrawableNode>reverseOrder());
     }
 
     /**
      * Reseting record nodes wage values.
      */
     public void resetRecordNodes() {
-        for (RNode rNode : rNodeList)
+        for (RDrawableNode rNode : rNodeList)
             rNode.onResetValue();
     }
 
@@ -51,7 +51,7 @@ public class ClassNode implements Node {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClassNode that = (ClassNode) o;
+        ClassDrawableNode that = (ClassDrawableNode) o;
         return Objects.equals(className, that.className);
     }
 
@@ -61,7 +61,7 @@ public class ClassNode implements Node {
     }
 
     @Override
-    public String getValue() {
+    public String getName() {
         return className;
     }
 
@@ -69,4 +69,9 @@ public class ClassNode implements Node {
     public String getStyleSheet() {
         return AGDS.CLASS_NODE_STYLESHEET;
     }
+    @Override
+    public int getEdgeWeight() {
+        return AGDS.CLASS_NODE_WEIGHT;
+    }
+
 }

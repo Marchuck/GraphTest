@@ -1,5 +1,7 @@
 package topics.agds;
 
+import agds.GraphDrawer;
+import com.sun.istack.internal.Nullable;
 import common.Item;
 import common.ListPrinter;
 import common.Log;
@@ -13,19 +15,24 @@ import java.util.List;
  * @since 23.04.16.
  */
 public class GenericAgdsEngine {
+    /**
+     * interface which is responsible for drawing selected nodes and edges
+     */
+    @Nullable
+    private GraphDrawer<AbstractNode> graphDrawer;
 
     private List<String> propertyNames;//for Iris: leaf length, petal width, etc.
     private List<String> classNames; //for Iris: Versicolor, Virginica, etc.
     /**
-     * Node representation of properties (attributes)
+     * DrawableNode representation of properties (attributes)
      */
     private List<PropertyNode> propertyNodes = new ArrayList<>();
     /**
-     * Node representation of classes
+     * DrawableNode representation of classes
      */
     private List<ClassNode> classNodes = new ArrayList<>();
     /**
-     * Node representation of next row
+     * DrawableNode representation of next row
      */
     private List<RecordNode> recordNodes = new ArrayList<>();
     /**
@@ -48,11 +55,15 @@ public class GenericAgdsEngine {
 
         //create propertyNodes
         for (String s : propertyNames) {
-            propertyNodes.add(new PropertyNode(s));
+            PropertyNode propertyNode = new PropertyNode(s);
+            propertyNodes.add(propertyNode);
+            safeDrawNode(propertyNode);
         }
         //create classNodes
         for (String s : classNames) {
-            classNodes.add(new ClassNode(s));
+            ClassNode classNode = new ClassNode(s);
+            classNodes.add(classNode);
+            safeDrawNode(classNode);
         }
 
         //create list of RecordNodes
@@ -61,13 +72,27 @@ public class GenericAgdsEngine {
         for (int j = 0; j < dataSet.size(); j++) {
             Item item = dataSet.get(j);
             RecordNode rNode = new RecordNode("R_" + (j + 1));
-            rNode.setClassNode(getClassNode(item.name));
+            safeDrawNode(rNode);
+            //connection between class and record node
+            ClassNode correspondingClassNode = getClassNode(item.name);
+            rNode.setClassNode(correspondingClassNode);
+            safeDrawEdge(rNode, correspondingClassNode);
+
             for (int k = 0; k < propertyNodes.size(); k++) {
                 PropertyNode propertyNode = propertyNodes.get(k);
+                //I am certain this node already is drawn
+
                 AbstractNode valueWithProperty = new ValueNode(propertyNode.getName() + item.values[k])
                         .withValue(item.values[k]).addNode(rNode);
+                //new value node to draw
+                safeDrawNode(valueWithProperty);
                 propertyNode.addNode(valueWithProperty);
+                //connection exists, also draw corresponding edge
+                safeDrawEdge(propertyNode, valueWithProperty);
+
                 rNode.addNode(valueWithProperty);
+                //also draw connection between record node and value node
+                safeDrawEdge(rNode, valueWithProperty);
             }
 
             recordNodes.add(rNode);
@@ -76,6 +101,25 @@ public class GenericAgdsEngine {
 //            for (AbstractNode node : rNodes) node.sort();
         }
         return this;
+    }
+
+    /**
+     * if graphDrawer is nullable, method call is ignored
+     *
+     * @param node
+     */
+    private void safeDrawNode(AbstractNode node) {
+        if (graphDrawer != null) graphDrawer.drawNode(node);
+    }
+
+    /**
+     * if graphDrawer is nullable, method call is ignored
+     *
+     * @param nodeA
+     * @param nodeB
+     */
+    private void safeDrawEdge(AbstractNode nodeA, AbstractNode nodeB) {
+        if (graphDrawer != null) graphDrawer.drawEdge(nodeA, nodeB);
     }
 
     public GenericAgdsEngine printNodesOfProperty(String propertyName) {
@@ -139,6 +183,11 @@ public class GenericAgdsEngine {
         }
         long t1 = System.currentTimeMillis();
         Log.d("\nminimum value of graph: " + min + ", time elapsed: " + (t1 - t0));
+        return this;
+    }
+
+    public GenericAgdsEngine withGraphDrawer(GraphDrawer<AbstractNode> graphDrawer) {
+        this.graphDrawer = graphDrawer;
         return this;
     }
 }

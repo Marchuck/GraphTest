@@ -1,8 +1,8 @@
 package some_graphs;
 
 import agds.AGDS;
+import agds.DrawableNode;
 import agds.GraphDrawer;
-import agds.Node;
 import common.Log;
 import org.graphstream.ui.view.Viewer;
 
@@ -40,25 +40,25 @@ public class GraphMerger extends JComponent {
 //        graphVisualiser.setRefreshCount(10).setSleepTime(3000);
         graphVisualiser.setStepsDisabled(false);
         agds = new AGDS();
-        agds.connectGraphDrawer(new GraphDrawer<Node>() {
+        agds.connectGraphDrawer(new GraphDrawer<DrawableNode>() {
 
             @Override
-            public void drawNode(Node node) {
-                Log.d(TAG, "drawNode " + node.getValue() + "," + node.getStyleSheet());
-                if (!graphVisualiser.containsNode(node))
-                    graphVisualiser.drawNode(node.getValue(), node.getStyleSheet());
+            public void drawNode(DrawableNode drawableNode) {
+                Log.d(TAG, "drawNode " + drawableNode.getName() + "," + drawableNode.getStyleSheet());
+                if (!graphVisualiser.containsNode(drawableNode))
+                    graphVisualiser.drawNode(drawableNode.getName(), drawableNode.getStyleSheet());
                 else
-                    Log.e(TAG, "drawNode failed. AGDSNode " + node.getValue() + " already exists!");
+                    Log.e(TAG, "drawNode failed. AGDSNode " + drawableNode.getName() + " already exists!");
             }
 
             @Override
-            public void drawEdge(Node nodeA, Node nodeB) {
-                Log.d(TAG, "drawEdge " + nodeA.getValue() + "," + nodeB.getValue());
-                if (!graphVisualiser.containsEdge(nodeA, nodeB))
-                    graphVisualiser.drawEdge(nodeA.getValue(), nodeB.getValue());
+            public void drawEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
+                Log.d(TAG, "drawEdge " + drawableNodeA.getName() + "," + drawableNodeB.getName());
+                if (!graphVisualiser.containsEdge(drawableNodeA, drawableNodeB))
+                    graphVisualiser.drawEdge(drawableNodeA.getName(), drawableNodeB.getName());
                 else
-                    Log.e(TAG, "drawNode failed. Edge (" + nodeA.getValue()
-                            + "," + nodeB.getValue() + ") already exists!");
+                    Log.e(TAG, "drawNode failed. Edge (" + drawableNodeA.getName()
+                            + "," + drawableNodeB.getName() + ") already exists!");
 
             }
         });

@@ -5,40 +5,44 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class AttributeNode implements Node {
+public class PropertyDrawableNode implements DrawableNode {
 
     private final String value;
-    private List<ValueNode> valueNodeList;
-    private ValueNode minValueNode;
-    private ValueNode maxValueNode;
+    private List<ValueDrawableNode> valueNodeList;
+    private ValueDrawableNode minValueNode;
+    private ValueDrawableNode maxValueNode;
 
     /**
      * Constuctrors, getters & setters
      */
 
-    public AttributeNode(String value) {
+    public PropertyDrawableNode(String value) {
         this.value = value;
         this.valueNodeList = new ArrayList<>();
     }
-
-    public String getValue() {
+@Override
+    public String getName() {
         return value;
     }
 
     @Override
     public String getStyleSheet() {
         return AGDS.PROPERTY_NODE_STYLESHEET;
+    }  @Override
+    public int getEdgeWeight() {
+        return AGDS.PROPERTY_NODE_WEIGHT;
     }
 
-    public List<ValueNode> getValueNodeList() {
+
+    public List<ValueDrawableNode> getValueNodeList() {
         return valueNodeList;
     }
 
-    public ValueNode getMinValueNode() {
+    public ValueDrawableNode getMinValueNode() {
         return minValueNode;
     }
 
-    public ValueNode getMaxValueNode() {
+    public ValueDrawableNode getMaxValueNode() {
         return maxValueNode;
     }
 
@@ -47,10 +51,10 @@ public class AttributeNode implements Node {
      *
      * @param valueNode - value candidate
      */
-    public void addNode(ValueNode valueNode) {
+    public void addNode(ValueDrawableNode valueNode) {
 
         if (valueNodeList.contains(valueNode)) {
-            ValueNode foundValueNode = valueNodeList.get(valueNodeList.indexOf(valueNode));
+            ValueDrawableNode foundValueNode = valueNodeList.get(valueNodeList.indexOf(valueNode));
             foundValueNode.getrNodeList().addAll(valueNode.getrNodeList());
         } else
             valueNodeList.add(valueNode);
@@ -70,7 +74,7 @@ public class AttributeNode implements Node {
      * Calculating wages based on most similar element in index
      */
     public void calculateWages(int indexValue) {
-        for (ValueNode valueNode : getValueNodeList()) {
+        for (ValueDrawableNode valueNode : getValueNodeList()) {
             double wageValue = 1 - (Math.abs(valueNode.getDoubleValue() - getValueNodeList().get(indexValue).getDoubleValue())) / (maxValueNode.getDoubleValue() - minValueNode.getDoubleValue());
             valueNode.addCalcuatedWeightToAllRecords(wageValue);
         }
@@ -80,7 +84,7 @@ public class AttributeNode implements Node {
      * Reseting value nodes wage value.
      */
     public void resetValueNodes() {
-        for (ValueNode valueNode : valueNodeList)
+        for (ValueDrawableNode valueNode : valueNodeList)
             valueNode.onResetValue();
     }
 

@@ -17,17 +17,17 @@
 //
 //    @Deprecated
 //    private List<String> classNames;
-//    private List<PropertyNode> propertyNodes = new ArrayList<>();
+//    private List<PropertyDrawableNode> propertyNodes = new ArrayList<>();
 //    private List<Item> dataSet;
 //
-//    private PropertyNode leafLength;
-//    private PropertyNode leafWidth;
-//    private PropertyNode petalLength;
-//    private PropertyNode petalWidth;
+//    private PropertyDrawableNode leafLength;
+//    private PropertyDrawableNode leafWidth;
+//    private PropertyDrawableNode petalLength;
+//    private PropertyDrawableNode petalWidth;
 //
-//    private ClassNode setosaNode;
-//    private ClassNode virginicaNode;
-//    private ClassNode versicolorNode;
+//    private ClassDrawableNode setosaNode;
+//    private ClassDrawableNode virginicaNode;
+//    private ClassDrawableNode versicolorNode;
 //
 //    public AGDSGraphEngine(List<String> classNames, List<Item> dataSet) {
 //        this.classNames = classNames;
@@ -42,19 +42,19 @@
 //        //create rootNode
 //        rootNode = new AGDSNode('0').withName("Param");
 //        //create propertyNodes
-//        leafLength = new PropertyNode("Leaf-length");
-//        leafWidth = new PropertyNode("Leaf-width");
-//        petalLength = new PropertyNode("Petal-length");
-//        petalWidth = new PropertyNode("Petal-width");
+//        leafLength = new PropertyDrawableNode("Leaf-length");
+//        leafWidth = new PropertyDrawableNode("Leaf-width");
+//        petalLength = new PropertyDrawableNode("Petal-length");
+//        petalWidth = new PropertyDrawableNode("Petal-width");
 //        fillPropertyNodesList();
 //
 //        //create classNodes
-//        setosaNode = new ClassNode("Iris-setosa");
-//        versicolorNode = new ClassNode("Iris-versicolor");
-//        virginicaNode = new ClassNode("Iris-virginica");
+//        setosaNode = new ClassDrawableNode("Iris-setosa");
+//        versicolorNode = new ClassDrawableNode("Iris-versicolor");
+//        virginicaNode = new ClassDrawableNode("Iris-virginica");
 //
 //        //create connections
-////        klassNode = new ClassNode("Klasa").addNodes(setosaNode, versicolorNode, virginicaNode);
+////        klassNode = new ClassDrawableNode("Klasa").addNodes(setosaNode, versicolorNode, virginicaNode);
 //
 //        rootNode.addNodes(leafLength, leafWidth, petalLength, petalWidth, klassNode);
 //
@@ -68,10 +68,10 @@
 //        for (int j = 0; j < dataSet.size(); j++) {
 //            Item item = dataSet.get(j);
 //            AbstractNode rNode = new RecordNode("R_" + (j + 1));
-//            AbstractNode _leafLength = new ValueNode("Leaf-length_" + item.values[0]).withValue(item.values[0]).addNode(rNode);
-//            AbstractNode _leafWidth = new ValueNode("Leaf-width_" + item.values[1]).withValue(item.values[1]).addNode(rNode);
-//            AbstractNode _petalLength = new ValueNode("Petal-length_" + item.values[2]).withValue(item.values[2]).addNode(rNode);
-//            AbstractNode _petalWidth = new ValueNode("Petal-width_" + item.values[3]).withValue(item.values[3]).addNode(rNode);
+//            AbstractNode _leafLength = new ValueDrawableNode("Leaf-length_" + item.values[0]).withValue(item.values[0]).addNode(rNode);
+//            AbstractNode _leafWidth = new ValueDrawableNode("Leaf-width_" + item.values[1]).withValue(item.values[1]).addNode(rNode);
+//            AbstractNode _petalLength = new ValueDrawableNode("Petal-length_" + item.values[2]).withValue(item.values[2]).addNode(rNode);
+//            AbstractNode _petalWidth = new ValueDrawableNode("Petal-width_" + item.values[3]).withValue(item.values[3]).addNode(rNode);
 //
 //            leafLength.addNode(_leafLength);
 //            leafWidth.addNode(_leafWidth);

@@ -10,6 +10,8 @@ import java.util.*;
 
 public class DataReader<DESTINATION> {
     public static final String IRIS_DATA = "IrisData.txt";
+    public static final String IRIS_DATA_SIMPLIFIED = "IrisDataSimplified.txt";
+    public static final String IRIS_DATA_TWICE_SIMPLIFIED = "IrisDataTwiceSimplified.txt";
     public static final String WINE_DATA = "Wine.txt";
     public static final String STUDENTS = "BazaStudenciAcces2002.mdb";
     private String firstLine;

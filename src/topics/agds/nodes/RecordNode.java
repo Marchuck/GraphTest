@@ -47,8 +47,8 @@ public class RecordNode extends AbstractNode {
     }
 
     @Override
-    public float getEdgeLength() {
-        return 0.5f;
+    public int getEdgeWeight() {
+        return AGDS.RECORD_NODE_WEIGHT;
     }
 
     @Override

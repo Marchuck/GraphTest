@@ -1,6 +1,10 @@
 package some_graphs;
 
 import agds.AGDS;
+import agds.DrawableNode;
+import agds.GraphDrawer;
+import common.Log;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -12,7 +16,7 @@ import java.util.Iterator;
  * @author lukasz
  * @since 01.04.16.
  */
-public class GraphVisualiser {
+public class GraphVisualiser implements GraphDrawer<DrawableNode> {
     public static final String TAG = GraphVisualiser.class.getSimpleName();
     public boolean isLegend = false;
 
@@ -36,13 +40,10 @@ public class GraphVisualiser {
     }
 
 
-    public void drawNode(String nodeTag) {
-        addElementWithLabel(graph.addNode(nodeTag));
-    }
-
     public void drawEdge(String firstNodeTag, String secondNodeTag) {
         addElementWithLabel(graph.addEdge(firstNodeTag + secondNodeTag, firstNodeTag, secondNodeTag));
     }
+
 
     public void displayGraph() {
         graph.display();
@@ -57,7 +58,6 @@ public class GraphVisualiser {
         String id = e.getId();
         e.addAttribute("ui.label", id);
     }
-
 
 
     /**
@@ -110,12 +110,12 @@ public class GraphVisualiser {
         }
     }
 
-    public boolean containsEdge(agds.Node nodeA, agds.Node nodeB) {
-        return graph.getEdge(nodeA.getValue() + "" + nodeB.getValue()) != null;
+    public boolean containsEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
+        return graph.getEdge(drawableNodeA.getName() + "" + drawableNodeB.getName()) != null;
     }
 
-    public boolean containsNode(agds.Node nodeA) {
-        return graph.getNode(nodeA.getValue()) != null;
+    public boolean containsNode(DrawableNode drawableNodeA) {
+        return graph.getNode(drawableNodeA.getName()) != null;
     }
 
     public void showGraph() {
@@ -143,6 +143,14 @@ public class GraphVisualiser {
         return this;
     }
 
+    /**
+     * try to use interface instead
+     *
+     * @param value
+     * @param styleSheet
+     * @return
+     */
+    @Deprecated
     public Node drawNode(String value, String styleSheet) {
         Node node = graph.addNode(value);
         String id = node.getId();
@@ -159,12 +167,12 @@ public class GraphVisualiser {
         return node;
     }
 
-    public static final String RECORD_NODES = "Record Nodes";
-    public static final String ATTR_NODES = "Attribute Nodes";
-    public static final String CLASS_NODES = "Class Nodes";
-    public static final String VALUE_NODES = "Value Nodes";
+    private static final String RECORD_NODES = "Record Nodes";
+    private static final String ATTR_NODES = "Attribute Nodes";
+    private static final String CLASS_NODES = "Class Nodes";
+    private static final String VALUE_NODES = "Value Nodes";
 
-    public void showLegend() {
+    private void showLegend() {
         Node a = drawNode(RECORD_NODES, AGDS.RECORD_NODE_STYLESHEET);
         Node b = drawNode(ATTR_NODES, AGDS.PROPERTY_NODE_STYLESHEET);
         Node c = drawNode(CLASS_NODES, AGDS.CLASS_NODE_STYLESHEET);
@@ -174,7 +182,7 @@ public class GraphVisualiser {
         graph.addEdge(c.getId() + d.getId(), c.getId(), d.getId());
     }
 
-    public void removeLegend() {
+    private void removeLegend() {
         if (graph.getNode(RECORD_NODES) != null)
             graph.removeNode(RECORD_NODES);
         if (graph.getNode(ATTR_NODES) != null)
@@ -185,13 +193,70 @@ public class GraphVisualiser {
             graph.removeNode(CLASS_NODES);
     }
 
+    /**
+     * can be triggered from button
+     */
     public synchronized void switchLegend() {
         if (isLegend) {
             removeLegend();
-            isLegend = false;
+            disableLegend();
         } else {
             showLegend();
-            isLegend = true;
+            enableLegend();
         }
+    }
+
+    /**
+     * Add new node to existing graph
+     * Don't worry about adding the same node multiple times, because it's impossible
+     *
+     * @param drawableNode
+     */
+    @Override
+    public void drawNode(DrawableNode drawableNode) {
+        String nodeTag = drawableNode.getName();
+
+        if (!this.containsNode(drawableNode)) {
+            //adding new drawableNode
+            Node newNode = graph.addNode(nodeTag);
+            //appearance customizations
+            String id = newNode.getId();
+            newNode.addAttribute("ui.label", id);
+            newNode.addAttribute("ui.style", drawableNode.getStyleSheet());
+        } else {
+            Log.e("Cannot draw drawableNode! DrawableNode " + nodeTag + " already exists.");
+        }
+    }
+
+    /**
+     * Add new edge
+     *
+     * @param drawableNodeA
+     * @param drawableNodeB
+     */
+    @Override
+    public void drawEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
+        String a = drawableNodeA.getName();
+        String b = drawableNodeB.getName();
+        String ab = a.concat(b);
+
+        if (!this.containsEdge(drawableNodeA, drawableNodeB)) {
+            //adding new edge
+            Edge newEdge = graph.addEdge(ab, a, b);
+            //appearance customizations
+
+            newEdge.setAttribute("layout.weight", drawableNodeA.getEdgeWeight() * drawableNodeA.getEdgeWeight());
+        } else {
+            Log.e("Cannot draw edge! Edge " + ab + " already exists.");
+        }
+
+    }
+
+    public void enableLegend() {
+        isLegend = true;
+    }
+
+    public void disableLegend() {
+        isLegend = false;
     }
 }

@@ -1,12 +1,10 @@
 import agds.AGDS;
+import agds.DrawableNode;
 import agds.GraphDrawer;
-import agds.Node;
 import common.DataReader;
-import common.Log;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
-import some_graphs.AGDS_Visualiser;
 import some_graphs.GraphVisualiser;
 
 import javax.swing.*;
@@ -21,30 +19,21 @@ public class Main {
 
 
     public static void main(String[] args) {
-         //   new AGDS_Visualiser(10).run();
+        //   new AGDS_Visualiser(10).run();
 
         final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS visualiser");
 //        graphVisualiser.setStepsDisabled(false);
         AGDS agds = new AGDS().withData(DataReader.IRIS_DATA);
-        agds.connectGraphDrawer(new GraphDrawer<Node>() {
+        agds.connectGraphDrawer(new GraphDrawer<DrawableNode>() {
 
             @Override
-            public void drawNode(Node node) {
-                Log.d(TAG, "drawNode " + node.getValue() + "," + node.getStyleSheet());
-                if (!graphVisualiser.containsNode(node))
-                    graphVisualiser.drawNode(node.getValue(), node.getStyleSheet());
-                else
-                    Log.e(TAG, "drawNode failed. AGDSNode " + node.getValue() + " already exists!");
+            public void drawNode(DrawableNode drawableNode) {
+                graphVisualiser.drawNode(drawableNode);
             }
 
             @Override
-            public void drawEdge(Node nodeA, Node nodeB) {
-                Log.d(TAG, "drawEdge " + nodeA.getValue() + "," + nodeB.getValue());
-                if (!graphVisualiser.containsEdge(nodeA, nodeB))
-                    graphVisualiser.drawEdge(nodeA.getValue(), nodeB.getValue());
-                else
-                    Log.e(TAG, "drawNode failed. Edge (" + nodeA.getValue()
-                            + "," + nodeB.getValue() + ") already exists!");
+            public void drawEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
+                graphVisualiser.drawEdge(drawableNodeA, drawableNodeB);
             }
         });
         agds.drawData();

@@ -50,10 +50,10 @@ public class DifferentEdgesTest implements RunAlgorithm {
         Edge adEdge = graph.addEdge("DA", "A", "D");
         adEdge.setAttribute("ui.color", "red");
 //        abEdge.setAttribute("ui.style", AGDS.RECORD_NODE_STYLESHEET);
-        abEdge.setAttribute("layout.width", 0.9);
-        bcEdge.setAttribute("layout.width", 0.1);
-        cdEdge.setAttribute("layout.width", 0.7);
-        adEdge.setAttribute("layout.width", 0.1);
+        abEdge.setAttribute("layout.weight", 0.9);
+        bcEdge.setAttribute("layout.weight", 1.1);
+        cdEdge.setAttribute("layout.weight", 0.7);
+        adEdge.setAttribute("layout.weight", 0.1);
 //        adEdge.setAttribute("layout.width", 0.1);
 
         graph.display();

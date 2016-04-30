@@ -5,25 +5,25 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
+public class ValueDrawableNode implements DrawableNode, Comparable<ValueDrawableNode>, Resetable {
 
     private Double value;
     private Double wage;
-    private List<RNode> rNodeList;
-    private AttributeNode attributeNode;
+    private List<RDrawableNode> rNodeList;
+    private PropertyDrawableNode propertyNode;
 
     /**
      * Constructor, getter & setter.
      */
 
-    public ValueNode(Double value) {
+    public ValueDrawableNode(Double value) {
         this.value = value;
         this.rNodeList = new ArrayList<>();
     }
 
 
-    public void setAttributeNode(AttributeNode attributeNode) {
-        this.attributeNode = attributeNode;
+    public void setPropertyNode(PropertyDrawableNode propertyNode) {
+        this.propertyNode = propertyNode;
     }
 
     public void setWage(Double wage) {
@@ -34,7 +34,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
         return value;
     }
 
-    public String getValue() {
+    public String getName() {
         return String.valueOf(value);
     }
 
@@ -43,7 +43,12 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
         return AGDS.VALUE_NODE_STYLESHEET;
     }
 
-    public List<RNode> getrNodeList() {
+    @Override
+    public int getEdgeWeight() {
+        return AGDS.VALUE_NODE_WEIGHT;
+    }
+
+    public List<RDrawableNode> getrNodeList() {
         return rNodeList;
     }
 
@@ -54,7 +59,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
      */
     public void addCalcuatedWeightToAllRecords(Double wage) {
         setWage(wage);
-        for (RNode rNode : rNodeList) {
+        for (RDrawableNode rNode : rNodeList) {
             rNode.addToTotalWage(wage);
         }
     }
@@ -64,7 +69,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
      *
      * @param rNode
      */
-    public void addRecordNode(RNode rNode) {
+    public void addRecordNode(RDrawableNode rNode) {
         rNodeList.add(rNode);
     }
 
@@ -73,7 +78,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
      */
 
     @Override
-    public int compareTo(ValueNode o) {
+    public int compareTo(ValueDrawableNode o) {
         return value.compareTo(o.getDoubleValue());
     }
 
@@ -87,7 +92,7 @@ public class ValueNode implements Node, Comparable<ValueNode>, Resetable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ValueNode that = (ValueNode) o;
+        ValueDrawableNode that = (ValueDrawableNode) o;
         return Objects.equals(value, that.value);
     }
 
