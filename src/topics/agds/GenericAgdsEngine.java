@@ -149,10 +149,6 @@ public class GenericAgdsEngine {
         }).print(node.getNodes());
     }
 
-    public void draw() {
-        //// TODO: 23.04.16
-        new AGDSGraphDrawerEngine(null).draw();
-    }
 
     public GenericAgdsEngine printMax() {
 

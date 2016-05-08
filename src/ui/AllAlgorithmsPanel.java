@@ -38,7 +38,6 @@ public class AllAlgorithmsPanel extends JPanel {
 
         JComponent panel1 = makeTextPanel("Panel #1");
 
-
 //        tabbedPane.addTab("Graph",new GraphView());
 
         final GraphMerger graphMerger = new GraphMerger();
