@@ -164,10 +164,8 @@ public class AGDS {
                 double rhsValue = newValueNodes.get(fixedIndex).getDoubleValue();
 
                 foundIndex = Math.abs(lhsValue - searchedValue.getDoubleValue()) < Math.abs(rhsValue - searchedValue.getDoubleValue()) ? fixedIndex - 1 : fixedIndex;
-            } else if (fixedIndex == 0)
-                foundIndex = fixedIndex;
-            else
-                foundIndex = fixedIndex - 1;
+            } else if (fixedIndex == 0) foundIndex = fixedIndex;
+            else foundIndex = fixedIndex - 1;
         }
         return foundIndex;
     }

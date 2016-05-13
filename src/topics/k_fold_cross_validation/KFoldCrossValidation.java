@@ -56,7 +56,7 @@ public class KFoldCrossValidation {
 
     private void tenthCrossValidation(List<Item> dataSet) {
         //create candidate
-        Item candidate = new Item(new float[]{2, 6, 12, 55});
+        Item candidate = new Item(new double[]{2, 6, 12, 55});
         //create classifier
         KNNClassifier classifier = new KNNClassifier()
                 .withCandidate(candidate)

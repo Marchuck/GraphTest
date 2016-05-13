@@ -73,8 +73,8 @@ public class RelationalDatabases implements RunAlgorithm {
         List<Student> allStudents = studentReader.read(FILE_NAME);
         List<String> columnNames = getColumnNames(studentReader.getFirstLine());
         SqlRoot sqlRoot = new SqlRoot();
-        for (String columnName : columnNames)
-            sqlRoot.addColumn(new SqlColumn(columnName));
+//        for (String columnName : columnNames)
+//            sqlRoot.addColumns(new SqlColumn(columnName));
     }
 
     private List<String> getColumnNames(String firstLine) {

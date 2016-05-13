@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class RecordNode extends AbstractNode {
 
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
     private double totalWeight;
     private ClassNode classNode;
     private List<AbstractNode> valueNodeList = new ArrayList<>();
@@ -37,11 +41,6 @@ public class RecordNode extends AbstractNode {
     }
 
     @Override
-    public AbstractNode sort() {
-        return this;
-    }
-
-    @Override
     public String getStyleSheet() {
         return AGDS.RECORD_NODE_STYLESHEET;
     }
@@ -51,7 +50,7 @@ public class RecordNode extends AbstractNode {
         return AGDS.RECORD_NODE_WEIGHT;
     }
 
-    @Override
+    //  @Override
     public List<AbstractNode> getNodes() {
         return valueNodeList;
     }
@@ -59,5 +58,13 @@ public class RecordNode extends AbstractNode {
     @Override
     public int compareTo(AbstractNode o) {
         return 0;
+    }
+
+    public void addToTotalWage(double weight) {
+        totalWeight += weight;
+    }
+
+    public void clean() {
+        totalWeight = 0f;
     }
 }

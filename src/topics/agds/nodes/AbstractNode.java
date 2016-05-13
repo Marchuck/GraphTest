@@ -10,6 +10,8 @@ import java.util.List;
  */
 public abstract class AbstractNode implements Comparable<AbstractNode>, DrawableNode {
 
+    public static final String NOT_CLASSIFIED = "Not classified";
+
     protected String name;
 
     public AbstractNode(String name) {
@@ -20,10 +22,4 @@ public abstract class AbstractNode implements Comparable<AbstractNode>, Drawable
     public String getName() {
         return name;
     }
-
-    public abstract AbstractNode sort();
-
-    public abstract AbstractNode addNode(AbstractNode node);
-
-    public abstract List<AbstractNode> getNodes();
 }

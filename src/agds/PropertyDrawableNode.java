@@ -28,7 +28,8 @@ public class PropertyDrawableNode implements DrawableNode {
     @Override
     public String getStyleSheet() {
         return AGDS.PROPERTY_NODE_STYLESHEET;
-    }  @Override
+    }
+    @Override
     public int getEdgeWeight() {
         return AGDS.PROPERTY_NODE_WEIGHT;
     }
@@ -75,7 +76,20 @@ public class PropertyDrawableNode implements DrawableNode {
      */
     public void calculateWages(int indexValue) {
         for (ValueDrawableNode valueNode : getValueNodeList()) {
-            double wageValue = 1 - (Math.abs(valueNode.getDoubleValue() - getValueNodeList().get(indexValue).getDoubleValue())) / (maxValueNode.getDoubleValue() - minValueNode.getDoubleValue());
+            double wageValue = 1 - (Math.abs(valueNode.getDoubleValue()
+                    - getValueNodeList().get(indexValue).getDoubleValue()))
+                    / (maxValueNode.getDoubleValue() - minValueNode.getDoubleValue());
+            valueNode.addCalcuatedWeightToAllRecords(wageValue);
+        }
+    }
+
+    public static void calculateWages(PropertyDrawableNode node,int indexValue) {
+        for (ValueDrawableNode valueNode : node.getValueNodeList()) {
+            double maxValueNode = node.getMaxValueNode().getDoubleValue();
+            double minValueNode = node.getMinValueNode().getDoubleValue();
+
+            double wageValue = 1 - (Math.abs(valueNode.getDoubleValue() - node.getValueNodeList()
+                    .get(indexValue).getDoubleValue())) / (maxValueNode - minValueNode);
             valueNode.addCalcuatedWeightToAllRecords(wageValue);
         }
     }

@@ -10,6 +10,8 @@ import java.util.Map;
  * @since 26.04.16.
  */
 public class Select {
+
+
     private SqlRoot root;
 
     private Map<String, String> queries = new HashMap<>();
@@ -31,7 +33,7 @@ public class Select {
         List<String> out = new ArrayList<>();
 
         for (SqlColumn column : root.getColumns()){
-            if (queries.containsKey(column)) out.add(queries.get(0));
+            if (queries.containsKey(column.getName())) out.add(queries.get(0));
         }
         return out;
     }

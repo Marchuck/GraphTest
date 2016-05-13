@@ -9,6 +9,19 @@ public class Student {
     public boolean hasScholarship;
     public int id, year;
 
+    public Student(String line) {
+        String[] l = line.split(",");
+        id = Integer.parseInt(l[0]);
+        name = l[1];
+        surname = l[2];
+        hasScholarship = Boolean.parseBoolean(l[3]);
+        year = Integer.parseInt(l[4]);
+        faculty = l[5];
+        faculty = l[6];
+        city = l[7];
+        streetName = l[8];
+    }
+
     public Student(String name, String surname, String faculty, String city,
                    String streetName, boolean hasScholarship, int id, int year) {
         this.name = name;

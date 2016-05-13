@@ -1,6 +1,8 @@
 package topics.agds.nodes;
 
 import agds.AGDS;
+import agds.RDrawableNode;
+import com.sun.prism.impl.Disposer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,15 +15,20 @@ import java.util.List;
 public class ValueNode extends AbstractNode {
 
     private double value;
-    private double wage;
-    private List<AbstractNode> recordNodeList = new ArrayList<>();
+    private double weight;
+    private List<RecordNode> recordNodeList = new ArrayList<>();
     private PropertyNode propertyNode;
 
     public ValueNode(String name) {
         super(name);
     }
 
-    public ValueNode addNode(AbstractNode node) {
+    public ValueNode(double value) {
+        super(AbstractNode.NOT_CLASSIFIED);
+        this.value = value;
+    }
+
+    public ValueNode addNode(RecordNode node) {
         recordNodeList.add(node);
         return this;
     }
@@ -37,12 +44,6 @@ public class ValueNode extends AbstractNode {
     }
 
     @Override
-    public AbstractNode sort() {
-        Collections.sort(recordNodeList);
-        return this;
-    }
-
-    @Override
     public String getStyleSheet() {
         return AGDS.VALUE_NODE_STYLESHEET;
     }
@@ -52,8 +53,8 @@ public class ValueNode extends AbstractNode {
         return AGDS.VALUE_NODE_WEIGHT;
     }
 
-    @Override
-    public List<AbstractNode> getNodes() {
+    // @Override
+    public List<RecordNode> getNodes() {
         return recordNodeList;
     }
 
@@ -65,5 +66,15 @@ public class ValueNode extends AbstractNode {
 
     public double getValue() {
         return value;
+    }
+
+    public void addCalculatedWeightToAllRecords(double weight) {
+        for (RecordNode rNode : recordNodeList) {
+            rNode.addToTotalWage(weight);
+        }
+    }
+
+    public void clean() {
+        weight = 0f;
     }
 }

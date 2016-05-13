@@ -43,7 +43,7 @@ public class AGDSAlgorithm {
         new AGDSAlgorithm().run();
     }
 
-    public void run() {
+    private void run() {
         DataReader<Item> reader = prepareIrisReader();
         List<Item> dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
@@ -58,7 +58,7 @@ public class AGDSAlgorithm {
         Log.d("without graph representation: ");
         double max = dataSet.get(0).values[0];
         for (Item it : dataSet) {
-            for (float f : it.values)
+            for (double f : it.values)
                 if (max < f) max = f;
         }
         Log.d("max = " + max + ", time elapsed: " + (System.currentTimeMillis() - timeElapsed));
@@ -67,7 +67,7 @@ public class AGDSAlgorithm {
         Log.d("without graph representation: ");
         double min = dataSet.get(0).values[0];
         for (Item it : dataSet) {
-            for (float f : it.values)
+            for (double f : it.values)
                 if (min > f) min = f;
         }
         Log.d("min = " + min + ", time elapsed: " + (System.currentTimeMillis() - minTimeElapsed));
@@ -80,8 +80,10 @@ public class AGDSAlgorithm {
         GenericAgdsEngine engine = GenericAgdsEngine.initWith(propertyNames, classNames, dataSet)
                 .withGraphDrawer(graphDrawer)
                 .buildGraph()
-                .printMax()
-                .printMin();
+                .printMin()
+                .printMax();
+
+        engine.markNodesSimilarToMany(5, engine.randomLeaf(),engine.randomLeaf(),engine.randomLeaf());
         graphVisualiser.enableLegend();
         graphVisualiser.showGraph();
 

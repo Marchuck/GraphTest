@@ -17,21 +17,11 @@ public class PropertyNode extends AbstractNode implements Extremable {
         super(name);
     }
 
-    private List<AbstractNode> valueNodeList = new ArrayList<>();
+    private List<ValueNode> valueNodeList = new ArrayList<>();
 
-    public PropertyNode addNode(AbstractNode node) {
+    public PropertyNode addNode(ValueNode node) {
         valueNodeList.add(node);
         return this;
-    }
-
-    @Override
-    public AbstractNode sort() {
-        Collections.sort(valueNodeList);
-        return this;
-    }
-
-    public List<AbstractNode> getValueNodeList() {
-        return valueNodeList;
     }
 
     public PropertyNode addValueNode(ValueNode valueNode) {
@@ -47,11 +37,6 @@ public class PropertyNode extends AbstractNode implements Extremable {
     @Override
     public int getEdgeWeight() {
         return AGDS.PROPERTY_NODE_WEIGHT;
-    }
-
-    @Override
-    public List<AbstractNode> getNodes() {
-        return valueNodeList;
     }
 
     @Override
@@ -77,4 +62,20 @@ public class PropertyNode extends AbstractNode implements Extremable {
         return valueNodeList.get(valueNodeList.size() / 2);
     }
 
+    public List<ValueNode> getNodes() {
+        return valueNodeList;
+    }
+
+    public void calculateWeights(int foundIndex) {
+        for (ValueNode valueNode : valueNodeList) {
+            double wageValue = 1 - (Math.abs(valueNode.getValue()
+                    - valueNodeList.get(foundIndex).getValue()))
+                    / (getMaxNode().getValue() - getMinNode().getValue());
+            valueNode.addCalculatedWeightToAllRecords(wageValue);
+        }
+    }
+
+    public void clean() {
+        for (ValueNode valueNode : valueNodeList) valueNode.clean();
+    }
 }

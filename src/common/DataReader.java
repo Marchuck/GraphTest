@@ -3,17 +3,19 @@ package common;
 import com.sun.istack.internal.Nullable;
 import com.sun.javafx.beans.annotations.NonNull;
 import com.sun.javafx.geom.FlatteningPathIterator;
+import topics.sql.randomizer.Data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class DataReader<DESTINATION> {
+    public static final String TAG = DataReader.class.getSimpleName();
     public static final String IRIS_DATA = "IrisData.txt";
     public static final String IRIS_DATA_SIMPLIFIED = "IrisDataSimplified.txt";
     public static final String IRIS_DATA_TWICE_SIMPLIFIED = "IrisDataTwiceSimplified.txt";
     public static final String WINE_DATA = "Wine.txt";
-    public static final String STUDENTS = "BazaStudenciAcces2002.mdb";
+    public static final String STUDENTS = "students.txt";
     private String firstLine;
 
     /**
@@ -22,6 +24,7 @@ public class DataReader<DESTINATION> {
      * @return first Line of file
      */
     public String getFirstLine() {
+        Log.d(TAG, "returning first line: " + firstLine);
         return firstLine;
     }
 
@@ -50,7 +53,7 @@ public class DataReader<DESTINATION> {
     }
 
     @NonNull
-    ReadStrategy<DESTINATION> readStrategy;
+    private ReadStrategy<DESTINATION> readStrategy;
 
     private DataReader() {
         throw new RuntimeException("Reader strategy should not be null. Call "
@@ -77,6 +80,7 @@ public class DataReader<DESTINATION> {
                 //read next line
 
                 String nextLine = input.nextLine();
+                Log.d(TAG, nextLine);
                 //save record as four variables
                 if (shouldSkipFirstLine) {
                     firstLine = nextLine;
@@ -104,12 +108,12 @@ public class DataReader<DESTINATION> {
     public static Item newDottedItemRow(String nextLine) {
         String arr[] = nextLine.split("\t");
 
-        Float first = Float.parseFloat(arr[0]);
-        Float sec = Float.parseFloat(arr[1]);
-        Float third = Float.parseFloat(arr[2]);
-        Float fourth = Float.parseFloat(arr[3]);
+        double first =  Double.parseDouble(arr[0]);
+        double sec =    Double.parseDouble(arr[1]);
+        double third =  Double.parseDouble(arr[2]);
+        double fourth = Double.parseDouble(arr[3]);
 
-        float[] values = new float[]{first, sec, third, fourth};
+        double[] values = new double[]{first, sec, third, fourth};
         String name = arr[4];
         return new Item(values, name);
     }
@@ -121,10 +125,10 @@ public class DataReader<DESTINATION> {
     public static Item newWineItemRow(String nextLine) {
         nextLine = toDotted(nextLine);
         String arr[] = nextLine.split("\t");
-        float[] values = new float[arr.length - 1];
+        double[] values = new double[arr.length - 1];
         String name = arr[0];
         for (int j = 0; j < values.length; j++) {
-            values[j] = Float.parseFloat(arr[j + 1]);
+            values[j] = Double.parseDouble(arr[j + 1]);
         }
         return new Item(values, name);
     }

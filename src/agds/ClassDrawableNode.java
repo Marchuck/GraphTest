@@ -54,17 +54,14 @@ public class ClassDrawableNode implements DrawableNode {
         ClassDrawableNode that = (ClassDrawableNode) o;
         return Objects.equals(className, that.className);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(className);
     }
-
     @Override
     public String getName() {
         return className;
     }
-
     @Override
     public String getStyleSheet() {
         return AGDS.CLASS_NODE_STYLESHEET;
