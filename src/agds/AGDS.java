@@ -21,7 +21,6 @@ public class AGDS {
     public static final int RECORD_NODE_WEIGHT = 4;
     public static final int VALUE_NODE_WEIGHT = 2;
 
-
     @Nullable
     private GraphDrawer<DrawableNode> graphDrawer;
 

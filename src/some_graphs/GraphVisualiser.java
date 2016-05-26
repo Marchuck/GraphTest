@@ -9,6 +9,7 @@ import org.graphstream.graph.Element;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.ui.view.Viewer;
 
 import java.util.Iterator;
 
@@ -38,7 +39,6 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
 //        graph = new SingleGraph(name);
         graph = new MultiGraph(name);
     }
-
 
     public void drawEdge(String firstNodeTag, String secondNodeTag) {
         addElementWithLabel(graph.addEdge(firstNodeTag + secondNodeTag, firstNodeTag, secondNodeTag));
@@ -118,9 +118,10 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
         return graph.getNode(drawableNodeA.getName()) != null;
     }
 
-    public void showGraph() {
-        graph.display();
+    public Viewer showGraph() {
+        Viewer viewer = graph.display();
         if (isLegend) showLegend();
+        return viewer;
     }
 
     int invalidatorIndex = 0;
@@ -172,7 +173,7 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
     private static final String CLASS_NODES = "Class Nodes";
     private static final String VALUE_NODES = "Value Nodes";
 
-    private void showLegend() {
+    private synchronized void showLegend() {
         Node a = drawNode(RECORD_NODES, AGDS.RECORD_NODE_STYLESHEET);
         Node b = drawNode(ATTR_NODES, AGDS.PROPERTY_NODE_STYLESHEET);
         Node c = drawNode(CLASS_NODES, AGDS.CLASS_NODE_STYLESHEET);
@@ -182,7 +183,7 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
         graph.addEdge(c.getId() + d.getId(), c.getId(), d.getId());
     }
 
-    private void removeLegend() {
+    private synchronized void removeLegend() {
         if (graph.getNode(RECORD_NODES) != null)
             graph.removeNode(RECORD_NODES);
         if (graph.getNode(ATTR_NODES) != null)
@@ -256,7 +257,7 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
         isLegend = true;
     }
 
-    public void disableLegend() {
+    public synchronized void disableLegend() {
         isLegend = false;
     }
 }

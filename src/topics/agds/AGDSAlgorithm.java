@@ -1,19 +1,29 @@
 package topics.agds;
 
 import agds.GraphDrawer;
+import com.sun.istack.internal.Nullable;
 import common.DataReader;
 import common.Item;
 import common.Log;
+import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.nodes.AbstractNode;
+import ui.connector.GraphCallbacks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Lukasz Marczak
  * @since 23.04.16.
  */
 public class AGDSAlgorithm {
+
+    private SourceSet sourceSet;
+
+    public AGDSAlgorithm(SourceSet set) {
+        this.sourceSet = set;
+    }
 
     private DataReader<Item> prepareWineReader() {
         DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
@@ -40,12 +50,32 @@ public class AGDSAlgorithm {
     }
 
     public static void main(String[] args) {
-        new AGDSAlgorithm().run();
+        new AGDSAlgorithm(SourceSet.Iris).run();
     }
 
-    private void run() {
-        DataReader<Item> reader = prepareIrisReader();
-        List<Item> dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
+    private GenericAgdsEngine engine;
+
+    private GraphVisualiser graphVisualiser;
+
+    public GraphVisualiser getGraphVisualiser() {
+        return graphVisualiser;
+    }
+
+    public GenericAgdsEngine getEngine() {
+        return engine;
+    }
+
+    public void run() {
+        DataReader<Item> reader;
+        List<Item> dataSet;
+        if (sourceSet == SourceSet.Wine) {
+            reader = prepareWineReader();
+            dataSet = reader.read(DataReader.WINE_DATA);
+        } else {
+            reader = prepareIrisReader();
+            dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
+
+        }
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
 
         List<String> propertyNames = getPropertyNames(reader.getFirstLine());
@@ -72,30 +102,26 @@ public class AGDSAlgorithm {
         }
         Log.d("min = " + min + ", time elapsed: " + (System.currentTimeMillis() - minTimeElapsed));
 
-
-        final GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS with Iris data");
+        graphVisualiser = new GraphVisualiser("AGDS with Iris data");
 
         GraphDrawer<AbstractNode> graphDrawer = buildGraphDrawer(graphVisualiser);
 
-        GenericAgdsEngine engine = GenericAgdsEngine.initWith(propertyNames, classNames, dataSet)
+        engine = GenericAgdsEngine.initWith(propertyNames, classNames, dataSet)
                 .withGraphDrawer(graphDrawer)
                 .buildGraph()
                 .printMin()
                 .printMax();
+        if (graphHandler != null) graphHandler.onVisualiserCreated(graphVisualiser);
+        if (graphHandler != null) graphHandler.onEngineCreated(engine);
 
-        engine.markNodesSimilarToMany(5, engine.randomLeaf(),engine.randomLeaf(),engine.randomLeaf());
-        graphVisualiser.enableLegend();
-        graphVisualiser.showGraph();
-
-
-//        AGDSGraphEngine engine = AGDSGraphEngine.initWith(classNames,dataSet)
-//                .buildGraph()
-//                .printSetosas()
-//                .printVersicolors()
-//                .printVirginicas();
-
-
+        engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
+        // graphVisualiser.enableLegend();
+        Viewer viewer = graphVisualiser.showGraph();
+        if (graphHandler != null) graphHandler.onGraphCreated(viewer);
     }
+
+    @Nullable
+    public GraphCallbacks graphHandler;
 
     private GraphDrawer<AbstractNode> buildGraphDrawer(final GraphVisualiser graphVisualiser) {
         return new GraphDrawer<AbstractNode>() {

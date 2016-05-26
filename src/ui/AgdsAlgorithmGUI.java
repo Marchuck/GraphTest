@@ -12,12 +12,22 @@ import java.awt.event.KeyEvent;
  * @author Lukasz Marczak
  * @since 24.03.16.
  */
-public class AllAlgorithmsPanel extends JPanel {
+public class AgdsAlgorithmGUI extends JPanel {
 
+    /**
+     * Prezentacja:
+     * (1) prosta animacja AGDS, jak dodawane są elementy
+     * (2) klasyfikacja węzła/węzłów z poza grafu do węzłów z grafu(zadany próg np 50%)
+     * (3) podobieństwo węzła/węzłów z grafu do
+     * (3) korelacja pomiędzy dwoma węzłami z grafu
+     * <p>
+     * co osiągnięto, jakie wady, po co to, użycie
+     */
     public static final int WINDOW_WIDTH = 800;
     public static final int WINDOW_HEIGHT = 600;
 
-    public AllAlgorithmsPanel(SingleTab... tabs) {
+    public AgdsAlgorithmGUI(SingleTab... tabs) {
+//        super();
         super(new GridLayout(1, 1));
         JTabbedPane tabbedPane = new JTabbedPane();
         for (SingleTab tab : tabs) {
@@ -30,10 +40,11 @@ public class AllAlgorithmsPanel extends JPanel {
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
     }
 
-    public AllAlgorithmsPanel() {
+    public AgdsAlgorithmGUI() {
+//        super();
         super(new GridLayout(1, 1));
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        final JTabbedPane tabbedPane = new JTabbedPane();
         ImageIcon icon = createImageIcon("images/share.png");
 
         JComponent panel1 = makeTextPanel("Panel #1");
@@ -41,19 +52,31 @@ public class AllAlgorithmsPanel extends JPanel {
 //        tabbedPane.addTab("Graph",new GraphView());
 
         final GraphMerger graphMerger = new GraphMerger();
+        final AgdsAlgorithmProxy proxy = new AgdsAlgorithmProxy(graphMerger);
+        //first tab: graph
         tabbedPane.addTab("Graph", graphMerger);
+        //second tab: options
+        JButton btnLegend = new JButton("show legend");
 
-        JButton btn = new JButton("LEGENDUJ!");
-        btn.addActionListener(new ActionListener() {
+        btnLegend.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-
+            public   void actionPerformed(ActionEvent e) {
                 graphMerger.getGraphVisualiser().switchLegend();
-
             }
         });
-        tabbedPane.add(btn);
+        final JButton btnClassify = new JButton("classifyMenuItem item");
+        btnClassify.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.print("event: " + e.getWhen());
+                ClassifyItemPopupMenu.create(proxy);
+            }
+        });
 
+        JPanel layout = new JPanel(new GridLayout(3, 3));
+        layout.add(btnLegend);
+        layout.add(btnClassify);
+        tabbedPane.add(layout);
 
         tabbedPane.addTab("Tab 1", icon, panel1,
                 "Does nothing");
@@ -97,7 +120,7 @@ public class AllAlgorithmsPanel extends JPanel {
      * Returns an ImageIcon, or null if the path was invalid.
      */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = AllAlgorithmsPanel.class.getResource(path);
+        java.net.URL imgURL = AgdsAlgorithmGUI.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -117,7 +140,7 @@ public class AllAlgorithmsPanel extends JPanel {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Add content to the window.
-        frame.add(new AllAlgorithmsPanel(), BorderLayout.CENTER);
+        frame.add(new AgdsAlgorithmGUI(), BorderLayout.CENTER);
 
         //Display the window.
         frame.pack();
@@ -130,7 +153,7 @@ public class AllAlgorithmsPanel extends JPanel {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Add content to the window.
-        frame.add(new AllAlgorithmsPanel(tabs), BorderLayout.CENTER);
+        frame.add(new AgdsAlgorithmGUI(tabs), BorderLayout.CENTER);
 
         //Display the window.
         frame.pack();

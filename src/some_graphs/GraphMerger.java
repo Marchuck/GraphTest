@@ -1,10 +1,9 @@
 package some_graphs;
 
-import agds.AGDS;
-import agds.DrawableNode;
-import agds.GraphDrawer;
-import common.Log;
 import org.graphstream.ui.view.Viewer;
+import topics.agds.AGDSAlgorithm;
+import topics.agds.GenericAgdsEngine;
+import topics.agds.SourceSet;
 
 import javax.swing.*;
 
@@ -13,70 +12,48 @@ import javax.swing.*;
  * @since 12.04.16.
  * Put together drawing graph and control parameters with buttons and other ui widgets
  */
-public class GraphMerger extends JComponent {
+public class GraphMerger extends JFrame {
     public static final String TAG = GraphMerger.class.getSimpleName();
 
-    private AGDS agds;
+    private GenericAgdsEngine agdsEngine;
     private GraphVisualiser graphVisualiser;
+    private Viewer viewer;
 
-    public AGDS getAgds() {
-        return agds;
+
+    public GenericAgdsEngine getAgds() {
+        return agdsEngine;
     }
 
-    public void setAgds(AGDS agds) {
-        this.agds = agds;
+    public void setAgds(GenericAgdsEngine agds) {
+        this.agdsEngine = agds;
     }
 
-    public GraphVisualiser getGraphVisualiser() {
+    public synchronized GraphVisualiser getGraphVisualiser() {
         return graphVisualiser;
     }
 
-    public void setGraphVisualiser(GraphVisualiser graphVisualiser) {
-        this.graphVisualiser = graphVisualiser;
+    public GraphMerger(GenericAgdsEngine engine, GraphVisualiser visualiser) {
+        super();
+        agdsEngine = engine;
+        graphVisualiser = visualiser;
+        init();
+    }
+
+    private void init() {
+        viewer = new Viewer(graphVisualiser.getGraph(), Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
+        viewer.enableAutoLayout();
     }
 
     public GraphMerger() {
-        graphVisualiser = new GraphVisualiser("AGDS visualiser");
-//        graphVisualiser.setRefreshCount(10).setSleepTime(3000);
-        graphVisualiser.setStepsDisabled(false);
-        agds = new AGDS();
-        agds.connectGraphDrawer(new GraphDrawer<DrawableNode>() {
-
-            @Override
-            public void drawNode(DrawableNode drawableNode) {
-                Log.d(TAG, "drawNode " + drawableNode.getName() + "," + drawableNode.getStyleSheet());
-                if (!graphVisualiser.containsNode(drawableNode))
-                    graphVisualiser.drawNode(drawableNode.getName(), drawableNode.getStyleSheet());
-                else
-                    Log.e(TAG, "drawNode failed. AGDSNode " + drawableNode.getName() + " already exists!");
-            }
-
-            @Override
-            public void drawEdge(DrawableNode drawableNodeA, DrawableNode drawableNodeB) {
-                Log.d(TAG, "drawEdge " + drawableNodeA.getName() + "," + drawableNodeB.getName());
-                if (!graphVisualiser.containsEdge(drawableNodeA, drawableNodeB))
-                    graphVisualiser.drawEdge(drawableNodeA.getName(), drawableNodeB.getName());
-                else
-                    Log.e(TAG, "drawNode failed. Edge (" + drawableNodeA.getName()
-                            + "," + drawableNodeB.getName() + ") already exists!");
-
-            }
-        });
-        agds.drawData();
-//        graphVisualiser.showGraphWithLegend();
-        //graphVisualiser.showGraph();
-
-        Viewer viewer = new Viewer(graphVisualiser.getGraph(), Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
-
-//        viewer.addDefaultView(true);
-        viewer.enableAutoLayout();
-//        add(viewer.addDefaultView(false), BorderLayout.CENTER);
-
-        showGraph();
+        super();
+        AGDSAlgorithm algorithm = new AGDSAlgorithm(SourceSet.Iris);
+        algorithm.run();
+        agdsEngine = algorithm.getEngine();
+        graphVisualiser = algorithm.getGraphVisualiser();
+        init();
     }
 
-    public void showGraph() {
-        graphVisualiser.showGraph();
+    public static GraphMerger create(GenericAgdsEngine engine, GraphVisualiser visualiser) {
+        return new GraphMerger(engine, visualiser);
     }
-
 }

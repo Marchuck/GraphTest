@@ -186,8 +186,15 @@ public class GenericAgdsEngine {
 
     public GenericAgdsEngine markNodesSimilarTo(int givenLimit, @NonNull Item notClassifiedItem) {
 
-        for (RecordNode node : getMostSimilarNodes(givenLimit, notClassifiedItem))
-            Log.d("Most similar node: " + node.getName());
+        for (RecordNode node : getMostSimilarNodes(givenLimit, notClassifiedItem)) {
+            Log.d("Most similar node: " + node.getName() + ", class Node: " + node.getClassNode().getName());
+            StringBuilder sb = new StringBuilder();
+            for (AbstractNode n : node.getNodes()) {
+                sb.append(" , ").append(n.getName());
+            }
+            Log.d("Value nodes: " + sb);
+        }
+
 
         return this;
     }
@@ -265,12 +272,21 @@ public class GenericAgdsEngine {
         return this;
     }
 
-    public GenericAgdsEngine withGraphDrawer(GraphDrawer<AbstractNode> graphDrawer) {
+    public GenericAgdsEngine withGraphDrawer(@Nullable GraphDrawer<AbstractNode> graphDrawer) {
         this.graphDrawer = graphDrawer;
         return this;
     }
 
     public Item randomLeaf() {
         return GenericAgdsUtils.randomLeaf(new Random(), this.getMin(), this.getMax());
+    }
+
+    public interface ResultCallback {
+        void onComputed();
+    }
+
+    public void classifyNodesSimilarToMany(double threshold, double[][] doubles, ResultCallback callback) {
+        System.out.println("Successfully connected");
+        callback.onComputed();
     }
 }

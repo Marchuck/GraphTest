@@ -19,6 +19,11 @@ public class RecordNode extends AbstractNode {
 
     private double totalWeight;
     private ClassNode classNode;
+
+    public ClassNode getClassNode() {
+        return classNode;
+    }
+
     private List<AbstractNode> valueNodeList = new ArrayList<>();
 
     public RecordNode(String name) {

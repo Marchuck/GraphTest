@@ -1,9 +1,6 @@
 package select;
 
 
-import java.io.File;
-import java.io.IOException;
-
 /**
  * @author Lukasz Marczak
  * @since 11.04.16.
