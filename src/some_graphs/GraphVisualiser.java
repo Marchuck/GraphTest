@@ -34,6 +34,7 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
 
     private String previousNodeTag;
     private Graph graph;
+    private Viewer currentViewer;
 
     public GraphVisualiser(String name) {
 //        graph = new SingleGraph(name);
@@ -119,9 +120,9 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
     }
 
     public Viewer showGraph() {
-        Viewer viewer = graph.display();
+        currentViewer = graph.display();
         if (isLegend) showLegend();
-        return viewer;
+        return currentViewer;
     }
 
     int invalidatorIndex = 0;
@@ -259,5 +260,11 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
 
     public synchronized void disableLegend() {
         isLegend = false;
+    }
+
+    public void hideGraph() {
+        System.out.println("hideGraph");
+        currentViewer.close();
+        currentViewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
     }
 }

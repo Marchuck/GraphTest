@@ -14,13 +14,19 @@ public class SingleValueChooser extends JFrame {
         void onSend(String value);
     }
 
+    JDialog jd;
+
+    public JDialog getRoot() {
+        return jd;
+    }
+
     public SingleValueChooser(JComponent c, String title, final SendAction action) {
         super(title);
         JPanel rootPanel = new JPanel(new GridLayout(3, 1));
         final TextField tv0 = new TextField();
         JButton jButton = new JButton("OK");
 
-        JDialog jd = new JDialog();
+        jd = new JDialog();
         rootPanel.add(new JLabel(title));
         rootPanel.add(tv0);
         rootPanel.add(jButton);
@@ -29,8 +35,9 @@ public class SingleValueChooser extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text0 = tv0.getText();
-                SingleValueChooser.this.dispose();
                 if (!text0.isEmpty()) action.onSend(text0);
+                getRoot().setVisible(false);
+                SingleValueChooser.this.dispose();
             }
         });
         rootPanel.add(jButton);

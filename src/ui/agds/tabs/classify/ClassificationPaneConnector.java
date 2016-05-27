@@ -91,10 +91,20 @@ public class ClassificationPaneConnector {
             subPanel.add(tv2);
             subPanel.add(tv3);
             jpanel.add(subPanel);
-            JDialog jd = new JDialog();
+            final JDialog jd = new JDialog();
             rootPanel.add(jLabel);
             rootPanel.add(jpanel);
 
+
+            rootPanel.add(classifyMenuItem);
+            jd.add(rootPanel);
+
+            jd.setMinimumSize(new Dimension(260, 200));
+            jd.pack();
+
+            jd.setBounds(parent.getX() + 100, parent.getY() + 100, 200, 100);
+
+            jd.setVisible(true);
             classifyMenuItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -103,18 +113,10 @@ public class ClassificationPaneConnector {
                     String text2 = tv2.getText();
                     String text3 = tv3.getText();
                     connector.connect(text0, text1, text2, text3);
+                    jd.setVisible(false);
                     dispose();
                 }
             });
-            rootPanel.add(classifyMenuItem);
-            jd.add(rootPanel);
-
-            jd.setMinimumSize(new Dimension(300, 300));
-            jd.pack();
-
-            jd.setBounds(parent.getX() + 100, parent.getY() + 100, 200, 100);
-
-            jd.setVisible(true);
         }
     }
 }

@@ -28,10 +28,15 @@ public class AgdsApplication implements Runnable {
     public void run() {
         gui = new AgdsGUI("Methods of Knowledge Engineering");
         algorithm = new AGDSAlgorithm(SourceSet.Iris);
+        setupCallbacks();
+        algorithm.run();
+    }
+
+    private void setupCallbacks() {
         algorithm.graphHandler = new GraphCallbacks() {
             @Override
             public void onEngineCreated(GenericAgdsEngine engine) {
-                gui.agdsEngine = engine;
+                gui.setAgdsEngine(engine);
             }
 
             @Override
@@ -44,7 +49,6 @@ public class AgdsApplication implements Runnable {
                 gui.agdsVisualiser = graphVisualiser;
             }
         };
-        algorithm.run();
     }
 
     public static void main(String[] args) {

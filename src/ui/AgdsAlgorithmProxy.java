@@ -5,6 +5,7 @@ import common.Log;
 import some_graphs.GraphMerger;
 import topics.agds.GenericAgdsEngine;
 import ui.agds.tabs.classify.ClassifyItem;
+import ui.connector.ResultCallback;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class AgdsAlgorithmProxy {
         this.graphMerger = graphMerger;
     }
 
-    public static void onItemToClassify(GenericAgdsEngine engine, List<ClassifyItem> items, double threshold, GenericAgdsEngine.ResultCallback resultCallback) {
+    public static void onItemToClassify(GenericAgdsEngine engine, List<ClassifyItem> items, double threshold,
+                                        ResultCallback<String> resultCallback) {
         double[][] doubles = new double[4][items.size()];
         for (int j = 0; j < items.size(); j++) {
 

@@ -5,7 +5,6 @@ import com.sun.istack.internal.Nullable;
 import common.DataReader;
 import common.Item;
 import common.Log;
-import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.nodes.AbstractNode;
 import ui.connector.GraphCallbacks;
@@ -110,14 +109,15 @@ public class AGDSAlgorithm {
                 .withGraphDrawer(graphDrawer)
                 .buildGraph()
                 .printMin()
-                .printMax();
+                .printMax()
+                .printRecordNodes();
         if (graphHandler != null) graphHandler.onVisualiserCreated(graphVisualiser);
         if (graphHandler != null) graphHandler.onEngineCreated(engine);
 
         engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
         // graphVisualiser.enableLegend();
-        Viewer viewer = graphVisualiser.showGraph();
-        if (graphHandler != null) graphHandler.onGraphCreated(viewer);
+        //Viewer viewer = graphVisualiser.showGraph();
+       // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
     }
 
     @Nullable

@@ -5,8 +5,10 @@ import com.sun.istack.internal.Nullable;
 import com.sun.javafx.beans.annotations.NonNull;
 import common.Item;
 import common.Log;
+import common.Utils;
 import javafx.util.Pair;
 import topics.agds.nodes.*;
+import ui.connector.ResultCallback;
 
 import java.util.*;
 
@@ -262,6 +264,18 @@ public class GenericAgdsEngine {
         return max;
     }
 
+    public GenericAgdsEngine printRecordNodes() {
+        currentSimilarNodes.clear();
+        for (RecordNode recordNode : recordNodes) {
+            List<AbstractNode> nodes = recordNode.getNodes();
+            StringBuilder stringBuilder = getRecordNodesPrinter(nodes);
+            currentSimilarNodes.add(new Pair<>(recordNode, stringBuilder.toString()));
+            common.Utils.log("next record node: " + recordNode.getName() + " : " + stringBuilder.toString());
+        }
+
+        return this;
+    }
+
     public GenericAgdsEngine printMin() {
 
         long t0 = System.currentTimeMillis();
@@ -281,12 +295,36 @@ public class GenericAgdsEngine {
         return GenericAgdsUtils.randomLeaf(new Random(), this.getMin(), this.getMax());
     }
 
-    public interface ResultCallback {
-        void onComputed();
+    public StringBuilder getRecordNodesPrinter(List<AbstractNode> nodes) {
+        return Utils.listPrinter(nodes, recordNodesStrategy);
     }
 
-    public void classifyNodesSimilarToMany(double threshold, double[][] doubles, ResultCallback callback) {
-        System.out.println("Successfully connected");
-        callback.onComputed();
+    public List<Pair<RecordNode, String>> currentSimilarNodes = new ArrayList<>();
+    private Utils.PrintStrategy recordNodesStrategy = new Utils.PrintStrategy<AbstractNode>() {
+        @Override
+        public String print(AbstractNode node) {
+            return node.getName().substring(2);
+        }
+    };
+
+    public void calculateSimilarity(List<RecordNode> selected, ResultCallback<RecordNode> resultCallback) {
+
+        List<RecordNode> recordNodesSimilar = similar(selected);
+        resultCallback.onComputed(recordNodesSimilar);
+    }
+
+    public void classifyNodesSimilarToMany(double threshold, double[][] doubles, ResultCallback<String> callback) {
+        final String result = classify(threshold, doubles);
+        callback.onComputed(new ArrayList<String>() {{
+            add(result);
+        }});
+    }
+
+    public List<RecordNode> similar(List<RecordNode> nodes) {
+        return null;
+    }
+
+    public String classify(double threshold, double[][] doubles) {
+        return null;
     }
 }
