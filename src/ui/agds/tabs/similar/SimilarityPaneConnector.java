@@ -1,6 +1,5 @@
 package ui.agds.tabs.similar;
 
-import com.sun.javafx.beans.annotations.NonNull;
 import javafx.util.Pair;
 import topics.agds.GenericAgdsEngine;
 import topics.agds.nodes.RecordNode;
@@ -20,15 +19,14 @@ import java.util.List;
  * @since 26.05.2016.
  */
 public class SimilarityPaneConnector {
-    public interface DataProvider {
-        GenericAgdsEngine provideEngine();
-    }
 
-    public SimilarityPaneConnector(JList<SimilarItem> similarityList, JButton submitItemsButton, @NonNull final DataProvider provider) {
+
+    public SimilarityPaneConnector(JList<SimilarItem> similarityList, JButton submitItemsButton,
+                                   final GenericAgdsEngine engine) {
         final DefaultListModel<SimilarItem> model = new DefaultListModel<>();
         similarityList.setModel(model);
 
-        List<Pair<RecordNode, String>> nodes = provider.provideEngine().currentSimilarNodes;
+        List<Pair<RecordNode, String>> nodes = engine.currentSimilarNodes;
         for (Pair<RecordNode, String> pair : nodes)
             model.addElement(new SimilarItem(pair));
 
@@ -64,7 +62,7 @@ public class SimilarityPaneConnector {
                         selected.add(item.recordNode);
                     }
                 }
-                provider.provideEngine().calculateSimilarity(selected, new ResultCallback<RecordNode>() {
+                engine.calculateSimilarity(selected, new ResultCallback<RecordNode>() {
                     @Override
                     public void onComputed(Collection<RecordNode> result) {
 

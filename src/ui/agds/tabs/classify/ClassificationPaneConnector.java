@@ -37,7 +37,6 @@ public class ClassificationPaneConnector {
                     // Double-click detected
                     int index = list.locationToIndex(evt.getPoint());
                     listModel.remove(index);
-
                 }
             }
         });

@@ -8,6 +8,8 @@ import common.Log;
 import common.Utils;
 import javafx.util.Pair;
 import topics.agds.nodes.*;
+import ui.agds.tabs.correlation.Correlation;
+import ui.agds.tabs.correlation.CorrelationBundle;
 import ui.connector.ResultCallback;
 
 import java.util.*;
@@ -326,5 +328,22 @@ public class GenericAgdsEngine {
 
     public String classify(double threshold, double[][] doubles) {
         return null;
+    }
+
+    public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {
+        if (correlationBundle.isInvalid()) return;
+        int i1 = correlationBundle.firstIndex, i2 = correlationBundle.secondIndex;
+        Pair<RecordNode, String> first = currentSimilarNodes.get(i1);
+        Pair<RecordNode, String> second = currentSimilarNodes.get(i2);
+        RecordNode firstNode = first.getKey();
+        RecordNode secondNode = second.getKey();
+        double[] firstVector = common.Utils.asVector(firstNode);
+        double[] secondVector = common.Utils.asVector(secondNode);
+        final double result = Correlation.compute(firstVector, secondVector);
+        resultCallback.onComputed(new ArrayList<Double>() {
+            {
+                add(result);
+            }
+        });
     }
 }

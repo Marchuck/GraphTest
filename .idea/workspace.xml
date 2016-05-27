@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84f3e15e-606b-49e0-80b6-576673dbe4bf" name="Default" comment="gui gui gui">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/Pallete.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItemsRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/connector/ResultCallback.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ui/connector/ListInteraction.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ui/agds/tabs/SimilarityPaneConnector.java" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/correlation/Correlation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationBundle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItemsRenderer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationPaneConnector.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ui/agds/CorrelationPaneConnector.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/Utils.java" afterPath="$PROJECT_DIR$/src/common/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/some_graphs/GraphVisualiser.java" afterPath="$PROJECT_DIR$/src/some_graphs/GraphVisualiser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/topics/agds/AGDSAlgorithm.java" afterPath="$PROJECT_DIR$/src/topics/agds/AGDSAlgorithm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java" afterPath="$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/AgdsAlgorithmProxy.java" afterPath="$PROJECT_DIR$/src/ui/AgdsAlgorithmProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/AgdsApplication.java" afterPath="$PROJECT_DIR$/src/ui/agds/AgdsApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/AgdsGUI.form" afterPath="$PROJECT_DIR$/src/ui/agds/AgdsGUI.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/AgdsGUI.java" afterPath="$PROJECT_DIR$/src/ui/agds/AgdsGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/tabs/classify/SingleValueChooser.java" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/classify/SingleValueChooser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/connector/AgdsConnectable.java" afterPath="$PROJECT_DIR$/src/ui/connector/AgdsConnectable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java" afterPath="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java" />
     </list>
     <ignored path="GraphTest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,61 +38,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ResultCallback.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/connector/ResultCallback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimilarityPaneConnector.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimilarityPaneConnector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1377#2098#0" expanded="true" />
-                <element signature="e#2097#2098#0" expanded="true" />
-                <element signature="e#2146#2912#0" expanded="true" />
-                <element signature="e#2355#2367#0" expanded="true" />
-                <element signature="e#2911#2912#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimilarItemsRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItemsRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimilarItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+            <state relative-caret-position="185">
+              <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pallete.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/Pallete.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -103,67 +53,104 @@
       <file leaf-file-name="AgdsGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+            <state relative-caret-position="249">
+              <caret line="146" column="47" selection-start-line="146" selection-start-column="47" selection-end-line="146" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2680#3229#0" expanded="true" />
-                <element signature="e#3228#3229#0" expanded="true" />
-                <element signature="e#3450#4642#0" expanded="true" />
-                <element signature="e#3888#4616#0" expanded="true" />
-                <element signature="e#4615#4616#0" expanded="true" />
-                <element signature="e#4641#4642#0" expanded="true" />
-                <element signature="e#4790#4970#0" expanded="true" />
-                <element signature="e#4969#4970#0" expanded="true" />
-                <element signature="e#5138#5139#0" expanded="true" />
-                <element signature="e#5175#5176#0" expanded="true" />
+                <element signature="e#3556#4748#0" expanded="true" />
+                <element signature="e#4747#4748#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AWTEventMulticaster.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/awt/AWTEventMulticaster.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="269" column="0" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
-              <folding />
-            </state>
+      <file leaf-file-name="AgdsGUI.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgdsApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsApplication.java">
+      <file leaf-file-name="ClassificationPaneConnector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+            <state relative-caret-position="217">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1021#1022#0" expanded="true" />
-                <element signature="e#1078#1079#0" expanded="true" />
-                <element signature="e#1157#1158#0" expanded="true" />
-                <element signature="e#1213#1214#0" expanded="true" />
+                <element signature="e#933#1368#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
+                <element signature="e#2171#2185#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassifyItemPopupMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/ClassifyItemPopupMenu.java">
+      <file leaf-file-name="CorrelationItemsRenderer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItemsRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+            <state relative-caret-position="245">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgdsAlgorithmProxy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/AgdsAlgorithmProxy.java">
+      <file leaf-file-name="CorrelationItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            <state relative-caret-position="128">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CorrelationPaneConnector.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationPaneConnector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
+              <folding>
+                <element signature="e#2960#3681#0" expanded="true" />
+                <element signature="e#3336#3613#0" expanded="true" />
+                <element signature="e#3680#3681#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenericAgdsEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="333" column="21" selection-start-line="333" selection-start-column="21" selection-end-line="333" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CorrelationBundle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationBundle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+              <folding>
+                <element signature="e#580#581#0" expanded="true" />
+                <element signature="e#640#641#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -174,8 +161,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -195,12 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/IrisDataSimplified.txt" />
-        <option value="$PROJECT_DIR$/src/topics/som/SOMEngine.java" />
-        <option value="$PROJECT_DIR$/src/topics/agds/nodes/AbstractNode.java" />
-        <option value="$PROJECT_DIR$/src/agds/RDrawableNode.java" />
-        <option value="$PROJECT_DIR$/src/agds/ClassDrawableNode.java" />
-        <option value="$PROJECT_DIR$/src/agds/PropertyDrawableNode.java" />
         <option value="$PROJECT_DIR$/src/topics/agds/nodes/PropertyNode.java" />
         <option value="$PROJECT_DIR$/src/topics/agds/nodes/ValueNode.java" />
         <option value="$PROJECT_DIR$/src/topics/agds/nodes/ClassNode.java" />
@@ -226,26 +207,32 @@
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/ClassificationPaneConnector.java" />
         <option value="$PROJECT_DIR$/src/ui/connector/ListInteraction.java" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/classify/ItemToClassifyRenderer.java" />
-        <option value="$PROJECT_DIR$/src/ui/agds/AgdsGUI.form" />
         <option value="$PROJECT_DIR$/src/topics/agds/SourceSet.java" />
         <option value="$PROJECT_DIR$/src/some_graphs/GraphMerger.java" />
         <option value="$PROJECT_DIR$/src/ui/connector/GraphCallbacks.java" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassifyItem.java" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/classify/SingleValueChooser.java" />
-        <option value="$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java" />
         <option value="$PROJECT_DIR$/src/some_graphs/GraphVisualiser.java" />
         <option value="$PROJECT_DIR$/src/topics/agds/AGDSAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/common/Utils.java" />
         <option value="$PROJECT_DIR$/src/ui/connector/ResultCallback.java" />
         <option value="$PROJECT_DIR$/src/ui/AgdsAlgorithmProxy.java" />
-        <option value="$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java" />
         <option value="$PROJECT_DIR$/src/ui/connector/AgdsConnectable.java" />
-        <option value="$PROJECT_DIR$/src/ui/agds/AgdsApplication.java" />
-        <option value="$PROJECT_DIR$/src/ui/agds/AgdsGUI.java" />
         <option value="$PROJECT_DIR$/src/ui/Pallete.java" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItem.java" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItemsRenderer.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/AgdsApplication.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItem.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/SimilarityPaneConnector.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/AgdsGUI.form" />
         <option value="$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/AgdsGUI.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItemsRenderer.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/Correlation.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationBundle.java" />
+        <option value="$PROJECT_DIR$/src/common/Utils.java" />
+        <option value="$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java" />
+        <option value="$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationPaneConnector.java" />
       </list>
     </option>
   </component>
@@ -292,8 +279,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -388,6 +375,32 @@
               <option name="myItemId" value="agds" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AgdsGUI" />
+              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -416,6 +429,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="similar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="correlation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -572,16 +615,16 @@
     <property name="SearchEverywhereHistoryKey" value="GenericA&#9;FILE&#9;file://C:/other/programming/java/may2016/GraphTest/src/topics/agds/GenericAgdsEngine.java&#10;SqlC&#9;FILE&#9;file:///Users/lukasz/programming/java6/GraphTest/src/topics/sql/SqlColumn.java" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="ui.agds" />
-      <recent name="topics.agds" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/libs" />
+      <recent name="$PROJECT_DIR$/src/ui" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\other\programming\java\may2016\GraphTest\src\ui\agds\tabs\correlation" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/topics/sql" />
       <recent name="$PROJECT_DIR$/libs" />
       <recent name="$PROJECT_DIR$/src/agds" />
-      <recent name="$PROJECT_DIR$/src/topics/data_mining/arczi" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="ui" />
@@ -590,9 +633,9 @@
       <recent name="ui.agds.tabs" />
       <recent name="topics.agds" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/libs" />
-      <recent name="$PROJECT_DIR$/src/ui" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ui.agds" />
+      <recent name="topics.agds" />
     </key>
   </component>
   <component name="RunManager" selected="Application.AgdsApplication">
@@ -1024,15 +1067,15 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24102564" sideWeight="0.45839638" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24102564" sideWeight="0.45537066" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17948718" sideWeight="0.43419063" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17777778" sideWeight="0.4462935" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.191453" sideWeight="0.49707174" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17948718" sideWeight="0.56580937" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24786325" sideWeight="0.49394855" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17777778" sideWeight="0.5537065" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2602118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1086,35 +1129,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ui/GraphView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ui/SingleTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/tests/DifferentEdgesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DemoViewerJComponents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/topics/som/SOM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -1176,46 +1190,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26688">
           <caret line="1727" column="36" selection-start-line="1727" selection-start-column="36" selection-end-line="1727" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#108966#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#44526#44527#0" expanded="false" />
-            <element signature="e#44572#44573#0" expanded="false" />
-            <element signature="e#76550#76551#0" expanded="false" />
-            <element signature="e#76593#76594#0" expanded="false" />
-            <element signature="e#76893#76894#0" expanded="false" />
-            <element signature="e#76937#76938#0" expanded="false" />
-            <element signature="e#77552#77553#0" expanded="false" />
-            <element signature="e#77610#77611#0" expanded="false" />
-            <element signature="e#83508#83509#0" expanded="false" />
-            <element signature="e#83547#83548#0" expanded="false" />
-            <element signature="e#83812#83813#0" expanded="false" />
-            <element signature="e#83870#83871#0" expanded="false" />
-            <element signature="e#84127#84128#0" expanded="false" />
-            <element signature="e#84159#84160#0" expanded="false" />
-            <element signature="e#84821#84822#0" expanded="false" />
-            <element signature="e#84851#84852#0" expanded="false" />
-            <element signature="e#85522#85523#0" expanded="false" />
-            <element signature="e#85549#85550#0" expanded="false" />
-            <element signature="e#86630#86631#0" expanded="false" />
-            <element signature="e#86658#86659#0" expanded="false" />
-            <element signature="e#88820#88821#0" expanded="false" />
-            <element signature="e#88855#88856#0" expanded="false" />
-            <element signature="e#90456#90457#0" expanded="false" />
-            <element signature="e#90490#90491#0" expanded="false" />
-            <element signature="e#92019#92020#0" expanded="false" />
-            <element signature="e#92052#92053#0" expanded="false" />
-            <element signature="e#93581#93582#0" expanded="false" />
-            <element signature="e#93619#93620#0" expanded="false" />
-            <element signature="e#94549#94550#0" expanded="false" />
-            <element signature="e#94593#94594#0" expanded="false" />
-            <element signature="e#96051#96052#0" expanded="false" />
-            <element signature="e#96084#96085#0" expanded="false" />
-            <element signature="e#96453#96454#0" expanded="false" />
-            <element signature="e#96493#96494#0" expanded="false" />
-            <element signature="e#97636#97637#0" expanded="false" />
-            <element signature="e#97669#97670#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1276,15 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="444" column="37" selection-start-line="444" selection-start-column="37" selection-end-line="444" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/CorrelationPaneConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1322,36 +1287,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similarity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/connector/ListInteraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similarity.java" />
+    <entry file="file://$PROJECT_DIR$/src/ui/connector/ListInteraction.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/awt/Window.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="1145" column="16" selection-start-line="1145" selection-start-column="16" selection-end-line="1145" selection-end-column="16" />
           <folding>
-            <element signature="e#41102#41103#0" expanded="true" />
-            <element signature="e#41129#41130#0" expanded="true" />
+            <element signature="e#41102#41103#0" expanded="false" />
+            <element signature="e#41129#41130#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/classify/SingleValueChooser.java">
@@ -1388,7 +1334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,22 +1343,6 @@
           <caret line="113" column="29" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#275#276#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#404#405#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1423,33 +1352,6 @@
         <state relative-caret-position="65">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1368#1369#0" expanded="true" />
-            <element signature="e#2172#2186#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#10800#10972#0" expanded="true" />
-            <element signature="e#10971#10972#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#11574#11575#0" expanded="true" />
-            <element signature="e#11642#11643#0" expanded="true" />
-            <element signature="e#11669#11670#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1471,43 +1373,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1021#1022#0" expanded="true" />
-            <element signature="e#1078#1079#0" expanded="true" />
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1213#1214#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2680#3229#0" expanded="true" />
-            <element signature="e#3228#3229#0" expanded="true" />
-            <element signature="e#3450#4642#0" expanded="true" />
-            <element signature="e#3888#4616#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
-            <element signature="e#4641#4642#0" expanded="true" />
-            <element signature="e#4790#4970#0" expanded="true" />
-            <element signature="e#4969#4970#0" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5175#5176#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/awt/AWTEventMulticaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
+        <state relative-caret-position="3840">
           <caret line="269" column="0" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
           <folding />
         </state>
@@ -1515,7 +1383,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/Pallete.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="400">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
@@ -1529,17 +1397,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/ClassifyItemPopupMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/AgdsAlgorithmProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="400">
           <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
           <folding />
         </state>
@@ -1547,7 +1407,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
+        <state relative-caret-position="256">
           <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1563,17 +1423,135 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/ClassifyItemPopupMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+        <state relative-caret-position="140">
+          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/CorrelationPaneConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1377#2098#0" expanded="true" />
-            <element signature="e#2097#2098#0" expanded="true" />
-            <element signature="e#2146#2912#0" expanded="true" />
-            <element signature="e#2355#2367#0" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
+            <element signature="e#1021#1022#0" expanded="true" />
+            <element signature="e#1078#1079#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/AgdsGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="146" column="47" selection-start-line="146" selection-start-column="47" selection-end-line="146" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3556#4748#0" expanded="true" />
+            <element signature="e#4747#4748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/classify/ClassificationPaneConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#933#1368#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#2171#2185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/similar/SimilarityPaneConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationItemsRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/Correlation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-64">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationBundle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#640#641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/topics/agds/GenericAgdsEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="333" column="21" selection-start-line="333" selection-start-column="21" selection-end-line="333" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/agds/tabs/correlation/CorrelationPaneConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
+          <folding>
+            <element signature="e#2960#3681#0" expanded="true" />
+            <element signature="e#3336#3613#0" expanded="true" />
+            <element signature="e#3680#3681#0" expanded="true" />
           </folding>
         </state>
       </provider>

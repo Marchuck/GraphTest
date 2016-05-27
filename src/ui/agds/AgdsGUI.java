@@ -9,6 +9,8 @@ import ui.AgdsAlgorithmProxy;
 import ui.agds.tabs.classify.ClassificationPaneConnector;
 import ui.agds.tabs.classify.ClassifyItem;
 import ui.agds.tabs.classify.SingleValueChooser;
+import ui.agds.tabs.correlation.CorrelationItem;
+import ui.agds.tabs.correlation.CorrelationPaneConnector;
 import ui.agds.tabs.similar.SimilarItem;
 import ui.agds.tabs.similar.SimilarityPaneConnector;
 import ui.connector.ResultCallback;
@@ -36,6 +38,8 @@ public class AgdsGUI extends JFrame   {
     private JList<ClassifyItem> classifyItemList;
     private JButton addItemButton;
     private JButton submitItemsButton;
+    private JList<CorrelationItem> correlationList;
+    private JButton computeCorrelationButton;
 
     /**
      * Connectors
@@ -136,16 +140,12 @@ public class AgdsGUI extends JFrame   {
     }
 
     private void setupSimilarityPane() {
-        similarityPaneConnector = new SimilarityPaneConnector(similarityList, submitItemsButton, new SimilarityPaneConnector.DataProvider() {
-            @Override
-            public GenericAgdsEngine provideEngine() {
-                return agdsEngine;
-            }
-        });
+        similarityPaneConnector = new SimilarityPaneConnector(similarityList, submitItemsButton, agdsEngine);
     }
 
     private void setupCorrelationPane() {
-        correlationPaneConnector = new CorrelationPaneConnector(null);
+        correlationPaneConnector = new CorrelationPaneConnector(correlationList,computeCorrelationButton,agdsEngine);
+
     }
 
     private static void LOG(String s) {
