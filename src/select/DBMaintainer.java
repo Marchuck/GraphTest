@@ -23,6 +23,7 @@ public class DBMaintainer {
 //            System.err.println("Error to open db: " + ex.getMessage());
 //            ex.printStackTrace();
 //        }
+
     }
 
     public void insert(AgdsRecord record) {
