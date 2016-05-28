@@ -56,7 +56,7 @@ public class GenericAgdsEngine {
     }
 
     public GenericAgdsEngine buildGraph() {
-
+        long startTime = System.currentTimeMillis();
         //create propertyNodes
         for (String s : propertyNames) {
             PropertyNode propertyNode = new PropertyNode(s);
@@ -74,6 +74,7 @@ public class GenericAgdsEngine {
 //        List<AbstractNode> rNodes = new ArrayList<>();
 
         for (int j = 0; j < dataSet.size(); j++) {
+
             Item item = dataSet.get(j);
             RecordNode rNode = new RecordNode("R_" + (j + 1));
             safeDrawNode(rNode);
@@ -81,7 +82,8 @@ public class GenericAgdsEngine {
             ClassNode correspondingClassNode = getClassNode(item.name);
             rNode.setClassNode(correspondingClassNode);
             correspondingClassNode.addNode(rNode);
-            safeDrawEdge(rNode, correspondingClassNode);
+
+            safeDrawEdge(rNode, correspondingClassNode);//no-op when graphDrawer is null
 
             for (int k = 0; k < propertyNodes.size(); k++) {
                 PropertyNode propertyNode = propertyNodes.get(k);
@@ -89,23 +91,61 @@ public class GenericAgdsEngine {
 
                 ValueNode valueWithProperty = new ValueNode(propertyNode.getName() + item.values[k])
                         .withValue(item.values[k]).addNode(rNode);
-                //new value node to draw
-                safeDrawNode(valueWithProperty);
-                propertyNode.addNode(valueWithProperty);
-                //connection exists, also draw corresponding edge
-                safeDrawEdge(propertyNode, valueWithProperty);
+                Pair<ValueNode, Boolean> thisNodeAndResult = getNonRepeatableAndResult(propertyNode, valueWithProperty);
 
-                rNode.addNode(valueWithProperty);
-                //also draw connection between record node and value node
-                safeDrawEdge(rNode, valueWithProperty);
+                ValueNode nonRepeatingNode = thisNodeAndResult.getKey();
+                boolean alreadyExists = thisNodeAndResult.getValue();
+
+                if (alreadyExists) {
+                    rNode.addNode(nonRepeatingNode);
+                    //also draw connection between record node and value node
+                    safeDrawEdge(rNode, nonRepeatingNode);
+                } else {
+                    //new node
+                    safeDrawNode(nonRepeatingNode);//no-op when graphDrawer is null
+                    propertyNode.addNode(nonRepeatingNode);
+                    //connection exists, also draw corresponding edge
+                    safeDrawEdge(propertyNode, nonRepeatingNode);
+                    rNode.addNode(nonRepeatingNode);
+                    //also draw connection between record node and value node
+                    safeDrawEdge(rNode, nonRepeatingNode);
+                }
             }
-
             recordNodes.add(rNode);
-//            rNodes.get(lastIndex - 1).addNode(rNode);
-//            rNodes.add(rNode);
-//            for (AbstractNode node : rNodes) node.sort();
         }
+        long endTime = System.currentTimeMillis();
+        Utils.log("Building graph in " + (endTime - startTime) + " ms");
         return this;
+    }
+
+    private interface Function {
+        void perform(RecordNode node);
+    }
+
+    /**
+     * @param bannedNodes list of nodes which shouldn't be considered in operation
+     * @param task
+     */
+    private void iterateWithoutTheseRNodes(List<RecordNode> bannedNodes, Function task) {
+
+        for (RecordNode recordNode : bannedNodes) {
+            recordNode.banned = true;
+        }
+        for (RecordNode recordNode : recordNodes) {
+            if (!recordNode.banned) {
+                task.perform(recordNode);
+            } else {
+                recordNode.banned = false;
+            }
+        }
+    }
+
+    private Pair<ValueNode, Boolean> getNonRepeatableAndResult(PropertyNode propertyNode, ValueNode valueWithProperty) {
+        for (ValueNode valueNode : propertyNode.getNodes()) {
+            if (Double.compare(valueNode.getValue(), valueWithProperty.getValue()) == 0)
+                return new Pair<>(valueNode, true);
+        }
+        return new Pair<>(valueWithProperty, false);
     }
 
     /**
@@ -127,16 +167,6 @@ public class GenericAgdsEngine {
         if (graphDrawer != null) graphDrawer.drawEdge(nodeA, nodeB);
     }
 
-    public GenericAgdsEngine printNodesOfProperty(String propertyName) {
-        Log.d("\n\n");
-
-//        for (AbstractNode node : getClassNode(propertyName).getNodes()) {
-//            Log.d("print Setosas: " + node.getName() + ", " + );
-//        }
-        return this;
-    }
-
-
     public ClassNode getClassNode(String name) {
         for (ClassNode propertyNode : classNodes) {
             if (name.equalsIgnoreCase(propertyNode.getName())) return propertyNode;
@@ -154,18 +184,14 @@ public class GenericAgdsEngine {
         return this;
     }
 
-    private GenericAgdsEngine foo(float offset) {
-        if (outOfRange(offset)) throw new IllegalStateException("Given offset is invalid");
-        return this;
-    }
-
     private List<RecordNode> getMostSimilarNodes(int givenLimit, @NonNull Item notClassifiedItem) {
         ClassNode closestClassNode = null;
 
         for (int j = 0; j < propertyNodes.size(); j++) {
             PropertyNode propertyNode = propertyNodes.get(j);
 
-            int foundIndex = GenericAgdsUtils.findClosestPropertyValueIndex(propertyNode, new ValueNode(notClassifiedItem.values[j]));
+            int foundIndex = GenericAgdsUtils.findClosestPropertyValueIndex(propertyNode,
+                    new ValueNode(notClassifiedItem.values[j]));
 
             propertyNode.calculateWeights(foundIndex);
         }
@@ -242,11 +268,6 @@ public class GenericAgdsEngine {
             newClassNode.clean();
     }
 
-
-    private boolean outOfRange(float offset) {
-        return offset < 0f || offset > 1f;
-    }
-
     public double getMin() {
         double min = propertyNodes.get(0).getMinNode().getValue();
         for (PropertyNode propertyNode : propertyNodes) {
@@ -269,7 +290,7 @@ public class GenericAgdsEngine {
     public GenericAgdsEngine printRecordNodes() {
         currentSimilarNodes.clear();
         for (RecordNode recordNode : recordNodes) {
-            List<AbstractNode> nodes = recordNode.getNodes();
+            List<ValueNode> nodes = recordNode.getNodes();
             StringBuilder stringBuilder = getRecordNodesPrinter(nodes);
             currentSimilarNodes.add(new Pair<>(recordNode, stringBuilder.toString()));
             common.Utils.log("next record node: " + recordNode.getName() + " : " + stringBuilder.toString());
@@ -297,7 +318,7 @@ public class GenericAgdsEngine {
         return GenericAgdsUtils.randomLeaf(new Random(), this.getMin(), this.getMax());
     }
 
-    public StringBuilder getRecordNodesPrinter(List<AbstractNode> nodes) {
+    public StringBuilder getRecordNodesPrinter(List<ValueNode> nodes) {
         return Utils.listPrinter(nodes, recordNodesStrategy);
     }
 
@@ -322,7 +343,31 @@ public class GenericAgdsEngine {
         }});
     }
 
-    public List<RecordNode> similar(List<RecordNode> nodes) {
+    public List<RecordNode> similarSingle(RecordNode r) {
+        for (ValueNode valueNode : r.getNodes()) {
+            for (RecordNode neighbour : valueNode.getNodes()) {
+                if (!neighbour.equals(r)){
+
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public List<RecordNode> similar(final List<RecordNode> selectedNodes) {
+
+
+        iterateWithoutTheseRNodes(selectedNodes, new Function() {
+            @Override
+            public void perform(RecordNode node) {
+                for (RecordNode node1 : selectedNodes) {
+                    for (int j = 0; j < node1.getNodes().size(); j++) {
+
+                    }
+                }
+            }
+        });
         return null;
     }
 

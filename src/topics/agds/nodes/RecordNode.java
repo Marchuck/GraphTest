@@ -4,7 +4,6 @@ package topics.agds.nodes;
 import agds.AGDS;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,23 +23,19 @@ public class RecordNode extends AbstractNode {
         return classNode;
     }
 
-    private List<AbstractNode> valueNodeList = new ArrayList<>();
+    private List<ValueNode> valueNodeList = new ArrayList<>();
 
     public RecordNode(String name) {
         super(name);
     }
 
-    public RecordNode addNodes(AbstractNode... nodes) {
-        Collections.addAll(valueNodeList, nodes);
-        return this;
-    }
 
     public RecordNode setClassNode(ClassNode node) {
         this.classNode = node;
         return this;
     }
 
-    public RecordNode addNode(AbstractNode node) {
+    public RecordNode addNode(ValueNode node) {
         valueNodeList.add(node);
         return this;
     }
@@ -56,7 +51,7 @@ public class RecordNode extends AbstractNode {
     }
 
     //  @Override
-    public List<AbstractNode> getNodes() {
+    public List<ValueNode> getNodes() {
         return valueNodeList;
     }
 
@@ -71,5 +66,27 @@ public class RecordNode extends AbstractNode {
 
     public void clean() {
         totalWeight = 0f;
+    }
+
+    public boolean banned;
+    public int weight;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RecordNode)) return false;
+
+        RecordNode that = (RecordNode) o;
+
+        if (!classNode.equals(that.classNode)) return false;
+        return valueNodeList.equals(that.valueNodeList);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = classNode.hashCode();
+        result = 31 * result + valueNodeList.hashCode();
+        return result;
     }
 }
