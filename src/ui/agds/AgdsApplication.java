@@ -3,8 +3,8 @@ package ui.agds;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.AGDSAlgorithm;
-import topics.agds.GenericAgdsEngine;
 import topics.agds.SourceSet;
+import topics.agds.engine.GenericAgdsEngine;
 import ui.connector.GraphCallbacks;
 
 import javax.swing.*;

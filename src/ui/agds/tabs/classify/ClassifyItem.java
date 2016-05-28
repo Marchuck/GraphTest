@@ -20,11 +20,15 @@ public class ClassifyItem {
 
     public double[] asDoubles() {
         return new double[]{
-                Double.parseDouble(property0),
-                Double.parseDouble(property1),
-                Double.parseDouble(property2),
-                Double.parseDouble(property3),
+                wrap(property0),
+                wrap(property1),
+                wrap(property2),
+                wrap(property3),
         };
+    }
+
+    private double wrap(String s) {
+        return s.isEmpty() ? -1 : Double.parseDouble(s);
     }
 
     @Override

@@ -123,7 +123,7 @@ class AprioriCalculation {
         System.out.print("or any other key to continue.  ");
         input = getInput();
 
-        if (input.compareToIgnoreCase("c") == 0) {
+        if (input.compareToIgnoreCase("leak") == 0) {
             System.out.print("Enter new transaction filename (return for '" + transaFile + "'): ");
             input = getInput();
             if (input.compareToIgnoreCase("") != 0)
@@ -306,7 +306,7 @@ class AprioriCalculation {
 
             }
             for (int i = 0; i < candidates.size(); i++) {
-                //  System.out.println("Candidate: " + candidates.get(c) + " with count: " + count + " % is: " + (count/(double)numItems));
+                //  System.out.println("Candidate: " + candidates.get(leak) + " with count: " + count + " % is: " + (count/(double)numItems));
                 //if the count% is larger than the minSup%, add to the candidate to the frequent candidates
                 if ((count[i] / (double) numTransactions) >= minSup) {
                     frequentCandidates.add(candidates.get(i));

@@ -1,4 +1,4 @@
-package topics.agds;
+package topics.agds.engine;
 
 import agds.GraphDrawer;
 import com.sun.istack.internal.Nullable;
@@ -55,6 +55,11 @@ public class GenericAgdsEngine {
         return new GenericAgdsEngine(propertyNames, classNames, dataSet);
     }
 
+    public GenericAgdsEngine withGraphDrawer(@Nullable GraphDrawer<AbstractNode> graphDrawer) {
+        this.graphDrawer = graphDrawer;
+        return this;
+    }
+
     public GenericAgdsEngine buildGraph() {
         long startTime = System.currentTimeMillis();
         //create propertyNodes
@@ -79,7 +84,7 @@ public class GenericAgdsEngine {
             RecordNode rNode = new RecordNode("R_" + (j + 1));
             safeDrawNode(rNode);
             //connection between class and record node
-            ClassNode correspondingClassNode = getClassNode(item.name);
+            ClassNode correspondingClassNode = Extensions.getClassNode(classNodes, item.name);
             rNode.setClassNode(correspondingClassNode);
             correspondingClassNode.addNode(rNode);
 
@@ -91,7 +96,7 @@ public class GenericAgdsEngine {
 
                 ValueNode valueWithProperty = new ValueNode(propertyNode.getName() + item.values[k])
                         .withValue(item.values[k]).addNode(rNode);
-                Pair<ValueNode, Boolean> thisNodeAndResult = getNonRepeatableAndResult(propertyNode, valueWithProperty);
+                Pair<ValueNode, Boolean> thisNodeAndResult = Extensions.getNonRepeatableAndResult(propertyNode, valueWithProperty);
 
                 ValueNode nonRepeatingNode = thisNodeAndResult.getKey();
                 boolean alreadyExists = thisNodeAndResult.getValue();
@@ -118,36 +123,6 @@ public class GenericAgdsEngine {
         return this;
     }
 
-    private interface Function {
-        void perform(RecordNode node);
-    }
-
-    /**
-     * @param bannedNodes list of nodes which shouldn't be considered in operation
-     * @param task
-     */
-    private void iterateWithoutTheseRNodes(List<RecordNode> bannedNodes, Function task) {
-
-        for (RecordNode recordNode : bannedNodes) {
-            recordNode.banned = true;
-        }
-        for (RecordNode recordNode : recordNodes) {
-            if (!recordNode.banned) {
-                task.perform(recordNode);
-            } else {
-                recordNode.banned = false;
-            }
-        }
-    }
-
-    private Pair<ValueNode, Boolean> getNonRepeatableAndResult(PropertyNode propertyNode, ValueNode valueWithProperty) {
-        for (ValueNode valueNode : propertyNode.getNodes()) {
-            if (Double.compare(valueNode.getValue(), valueWithProperty.getValue()) == 0)
-                return new Pair<>(valueNode, true);
-        }
-        return new Pair<>(valueWithProperty, false);
-    }
-
     /**
      * if graphDrawer is nullable, method call is ignored
      *
@@ -163,15 +138,8 @@ public class GenericAgdsEngine {
      * @param nodeA
      * @param nodeB
      */
-    private void safeDrawEdge(AbstractNode nodeA, AbstractNode nodeB) {
+    public void safeDrawEdge(AbstractNode nodeA, AbstractNode nodeB) {
         if (graphDrawer != null) graphDrawer.drawEdge(nodeA, nodeB);
-    }
-
-    public ClassNode getClassNode(String name) {
-        for (ClassNode propertyNode : classNodes) {
-            if (name.equalsIgnoreCase(propertyNode.getName())) return propertyNode;
-        }
-        throw new IllegalStateException("Cannot find matching property: Invalid dataSet");
     }
 
 
@@ -182,6 +150,10 @@ public class GenericAgdsEngine {
         Log.d("\nmaximum value of graph: " + max + ", time elapsed: " + (t1 - t0));
 
         return this;
+    }
+
+    private List<RecordNode> getMostSimilarNodes(@NonNull Item notClassifiedItem) {
+        return getMostSimilarNodes(-1, notClassifiedItem);
     }
 
     private List<RecordNode> getMostSimilarNodes(int givenLimit, @NonNull Item notClassifiedItem) {
@@ -224,28 +196,62 @@ public class GenericAgdsEngine {
             }
             Log.d("Value nodes: " + sb);
         }
-
-
         return this;
     }
 
-    public GenericAgdsEngine markNodesSimilarToMany(int givenLimit, @NonNull Item... notClassifiedItems) {
-        Map<RecordNode, Integer> mostFimiliarRecords = new HashMap<>();
+    public GenericAgdsEngine markNodesSimilarToMany(int givenLimit, @NonNull final Item... notClassifiedItems) {
+        return markNodesSimilarToMany(givenLimit, new ArrayList<Item>() {
+            {
+                addAll(Arrays.asList(notClassifiedItems));
+            }
+        });
+    }
+
+    public String pollMostSignificantClass(List<RecordNode> recordNodes) {
+        if (recordNodes.size() == 1) return recordNodes.get(0).getName();
+        Map<RecordNode, Integer> mostFamiliarRecords = new HashMap<>();
+        for (RecordNode node : recordNodes) {
+            if (!mostFamiliarRecords.containsKey(node)) {
+                mostFamiliarRecords.put(node, 1);
+            } else {
+                mostFamiliarRecords.put(node, mostFamiliarRecords.get(node) + 1);
+            }
+
+        }
+        List<Pair<RecordNode, Integer>> list = new ArrayList<>();
+        for (RecordNode node : mostFamiliarRecords.keySet()) {
+            list.add(new Pair<>(node, mostFamiliarRecords.get(node)));
+        }
+
+        Collections.sort(list, new Comparator<Pair<RecordNode, Integer>>() {
+            @Override
+            public int compare(Pair<RecordNode, Integer> o1, Pair<RecordNode, Integer> o2) {
+                return Integer.compare(o1.getValue(), o2.getValue());
+            }
+        });
+
+        return list.get(0).getKey().getName();
+    }
+
+    public GenericAgdsEngine markNodesSimilarToMany(int givenLimit, @NonNull List<Item> notClassifiedItems) {
+
+        Map<RecordNode, Integer> mostFamiliarRecords = new HashMap<>();
 
         for (Item it : notClassifiedItems) {
-            List<RecordNode> records = getMostSimilarNodes(-1, it);
+            List<RecordNode> records = getMostSimilarNodes(it);
             for (RecordNode node : records) {
-                if (!mostFimiliarRecords.containsKey(node)) {
-                    mostFimiliarRecords.put(node, 1);
+                if (!mostFamiliarRecords.containsKey(node)) {
+                    mostFamiliarRecords.put(node, 1);
                 } else {
-                    mostFimiliarRecords.put(node, mostFimiliarRecords.get(node) + 1);
+                    mostFamiliarRecords.put(node, mostFamiliarRecords.get(node) + 1);
                 }
             }
         }
         List<Pair<RecordNode, Integer>> list = new ArrayList<>();
-        for (RecordNode node : mostFimiliarRecords.keySet()) {
-            list.add(new Pair<>(node, mostFimiliarRecords.get(node)));
+        for (RecordNode node : mostFamiliarRecords.keySet()) {
+            list.add(new Pair<>(node, mostFamiliarRecords.get(node)));
         }
+
         Collections.sort(list, new Comparator<Pair<RecordNode, Integer>>() {
             @Override
             public int compare(Pair<RecordNode, Integer> o1, Pair<RecordNode, Integer> o2) {
@@ -269,20 +275,27 @@ public class GenericAgdsEngine {
     }
 
     public double getMin() {
-        double min = propertyNodes.get(0).getMinNode().getValue();
+        double min = getMin(propertyNodes.get(0));
         for (PropertyNode propertyNode : propertyNodes) {
-            ValueNode minNode = propertyNode.getMinNode();
-            if (min > minNode.getValue()) min = minNode.getValue();
+            double min2 = getMin(propertyNode);
+            if (min2 > min) min = min2;
         }
         return min;
     }
 
-    public double getMax() {
-        double max = propertyNodes.get(0).getMaxNode().getValue();
+    public double getMin(PropertyNode propertyNode) {
+        return propertyNode.getMinNode().getValue();
+    }
 
+    public double getMax(PropertyNode propertyNode) {
+        return propertyNode.getMaxNode().getValue();
+    }
+
+    public double getMax() {
+        double max = getMax(propertyNodes.get(0));
         for (PropertyNode propertyNode : propertyNodes) {
-            ValueNode maxNode = propertyNode.getMaxNode();
-            if (max < maxNode.getValue()) max = maxNode.getValue();
+            double max2 = getMax(propertyNode);
+            if (max2 > max) max = max2;
         }
         return max;
     }
@@ -295,12 +308,10 @@ public class GenericAgdsEngine {
             currentSimilarNodes.add(new Pair<>(recordNode, stringBuilder.toString()));
             common.Utils.log("next record node: " + recordNode.getName() + " : " + stringBuilder.toString());
         }
-
         return this;
     }
 
     public GenericAgdsEngine printMin() {
-
         long t0 = System.currentTimeMillis();
         //Log.d("current time = " + t0);
         double min = getMin();
@@ -309,14 +320,10 @@ public class GenericAgdsEngine {
         return this;
     }
 
-    public GenericAgdsEngine withGraphDrawer(@Nullable GraphDrawer<AbstractNode> graphDrawer) {
-        this.graphDrawer = graphDrawer;
-        return this;
-    }
-
     public Item randomLeaf() {
         return GenericAgdsUtils.randomLeaf(new Random(), this.getMin(), this.getMax());
     }
+
 
     public StringBuilder getRecordNodesPrinter(List<ValueNode> nodes) {
         return Utils.listPrinter(nodes, recordNodesStrategy);
@@ -332,8 +339,7 @@ public class GenericAgdsEngine {
 
     public void calculateSimilarity(List<RecordNode> selected, ResultCallback<RecordNode> resultCallback) {
 
-        List<RecordNode> recordNodesSimilar = similar(selected);
-        resultCallback.onComputed(recordNodesSimilar);
+        resultCallback.onComputed(similar(selected));
     }
 
     public void classifyNodesSimilarToMany(double threshold, double[][] doubles, ResultCallback<String> callback) {
@@ -343,36 +349,26 @@ public class GenericAgdsEngine {
         }});
     }
 
-    public List<RecordNode> similarSingle(RecordNode r) {
-        for (ValueNode valueNode : r.getNodes()) {
-            for (RecordNode neighbour : valueNode.getNodes()) {
-                if (!neighbour.equals(r)){
-
-                }
-            }
-        }
-        return null;
-    }
-
-
     public List<RecordNode> similar(final List<RecordNode> selectedNodes) {
+        common.Utils.log("similar fired");
 
-
-        iterateWithoutTheseRNodes(selectedNodes, new Function() {
-            @Override
-            public void perform(RecordNode node) {
-                for (RecordNode node1 : selectedNodes) {
-                    for (int j = 0; j < node1.getNodes().size(); j++) {
-
-                    }
-                }
-            }
-        });
+//        for (RecordNode recordNode :)
+//        iterateWithoutTheseRNodes(selectedNodes, new Function() {
+//            @Override
+//            public void perform(RecordNode node) {
+//                for (RecordNode node1 : selectedNodes) {
+//                    for (int j = 0; j < node1.getNodes().size(); j++) {
+//
+//                    }
+//                }
+//            }
+//        });
         return null;
     }
 
     public String classify(double threshold, double[][] doubles) {
-        return null;
+        return pollMostSignificantClass(
+                getMostSimilarNodes((int) threshold * recordNodes.size(), new Item(doubles[0])));
     }
 
     public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {

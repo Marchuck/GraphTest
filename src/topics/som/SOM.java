@@ -3,9 +3,7 @@ package topics.som;
 import common.DataReader;
 import common.Item;
 import common.Log;
-import scala.Array;
-import topics.agds.GenericAgdsEngine;
-import topics.agds.GenericAgdsUtils;
+import topics.agds.engine.GenericAgdsUtils;
 
 import java.util.List;
 import java.util.Random;

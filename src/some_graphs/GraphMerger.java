@@ -2,8 +2,8 @@ package some_graphs;
 
 import org.graphstream.ui.view.Viewer;
 import topics.agds.AGDSAlgorithm;
-import topics.agds.GenericAgdsEngine;
 import topics.agds.SourceSet;
+import topics.agds.engine.GenericAgdsEngine;
 
 import javax.swing.*;
 

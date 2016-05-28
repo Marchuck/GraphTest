@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  */
 public class ClassifyItemPopupMenu {
 
-    private ClassifyItemPopupMenu(final AgdsAlgorithmProxy proxy) {
+    private ClassifyItemPopupMenu(final AgdsClassificationProxy proxy) {
 
         JPanel rootPanel = new JPanel(new GridLayout(3, 1));
         JPanel jpanel = new JPanel(new GridLayout(2, 1));
@@ -50,7 +50,7 @@ public class ClassifyItemPopupMenu {
         jd.setVisible(true);
     }
 
-    public static void create(AgdsAlgorithmProxy proxy) {
+    public static void create(AgdsClassificationProxy proxy) {
         new ClassifyItemPopupMenu(proxy);
     }
 }

@@ -9,7 +9,4 @@ public interface Extremable {
     AbstractNode getMinNode();
 
     AbstractNode getMaxNode();
-
-    AbstractNode getMeanNode();
-
 }

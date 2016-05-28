@@ -1,11 +1,11 @@
 package ui.connector;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Lukasz
  * @since 27.05.2016.
  */
 public interface ResultCallback<T> {
-    void onComputed(Collection<T> result);
+    void onComputed(List<T> result);
 }

@@ -3,7 +3,7 @@ package ui;
 import common.Item;
 import common.Log;
 import some_graphs.GraphMerger;
-import topics.agds.GenericAgdsEngine;
+import topics.agds.engine.GenericAgdsEngine;
 import ui.agds.tabs.classify.ClassifyItem;
 import ui.connector.ResultCallback;
 
@@ -13,11 +13,12 @@ import java.util.List;
  * @author Lukasz
  * @since 14.05.2016.
  */
-public class AgdsAlgorithmProxy {
+public class AgdsClassificationProxy {
 
     private GraphMerger graphMerger;
 
-    public AgdsAlgorithmProxy(GraphMerger graphMerger) {
+    @Deprecated
+    public AgdsClassificationProxy(GraphMerger graphMerger) {
         this.graphMerger = graphMerger;
     }
 
@@ -25,13 +26,12 @@ public class AgdsAlgorithmProxy {
                                         ResultCallback<String> resultCallback) {
         double[][] doubles = new double[4][items.size()];
         for (int j = 0; j < items.size(); j++) {
-
             doubles[j] = items.get(j).asDoubles();
         }
-        engine.classifyNodesSimilarToMany(threshold, doubles,resultCallback);
-
+        engine.classifyNodesSimilarToMany(threshold, doubles, resultCallback);
     }
 
+    @Deprecated
     public void onItemToClassify(String text0, String text1, String text2, String text3) {
         Log.d("onItemToClassify");
         Double d0 = Double.parseDouble(text0);

@@ -1,14 +1,10 @@
-package topics.agds;
+package topics.agds.engine;
 
-import agds.PropertyDrawableNode;
-import agds.ValueDrawableNode;
 import com.sun.javafx.beans.annotations.NonNull;
 import common.Item;
-import topics.agds.nodes.AbstractNode;
 import topics.agds.nodes.PropertyNode;
 import topics.agds.nodes.ValueNode;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;

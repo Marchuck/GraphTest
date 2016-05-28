@@ -2,8 +2,9 @@ package topics.agds.nodes;
 
 
 import agds.AGDS;
+import common.SortedList;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,7 +24,12 @@ public class RecordNode extends AbstractNode {
         return classNode;
     }
 
-    private List<ValueNode> valueNodeList = new ArrayList<>();
+    private SortedList<ValueNode> valueNodeList = new SortedList<>(new Comparator<ValueNode>() {
+        @Override
+        public int compare(ValueNode o1, ValueNode o2) {
+            return Double.compare(o1.getValue(), o2.getValue());
+        }
+    });
 
     public RecordNode(String name) {
         super(name);
@@ -70,6 +76,7 @@ public class RecordNode extends AbstractNode {
 
     public boolean banned;
     public int weight;
+    public boolean visited;
 
     @Override
     public boolean equals(Object o) {

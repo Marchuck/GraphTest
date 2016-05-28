@@ -2,7 +2,7 @@ package ui.agds.tabs.correlation;
 
 import common.Utils;
 import javafx.util.Pair;
-import topics.agds.GenericAgdsEngine;
+import topics.agds.engine.GenericAgdsEngine;
 import topics.agds.nodes.RecordNode;
 import ui.agds.tabs.classify.SingleValueChooser;
 import ui.connector.ResultCallback;
@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -76,16 +74,16 @@ public class CorrelationPaneConnector {
 
                 agdsEngine.calculateCorrelation(correlationBundle, new ResultCallback<Double>() {
                     @Override
-                    public void onComputed(Collection<Double> results) {
-                        if (results instanceof ArrayList) {
-                            Double result = ((ArrayList<Double>) results).get(0);
+                    public void onComputed(List<Double> results) {
+
+                            Double result = (  results).get(0);
                             new SingleValueChooser(computeCorrelationButton, "Result is " + result, new SingleValueChooser.SendAction() {
                                 @Override
                                 public void onSend(String value) {
                                     Utils.log("value : " + value);
                                 }
                             });
-                        }
+
                     }
                 });
 

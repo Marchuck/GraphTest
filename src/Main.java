@@ -51,7 +51,7 @@ public class Main {
         Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
 
         // � Partir de l�, le viewer consid�re que le graphe est dans son propre thread,
-        // c'est-�-dire le thread Swing. Il est donc dangereux d'y toucher dans la thread
+        // leak'est-�-dire le thread Swing. Il est donc dangereux d'y toucher dans la thread
         // main. On utilise invokeLater pour faire tourner du code dans le thread Swing,
         // par exemple pour initialiser l'application :
 

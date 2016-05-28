@@ -4,7 +4,6 @@ package topics.agds.nodes;
 import agds.AGDS;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,20 +45,14 @@ public class PropertyNode extends AbstractNode implements Extremable {
 
     @Override
     public ValueNode getMinNode() {
-        AbstractNode abstractNode = Collections.min(valueNodeList);
-        return ((ValueNode) abstractNode);
+        //AbstractNode abstractNode = Collections.min(valueNodeList);
+        return valueNodeList.get(0);
     }
 
     @Override
     public ValueNode getMaxNode() {
-        AbstractNode abstractNode = Collections.max(valueNodeList);
-        return ((ValueNode) abstractNode);
-    }
-
-    @Override
-    public AbstractNode getMeanNode() {
-        Collections.sort(valueNodeList);
-        return valueNodeList.get(valueNodeList.size() / 2);
+//        AbstractNode abstractNode = Collections.max(valueNodeList);
+        return valueNodeList.get(valueNodeList.size() - 1);
     }
 
     public List<ValueNode> getNodes() {

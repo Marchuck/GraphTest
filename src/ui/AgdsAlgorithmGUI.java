@@ -52,7 +52,7 @@ public class AgdsAlgorithmGUI extends JPanel {
 //        tabbedPane.addTab("Graph",new GraphView());
 
         final GraphMerger graphMerger = new GraphMerger();
-        final AgdsAlgorithmProxy proxy = new AgdsAlgorithmProxy(graphMerger);
+        final AgdsClassificationProxy proxy = new AgdsClassificationProxy(graphMerger);
         //first tab: graph
         tabbedPane.addTab("Graph", graphMerger);
         //second tab: options

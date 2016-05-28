@@ -2,7 +2,7 @@ package ui.connector;
 
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
-import topics.agds.GenericAgdsEngine;
+import topics.agds.engine.GenericAgdsEngine;
 
 /**
  * @author Lukasz

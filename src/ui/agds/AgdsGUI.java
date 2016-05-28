@@ -4,10 +4,11 @@ import common.Utils;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.AGDSAlgorithm;
-import topics.agds.GenericAgdsEngine;
-import ui.AgdsAlgorithmProxy;
+import topics.agds.engine.GenericAgdsEngine;
+import ui.AgdsClassificationProxy;
 import ui.agds.tabs.classify.ClassificationPaneConnector;
 import ui.agds.tabs.classify.ClassifyItem;
+import ui.agds.tabs.classify.InformationDialog;
 import ui.agds.tabs.classify.SingleValueChooser;
 import ui.agds.tabs.correlation.CorrelationItem;
 import ui.agds.tabs.correlation.CorrelationPaneConnector;
@@ -19,14 +20,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import java.util.List;
 
 /**
  * @author Lukasz
  * @since 26.05.2016.
  */
-public class AgdsGUI extends JFrame   {
+public class AgdsGUI extends JFrame {
     public Viewer graphViewer;
 
 
@@ -62,7 +62,7 @@ public class AgdsGUI extends JFrame   {
 
     public AgdsGUI(String title) throws HeadlessException {
         super(title);
-        LOG("AgdsGUI");
+        Utils.log("AgdsGUI");
         setContentPane(panel1);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         buildAgds();
@@ -77,7 +77,7 @@ public class AgdsGUI extends JFrame   {
     }
 
     private void setupPanes() {
-        LOG("setupPanes");
+        Utils.log("setupPanes");
         /*
         Component graphComponent = tabbedPane1.getTabComponentAt(0);
         Component classificationComponent = tabbedPane1.getTabComponentAt(1);
@@ -109,14 +109,14 @@ public class AgdsGUI extends JFrame   {
     }
 
     private void setupClassifyPane() {
-        LOG("setupClassifyPane");
+        Utils.log("setupClassifyPane");
         classificationPaneConnector = new ClassificationPaneConnector(classifyItemList, addItemButton,
                 submitItemsButton, new ClassificationPaneConnector.Interaction() {
             @Override
             public void onItemsSubmit(final List<ClassifyItem> items) {
-                LOG("classyfying items");
+                Utils.log("classyfying items");
                 for (ClassifyItem item : items) {
-                    LOG(item.toString());
+                    Utils.log(item.toString());
                 }
                 //invoke popUp to set threshold
                 thresholdEnterer = new SingleValueChooser(submitItemsButton, "Enter threshold", new SingleValueChooser.SendAction() {
@@ -124,10 +124,11 @@ public class AgdsGUI extends JFrame   {
                     public void onSend(String value) {
                         Double d = Double.parseDouble(value);
                         if (Utils.isBetween(0, 1, d)) {
-                            AgdsAlgorithmProxy.onItemToClassify(agdsEngine, items, d, new ResultCallback<String>() {
+                            AgdsClassificationProxy.onItemToClassify(agdsEngine, items, d, new ResultCallback<String>() {
                                 @Override
-                                public void onComputed(Collection<String> result) {
-
+                                public void onComputed(List<String> result) {
+                                    String title = (items.size() == 1 ? "Item " : "Items") + "classified to ";
+                                    new InformationDialog(submitItemsButton, title + result.get(0));
                                 }
                             });
                         }
@@ -140,16 +141,11 @@ public class AgdsGUI extends JFrame   {
     }
 
     private void setupSimilarityPane() {
-        similarityPaneConnector = new SimilarityPaneConnector(similarityList, submitItemsButton, agdsEngine);
+        similarityPaneConnector = new SimilarityPaneConnector(similarityList, searchSimilarButton, agdsEngine);
     }
 
     private void setupCorrelationPane() {
-        correlationPaneConnector = new CorrelationPaneConnector(correlationList,computeCorrelationButton,agdsEngine);
-
-    }
-
-    private static void LOG(String s) {
-        System.out.println(s);
+        correlationPaneConnector = new CorrelationPaneConnector(correlationList, computeCorrelationButton, agdsEngine);
     }
 
     public void setAgdsEngine(GenericAgdsEngine agdsEngine) {
