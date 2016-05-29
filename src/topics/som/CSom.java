@@ -100,38 +100,19 @@ public class CSom {
         m_dTimeConstant = m_iNumIterations / log(m_dMapRadius);
     }
 
-    public void Render(HDC surface) {
-        //render all the cells
-//        for (int nd = 0; nd < m_SOM.size(); ++nd) {
-//            m_SOM[nd].Render(surface);
-//
-//        }
-//
-//        SetBkMode(surface, TRANSPARENT);
-//        SetTextColor(surface, RGB(255, 255, 255));
-//
-//        string s = "Iteration: " + itos(m_iIterationCount);
-//        TextOut(surface, 5, constWindowHeight - 40, s.c_str(), s.size());
-//
-//        s = "Press 'R' to retrain";
-//        TextOut(surface, 260, constWindowHeight - 40, s.c_str(), s.size());
-
-/*
-  s = "Learning: " + ftos(m_dLearningRate);
-  TextOut(surface, 5, 20, s.c_str(), s.size());
-
-  s = "Radius: " + ftos(m_dNeighbourhoodRadius);
-  TextOut(surface, 5, 40, s.c_str(), s.size());
-*/
-    }
-
-    public boolean Epoch(final List<List<Double>> data, GenericCallback<String> callback) {
+    public boolean iteration(final List<List<Double>> data, GenericCallback<String> callback) {
         //make sure the size of the input vector matches the size of each node's
         //weight vector
-        //if (data.get(0).size() != constSizeOfInputVector) return false;
+        if (data.get(0).size() != constSizeOfInputVector) {
+            Utils.log("data.get(0).size() != constSizeOfInputVector ");
+            return false;
+        }
 
         //return if the training is complete
-        if (m_bDone) return true;
+        if (m_bDone) {
+            callback.call("winning node: " + m_pWinningNode.toString());
+            return true;
+        }
 
 
         //enter the training loop
@@ -154,6 +135,10 @@ public class CSom {
             for (CNode somNode : m_SOM) {
                 //calculate the Euclidean distance (squared) to this node from the
                 //BMU
+                if (m_pWinningNode == null) {
+                  //  Utils.log("m_pWinningNode is null");
+                    return true;
+                }
                 double DistToNodeSq = (m_pWinningNode.X() - somNode.X()) *
                         (m_pWinningNode.X() - somNode.X()) +
                         (m_pWinningNode.Y() - somNode.Y()) *
@@ -174,10 +159,8 @@ public class CSom {
 
             }//next node
 
-
             //reduce the learning rate
             m_dLearningRate = constStartLearningRate * exp(-(double) m_iIterationCount / m_iNumIterations);
-
 
             callback.call("winning node: " + m_pWinningNode.toString());
             ++m_iIterationCount;

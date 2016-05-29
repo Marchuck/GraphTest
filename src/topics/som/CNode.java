@@ -31,7 +31,7 @@ public class CNode {
         m_iRight = rgt;
         m_iBottom = bot;
         m_iTop = top;
-        m_iTop = top;
+
         Random rand = new Random();
         //initialize the weights to small random variables
         for (int w = 0; w < NumWeights; ++w) {
@@ -52,32 +52,6 @@ public class CNode {
         return m_dY;
     }
 
-
-    //------------------------------ Render ----------------------------------
-//
-//------------------------------------------------------------------------
-    void Render(HDC surface) {
-
-//        //create a brush and pen of the correct color
-//        int red = (int) (m_dWeights.get(0) * 255);
-//        int green = (int) (m_dWeights.get(1) * 255);
-//        int blue = (int) (m_dWeights.get(2) * 255);
-//
-//        HBRUSH brush = CreateSolidBrush(RGB(red, green, blue));
-//        HPEN pen = CreatePen(PS_SOLID, 1, RGB(red, green, blue));
-//
-//        HBRUSH OldBrush = (HBRUSH) SelectObject(surface, brush);
-//        HPEN OldPen = (HPEN) SelectObject(surface, pen);
-//
-//        Rectangle(surface, m_iLeft, m_iTop, m_iRight, m_iBottom);
-//
-//        SelectObject(surface, OldBrush);
-//        SelectObject(surface, OldPen);
-//
-//        DeleteObject(brush);
-//        DeleteObject(pen);
-
-    }
 
     @Override
     public String toString() {

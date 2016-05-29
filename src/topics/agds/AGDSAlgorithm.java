@@ -73,8 +73,13 @@ public class AGDSAlgorithm {
             dataSet = reader.read(DataReader.WINE_DATA);
         } else {
             reader = prepareIrisReader();
-            dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
-
+            if (sourceSet == SourceSet.Iris_Minimalistic) {
+                dataSet = reader.read(DataReader.IRIS_DATA_TWICE_SIMPLIFIED);
+            } else if (sourceSet == SourceSet.Iris) {
+                dataSet = reader.read(DataReader.IRIS_DATA);
+            } else {
+                dataSet = reader.read(DataReader.IRIS_DATA_SIMPLIFIED);
+            }
         }
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
 
@@ -118,7 +123,7 @@ public class AGDSAlgorithm {
         engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
         // graphVisualiser.enableLegend();
         //Viewer viewer = graphVisualiser.showGraph();
-       // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
+        // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
     }
 
     @Nullable

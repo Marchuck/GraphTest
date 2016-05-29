@@ -30,7 +30,7 @@ public class TestMain {
         return dataReader.skipFirstLine();
     }
 
-    static List<List<Double>> from(List<Item> dataSet) {
+    private static List<List<Double>> from(List<Item> dataSet) {
         List<List<Double>> irises = new ArrayList<List<Double>>();
         for (Item item : dataSet) {
             List<Double> doubles = new ArrayList<Double>();
@@ -43,18 +43,17 @@ public class TestMain {
     private void make() {
         Utils.log("make()");
 
-        DataReader<Item> reader = prepareIrisReader();
-        final List<Item> dataSet = reader.read(DataReader.IRIS_DATA);
-        if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
+        final List<Item> dataSet = prepareIrisReader().read(DataReader.IRIS_DATA);
+        List<List<Double>> irises = from(dataSet);
 
+        CController c = new CController();
+        c.CreateDataSet(irises);
+        c.trainToFinish(new GenericCallback<String>() {
+            int id = 0;
 
-        CController c = new CController(4, 4, 4, 4,
-                Constants.constNumIterations);
-        c.CreateDataSet(from(dataSet));
-        c.Train(1).make(new GenericCallback<String>() {
             @Override
             public void call(String s) {
-                System.out.println("_"+s);
+                System.out.println((++id) + '\t' + s);
                 System.out.println('\n');
             }
         });

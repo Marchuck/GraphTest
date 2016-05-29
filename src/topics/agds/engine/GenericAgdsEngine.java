@@ -156,6 +156,33 @@ public class GenericAgdsEngine {
         return getMostSimilarNodes(-1, notClassifiedItem);
     }
 
+    private List<RecordNode> getSimilarRecordNodes(List<RecordNode> nodes, double threshold) {
+        ClassNode closestClassNode = null;
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = 0; j < propertyNodes.size(); j++) {
+                PropertyNode propertyNode = propertyNodes.get(j);
+
+                int foundIndex = GenericAgdsUtils.findClosestPropertyValueIndex(propertyNode,
+                        nodes.get(i).getNodes().get(j));
+
+                propertyNode.calculateWeights(foundIndex);
+            }
+        }
+        for (ClassNode newClassNode : classNodes) {
+
+            if (closestClassNode == null) {
+                closestClassNode = newClassNode;
+            } else if (newClassNode.getNodes().get(0).getTotalWeight() > closestClassNode.getNodes().get(0).getTotalWeight())
+                closestClassNode = newClassNode;
+        }
+        if (closestClassNode == null) throw new NullPointerException("Nullable class node");
+        int limit = (int) (closestClassNode.getNodes().size() * threshold);
+        List<RecordNode> mostClosest = closestClassNode.getNodes().subList(0, limit);
+
+        cleanupChangedValues();
+        return mostClosest;
+    }
+
     private List<RecordNode> getMostSimilarNodes(int givenLimit, @NonNull Item notClassifiedItem) {
         ClassNode closestClassNode = null;
 
@@ -338,7 +365,7 @@ public class GenericAgdsEngine {
     };
 
     public void calculateSimilarity(List<RecordNode> selected, ResultCallback<RecordNode> resultCallback) {
-
+        Utils.log("calculateSimilarity");
         resultCallback.onComputed(similar(selected));
     }
 
@@ -351,24 +378,21 @@ public class GenericAgdsEngine {
 
     public List<RecordNode> similar(final List<RecordNode> selectedNodes) {
         common.Utils.log("similar fired");
-
-//        for (RecordNode recordNode :)
-//        iterateWithoutTheseRNodes(selectedNodes, new Function() {
-//            @Override
-//            public void perform(RecordNode node) {
-//                for (RecordNode node1 : selectedNodes) {
-//                    for (int j = 0; j < node1.getNodes().size(); j++) {
-//
-//                    }
-//                }
-//            }
-//        });
-        return null;
+        List<RecordNode> out = getSimilarRecordNodes(selectedNodes, 1);
+        out.removeAll(selectedNodes);
+        return out;
     }
 
+    /**
+     * todo: implement classifying method
+     *
+     * @param threshold
+     * @param doubles
+     * @return
+     */
     public String classify(double threshold, double[][] doubles) {
-        return pollMostSignificantClass(
-                getMostSimilarNodes((int) threshold * recordNodes.size(), new Item(doubles[0])));
+
+        return pollMostSignificantClass(recordNodes);
     }
 
     public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {

@@ -24,7 +24,7 @@ public class AgdsClassificationProxy {
 
     public static void onItemToClassify(GenericAgdsEngine engine, List<ClassifyItem> items, double threshold,
                                         ResultCallback<String> resultCallback) {
-        double[][] doubles = new double[4][items.size()];
+        double[][] doubles = new double[items.size()][4];
         for (int j = 0; j < items.size(); j++) {
             doubles[j] = items.get(j).asDoubles();
         }

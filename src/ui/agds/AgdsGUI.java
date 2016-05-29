@@ -127,7 +127,7 @@ public class AgdsGUI extends JFrame {
                             AgdsClassificationProxy.onItemToClassify(agdsEngine, items, d, new ResultCallback<String>() {
                                 @Override
                                 public void onComputed(List<String> result) {
-                                    String title = (items.size() == 1 ? "Item " : "Items") + "classified to ";
+                                    String title = (items.size() == 1 ? "Item " : "Items") + " classified to ";
                                     new InformationDialog(submitItemsButton, title + result.get(0));
                                 }
                             });

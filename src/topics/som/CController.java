@@ -18,6 +18,9 @@ public class CController {
     //the data for the training
     List<List<Double>> m_TrainingSet = new ArrayList<>();
 
+    public CController() {
+        this(4, 4, 4, 4, Constants.constNumIterations);
+    }
 
     public CController(int cxClient, int cyClient, int CellsUp, int CellsAcross, int NumIterations) {
         //create the SOM
@@ -89,10 +92,19 @@ public class CController {
 
     }
 
+    public void trainToFinish(GenericCallback<String> resultCallback) {
+        boolean finished = false;
+        while (!finished) {
+            m_pSOM.iteration(m_TrainingSet, resultCallback);
+            finished = m_pSOM.FinishedTraining();
+        }
+
+    }
+
     //    void Render(HDC surface);
     public boolean Train(GenericCallback<String> resultCallback) {
         if (!m_pSOM.FinishedTraining()) {
-            if (!m_pSOM.Epoch(m_TrainingSet, resultCallback)) {
+            if (!m_pSOM.iteration(m_TrainingSet, resultCallback)) {
                 return false;
             }
         }
@@ -100,23 +112,7 @@ public class CController {
         return true;
     }
 
-    public Trainable Train(int n) {
-        return new Trainable(n);
-    }
 
-    class Trainable {
-        final int n;
-
-        public Trainable(int j) {
-            n = j;
-        }
-
-        public void make(GenericCallback<String> callback) {
-            for (int k = 0; k < n; k++) {
-                CController.this.Train(callback);
-            }
-        }
-    }
 
     boolean Finished() {
         return m_pSOM.FinishedTraining();

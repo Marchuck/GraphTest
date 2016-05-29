@@ -10,7 +10,7 @@ import java.util.List;
  * @author Lukasz Marczak
  * @since 25.04.16.
  */
-public class PropertyNode extends AbstractNode implements Extremable {
+public class PropertyNode extends AbstractNode   {
 
     public PropertyNode(String name) {
         super(name);
@@ -43,13 +43,11 @@ public class PropertyNode extends AbstractNode implements Extremable {
         return 0;
     }
 
-    @Override
     public ValueNode getMinNode() {
         //AbstractNode abstractNode = Collections.min(valueNodeList);
         return valueNodeList.get(0);
     }
 
-    @Override
     public ValueNode getMaxNode() {
 //        AbstractNode abstractNode = Collections.max(valueNodeList);
         return valueNodeList.get(valueNodeList.size() - 1);
@@ -61,10 +59,10 @@ public class PropertyNode extends AbstractNode implements Extremable {
 
     public void calculateWeights(int foundIndex) {
         for (ValueNode valueNode : valueNodeList) {
-            double wageValue = 1 - (Math.abs(valueNode.getValue()
+            double weightValue = 1 - (Math.abs(valueNode.getValue()
                     - valueNodeList.get(foundIndex).getValue()))
                     / (getMaxNode().getValue() - getMinNode().getValue());
-            valueNode.addCalculatedWeightToAllRecords(wageValue);
+            valueNode.addCalculatedWeightToAllRecords(weightValue);
         }
     }
 
