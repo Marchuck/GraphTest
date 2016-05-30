@@ -12,7 +12,8 @@ public class ItemToClassifyRenderer implements ListCellRenderer<ClassifyItem> {
     public Component getListCellRendererComponent(JList<? extends ClassifyItem> list, ClassifyItem value,
                                                   int index, boolean isSelected, boolean cellHasFocus) {
         JPanel subPanel = new JPanel(new GridLayout(1, 7));
-
+        if (isSelected) subPanel.setForeground(Color.YELLOW);
+        else subPanel.setForeground(Color.white);
         final JLabel tv0 = new JLabel(value.property0);
         final JLabel tv1 = new JLabel(value.property1);
         final JLabel tv2 = new JLabel(value.property2);

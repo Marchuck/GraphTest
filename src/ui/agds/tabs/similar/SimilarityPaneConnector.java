@@ -24,13 +24,15 @@ public class SimilarityPaneConnector {
 
 
     public SimilarityPaneConnector(JList<SimilarItem> similarityList, final JButton submitItemsButton,
-                                   final GenericAgdsEngine engine) {
+                                   JButton loadRecordNodesButton, final GenericAgdsEngine engine) {
+
         final DefaultListModel<SimilarItem> model = new DefaultListModel<>();
         similarityList.setModel(model);
 
         List<Pair<RecordNode, String>> nodes = engine.currentSimilarNodes;
         for (Pair<RecordNode, String> pair : nodes)
             model.addElement(new SimilarItem(pair));
+
 
         similarityList.setCellRenderer(new SimilarItemsRenderer());
         similarityList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -52,7 +54,14 @@ public class SimilarityPaneConnector {
                 }
             }
         });
-
+        loadRecordNodesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.clear();
+                for (Pair<RecordNode, String> pair : engine.currentSimilarNodes)
+                    model.addElement(new SimilarItem(pair));
+            }
+        });
         actionListener = (new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -92,5 +101,5 @@ public class SimilarityPaneConnector {
         submitItemsButton.addActionListener(actionListener);
     }
 
-    ActionListener actionListener;
+    private ActionListener actionListener;
 }

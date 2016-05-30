@@ -28,6 +28,7 @@ public class ClassificationPaneConnector {
         final DefaultListModel<ClassifyItem> listModel = new DefaultListModel<>();
 
         classifyItemList.setModel(listModel);
+
         classifyItemList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 JList list = (JList) evt.getSource();
@@ -66,6 +67,7 @@ public class ClassificationPaneConnector {
     }
 
     private static class AddNewItem extends JFrame {
+
         private interface AddConnector {
             void connect(String... s);
         }

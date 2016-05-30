@@ -44,6 +44,7 @@ public class GenericAgdsEngine {
      */
     private List<Item> dataSet;
 
+
     public GenericAgdsEngine(List<String> propertyNames, List<String> classNames, List<Item> dataSet) {
 
         this.propertyNames = propertyNames;
@@ -157,13 +158,27 @@ public class GenericAgdsEngine {
     }
 
     private List<RecordNode> getSimilarRecordNodes(List<RecordNode> nodes, double threshold) {
+        double[][] d1 = new double[nodes.size()][nodes.get(0).getNodes().size()];
+        for (int j = 0; j < nodes.size(); j++) {
+            List<ValueNode> valueNodes = nodes.get(j).getNodes();
+            d1[j] = new double[]{
+                    valueNodes.get(0).getValue(),
+                    valueNodes.get(1).getValue(),
+                    valueNodes.get(2).getValue(),
+                    valueNodes.get(3).getValue(),
+            };
+        }
+        return getSimilarRecordNodes(d1, threshold);
+    }
+
+    private List<RecordNode> getSimilarRecordNodes(double[][] nodes, double threshold) {
         ClassNode closestClassNode = null;
-        for (int i = 0; i < nodes.size(); i++) {
+        for (int i = 0; i < nodes.length; i++) {
             for (int j = 0; j < propertyNodes.size(); j++) {
                 PropertyNode propertyNode = propertyNodes.get(j);
 
                 int foundIndex = GenericAgdsUtils.findClosestPropertyValueIndex(propertyNode,
-                        nodes.get(i).getNodes().get(j));
+                        new ValueNode(nodes[i][j]));
 
                 propertyNode.calculateWeights(foundIndex);
             }
@@ -176,8 +191,13 @@ public class GenericAgdsEngine {
                 closestClassNode = newClassNode;
         }
         if (closestClassNode == null) throw new NullPointerException("Nullable class node");
-        int limit = (int) (closestClassNode.getNodes().size() * threshold);
-        List<RecordNode> mostClosest = closestClassNode.getNodes().subList(0, limit);
+
+        List<RecordNode> mostClosest = new ArrayList<>();
+        double fixedThreshold = RecordNode.minWeight + (RecordNode.maxWeight - RecordNode.minWeight) * threshold;
+        for (RecordNode n : closestClassNode.getNodes()) {
+            for (int k = 0; k < n.getNodes().size(); k++)
+                if (n.getTotalWeight() >= fixedThreshold) mostClosest.add(n);
+        }
 
         cleanupChangedValues();
         return mostClosest;
@@ -235,6 +255,7 @@ public class GenericAgdsEngine {
     }
 
     public String pollMostSignificantClass(List<RecordNode> recordNodes) {
+        if (recordNodes.size() == 0) throw new NullPointerException("Polling failed, no such elements");
         if (recordNodes.size() == 1) return recordNodes.get(0).getName();
         Map<RecordNode, Integer> mostFamiliarRecords = new HashMap<>();
         for (RecordNode node : recordNodes) {
@@ -391,8 +412,9 @@ public class GenericAgdsEngine {
      * @return
      */
     public String classify(double threshold, double[][] doubles) {
-
-        return pollMostSignificantClass(recordNodes);
+        Utils.log("classify");
+        List<RecordNode> nodes = getSimilarRecordNodes(doubles, threshold);
+        return pollMostSignificantClass(nodes);
     }
 
     public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {

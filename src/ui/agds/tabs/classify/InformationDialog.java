@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
  */
 public class InformationDialog extends JFrame {
 
-
-    JDialog jd;
+    private JDialog jd;
 
     public JDialog getRoot() {
         return jd;
@@ -21,7 +20,7 @@ public class InformationDialog extends JFrame {
     public InformationDialog(JComponent parent, String title) {
         super(title);
         JPanel rootPanel = new JPanel(new GridLayout(3, 1));
-          JButton jButton = new JButton("OK");
+        JButton jButton = new JButton("OK");
 
         jd = new JDialog();
         rootPanel.add(new JLabel(title));

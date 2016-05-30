@@ -40,6 +40,7 @@ public class AgdsGUI extends JFrame {
     private JButton submitItemsButton;
     private JList<CorrelationItem> correlationList;
     private JButton computeCorrelationButton;
+    private JButton loadRecordNodesButton;
 
     /**
      * Connectors
@@ -141,7 +142,8 @@ public class AgdsGUI extends JFrame {
     }
 
     private void setupSimilarityPane() {
-        similarityPaneConnector = new SimilarityPaneConnector(similarityList, searchSimilarButton, agdsEngine);
+        similarityPaneConnector = new SimilarityPaneConnector(similarityList, searchSimilarButton,
+                loadRecordNodesButton,agdsEngine);
     }
 
     private void setupCorrelationPane() {

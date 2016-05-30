@@ -3,6 +3,7 @@ package topics.agds.nodes;
 
 import agds.AGDS;
 import common.SortedList;
+import common.Utils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -68,12 +69,16 @@ public class RecordNode extends AbstractNode {
 
     public void addToTotalWage(double weight) {
         totalWeight += weight;
+        Utils.log("Total weight : " + String.format("%.4f", totalWeight));
+        if (totalWeight > maxWeight) maxWeight = totalWeight;
+        if (totalWeight < maxWeight) minWeight = totalWeight;
     }
 
     public void clean() {
-        totalWeight = 0f;
+        totalWeight = maxWeight = minWeight = 0d;
     }
 
+    public static double maxWeight = 0, minWeight = 0;
     public boolean banned;
     public int weight;
     public boolean visited;

@@ -1,11 +1,8 @@
 package topics.agds.nodes;
 
 import agds.AGDS;
-import agds.RDrawableNode;
-import com.sun.prism.impl.Disposer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +12,7 @@ import java.util.List;
 public class ValueNode extends AbstractNode {
 
     private double value;
-    private double weight;
+    public double weight;
     private List<RecordNode> recordNodeList = new ArrayList<>();
     private PropertyNode propertyNode;
 
@@ -77,4 +74,5 @@ public class ValueNode extends AbstractNode {
     public void clean() {
         weight = 0f;
     }
+
 }
