@@ -5,6 +5,10 @@ import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.AGDSAlgorithm;
 import topics.agds.engine.GenericAgdsEngine;
+import topics.data_mining.DataMining;
+import topics.k_fold_cross_validation.KFoldCrossValidation;
+import topics.nearest_k_neighbours.NearestKNeighbours;
+import topics.som.SOMTest;
 import ui.AgdsClassificationProxy;
 import ui.agds.tabs.classify.ClassificationPaneConnector;
 import ui.agds.tabs.classify.ClassifyItem;
@@ -41,6 +45,10 @@ public class AgdsGUI extends JFrame {
     private JList<CorrelationItem> correlationList;
     private JButton computeCorrelationButton;
     private JButton loadRecordNodesButton;
+    private JButton nearestNeighboursButton;
+    private JButton SOMButton;
+    private JButton dataMiningButton;
+    private JButton crossValidationButton;
 
     /**
      * Connectors
@@ -89,6 +97,34 @@ public class AgdsGUI extends JFrame {
         setupClassifyPane();
         setupSimilarityPane();
         setupCorrelationPane();
+        setupOtherTopics();
+    }
+
+    private void setupOtherTopics() {
+     nearestNeighboursButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             NearestKNeighbours.main(null);
+         }
+     });
+     SOMButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             SOMTest.main(null);
+         }
+     });
+     dataMiningButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             DataMining.main(null);
+         }
+     });
+     crossValidationButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             KFoldCrossValidation.main(null);
+         }
+     });
     }
 
     private void setupGraphPane() {

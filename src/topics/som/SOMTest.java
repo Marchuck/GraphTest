@@ -12,10 +12,10 @@ import java.util.List;
  * @author Lukasz
  * @since 13.05.2016.
  */
-public class TestMain {
+public class SOMTest {
 
     public static void main(String[] args) {
-        new TestMain().make();
+        new SOMTest().make();
     }
 
     private DataReader<Item> prepareIrisReader() {

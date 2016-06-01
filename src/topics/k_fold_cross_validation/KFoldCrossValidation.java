@@ -3,10 +3,7 @@ package topics.k_fold_cross_validation;
 import common.DataReader;
 import common.Item;
 import common.Log;
-import common.MPair;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +17,7 @@ public class KFoldCrossValidation {
         DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
             @Override
             public Item createNewRow(String line) {
-                return DataReader.newDottedItemRow(line);
+                return DataReader.newCommaItemRow(line);
             }
         };
 
@@ -34,7 +31,7 @@ public class KFoldCrossValidation {
 
     public void run() {
         //prepare dataSet
-        List<Item> dataSet = prepareReader().read("randomizer.txt");
+        List<Item> dataSet = prepareReader().read("IrisData.txt");
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
 
         tenthCrossValidation(dataSet);

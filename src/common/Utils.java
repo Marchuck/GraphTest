@@ -1,7 +1,6 @@
 package common;
 
 import topics.agds.nodes.RecordNode;
-import topics.agds.nodes.ValueNode;
 
 import java.util.List;
 
@@ -20,10 +19,10 @@ public class Utils {
 
     public static double[] asVector(RecordNode secondNode) {
         return new double[]{
-                ((ValueNode) secondNode.getNodes().get(0)).getValue(),
-                ((ValueNode) secondNode.getNodes().get(1)).getValue(),
-                ((ValueNode) secondNode.getNodes().get(2)).getValue(),
-                ((ValueNode) secondNode.getNodes().get(3)).getValue(),
+                (secondNode.getNodes().get(0)).getValue(),
+                (secondNode.getNodes().get(1)).getValue(),
+                (secondNode.getNodes().get(2)).getValue(),
+                (secondNode.getNodes().get(3)).getValue(),
         };
     }
 

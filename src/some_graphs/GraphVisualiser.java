@@ -56,8 +56,8 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
      * @param e
      */
     public static void addElementWithLabel(Element e) {
-        String id = e.getId();
-        e.addAttribute("ui.label", id);
+//        String id = e.getId();
+//        e.addAttribute("ui.label", id);
     }
 
 
@@ -207,7 +207,7 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
             enableLegend();
         }
     }
-
+    public boolean shouldAddLabel = false;
     /**
      * Add new node to existing graph
      * Don't worry about adding the same node multiple times, because it's impossible
@@ -222,8 +222,12 @@ public class GraphVisualiser implements GraphDrawer<DrawableNode> {
             //adding new drawableNode
             Node newNode = graph.addNode(nodeTag);
             //appearance customizations
-            String id = newNode.getId();
-            newNode.addAttribute("ui.label", id);
+            if (shouldAddLabel){
+                String id = newNode.getId();
+
+
+                newNode.addAttribute("ui.label", id);
+            }
             newNode.addAttribute("ui.style", drawableNode.getStyleSheet());
         } else {
             Log.e("Cannot draw drawableNode! DrawableNode " + nodeTag + " already exists.");

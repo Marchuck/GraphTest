@@ -8,6 +8,7 @@ import common.Log;
 import some_graphs.GraphVisualiser;
 import topics.agds.engine.GenericAgdsEngine;
 import topics.agds.nodes.AbstractNode;
+import topics.agds.nodes.ValueNode;
 import ui.connector.GraphCallbacks;
 
 import java.util.ArrayList;
@@ -133,6 +134,7 @@ public class AGDSAlgorithm {
         return new GraphDrawer<AbstractNode>() {
             @Override
             public void drawNode(AbstractNode nodeName) {
+                graphVisualiser.shouldAddLabel = !(nodeName instanceof ValueNode);
                 graphVisualiser.drawNode(nodeName);
             }
 

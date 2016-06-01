@@ -27,7 +27,7 @@ public class AgdsApplication implements Runnable {
     @Override
     public void run() {
         gui = new AgdsGUI("Methods of Knowledge Engineering");
-        algorithm = new AGDSAlgorithm(SourceSet.Iris);
+        algorithm = new AGDSAlgorithm(SourceSet.Wine);
         setupCallbacks();
         algorithm.run();
     }

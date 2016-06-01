@@ -424,9 +424,8 @@ public class GenericAgdsEngine {
         Pair<RecordNode, String> second = currentSimilarNodes.get(i2);
         RecordNode firstNode = first.getKey();
         RecordNode secondNode = second.getKey();
-        double[] firstVector = common.Utils.asVector(firstNode);
-        double[] secondVector = common.Utils.asVector(secondNode);
-        final double result = Correlation.compute(firstVector, secondVector);
+//        Correlation.test();
+        final double result = Correlation.pearsonLinearCorrelation(firstNode, secondNode);
         resultCallback.onComputed(new ArrayList<Double>() {
             {
                 add(result);

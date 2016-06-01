@@ -20,7 +20,7 @@ public class NearestKNeighbours {
         DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
             @Override
             public Item createNewRow(String line) {
-                return DataReader.newDottedItemRow(line);
+                return DataReader.newCommaItemRow(line);
             }
         };
         //instantiate generic dataReader with given readStrategy
@@ -28,7 +28,7 @@ public class NearestKNeighbours {
         //create candidate
         Item candidate = new Item(new double[]{1f, 6f, 3f, 4f});
         //get all
-        List<Item> list = dataReader.read("randomizer.txt");
+        List<Item> list = dataReader.skipFirstLine().read("IrisData.txt");
         if (list.size() < NEAREST_CANDIDATES || !DataReader.dataSetOk(list))
             DataReader.throwExc("Cannot classify. Not enough elements.");
 

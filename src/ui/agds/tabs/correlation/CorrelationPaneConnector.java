@@ -28,6 +28,9 @@ public class CorrelationPaneConnector {
         correlationList.setModel(model);
 
         List<Pair<RecordNode, String>> nodes = agdsEngine.currentSimilarNodes;
+
+        Correlation.getMinMaxCorrelation(agdsEngine.currentSimilarNodes);
+
         for (Pair<RecordNode, String> pair : nodes)
             model.addElement(new CorrelationItem(pair));
 
@@ -45,12 +48,13 @@ public class CorrelationPaneConnector {
                     int secondIndex = correlationBundle.secondIndex;
 
                     for (int j = 0; j < model.getSize(); j++) {
+                        CorrelationItem item = model.get(j);
                         if (j == firstIndex) {
-                            model.get(j).isSelected = 1;
+                            item.isSelected = 1;
                         } else if (j == secondIndex) {
-                            model.get(j).isSelected = 2;
+                            item.isSelected = 2;
                         } else {
-                            model.get(j).isSelected = 0;
+                            item.isSelected = 0;
                         }
                     }
                     correlationList.invalidate();
@@ -76,13 +80,13 @@ public class CorrelationPaneConnector {
                     @Override
                     public void onComputed(List<Double> results) {
 
-                            Double result = (  results).get(0);
-                            new SingleValueChooser(computeCorrelationButton, "Result is " + result, new SingleValueChooser.SendAction() {
-                                @Override
-                                public void onSend(String value) {
-                                    Utils.log("value : " + value);
-                                }
-                            });
+                        Double result = (results).get(0);
+                        new SingleValueChooser(computeCorrelationButton, "Result is " + result, new SingleValueChooser.SendAction() {
+                            @Override
+                            public void onSend(String value) {
+                                Utils.log("value : " + value);
+                            }
+                        });
 
                     }
                 });
