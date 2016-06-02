@@ -19,6 +19,11 @@ public class AgdsApplication implements Runnable {
     private JFrame currentGraphInstance;
     public AGDSAlgorithm algorithm;
     public AgdsGUI gui;
+    public int numberOfAttributes;
+
+    private AgdsApplication() {
+        instance = this;
+    }
 
     public static AgdsApplication getInstance() {
         return instance == null ? new AgdsApplication() : instance;

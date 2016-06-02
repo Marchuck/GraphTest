@@ -1,6 +1,7 @@
 package ui.agds.tabs.classify;
 
 import com.sun.javafx.beans.annotations.NonNull;
+import ui.agds.AgdsApplication;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +48,7 @@ public class ClassificationPaneConnector {
                 if (currentAddItem != null) currentAddItem.dispose();
                 currentAddItem = new AddNewItem(addItemButton, new AddNewItem.AddConnector() {
                     @Override
-                    public void connect(String... s) {
+                    public void connect(List<String> s) {
                         ClassifyItem classifyItem = new ClassifyItem(s);
                         listModel.addElement(classifyItem);
                     }
@@ -69,7 +70,7 @@ public class ClassificationPaneConnector {
     private static class AddNewItem extends JFrame {
 
         private interface AddConnector {
-            void connect(String... s);
+            void connect(List<String> s);
         }
 
         private AddNewItem(Component parent, final AddConnector connector) {
@@ -77,20 +78,17 @@ public class ClassificationPaneConnector {
 
             JPanel rootPanel = new JPanel(new GridLayout(3, 1));
             JPanel jpanel = new JPanel(new GridLayout(2, 1));
-            JPanel subPanel = new JPanel(new GridLayout(1, 4));
+            int propertiesCount = AgdsApplication.getInstance().numberOfAttributes;
+            JPanel subPanel = new JPanel(new GridLayout(1, propertiesCount));
             JLabel jLabel = new JLabel("Insert new Leaf params");
 
-            final TextField tv0 = new TextField();
 
-            final TextField tv1 = new TextField();
-            final TextField tv2 = new TextField();
-            final TextField tv3 = new TextField();
+            final TextField[] textFields = new TextField[propertiesCount];
             JButton classifyMenuItem = new JButton("Add");
-
-            subPanel.add(tv0);
-            subPanel.add(tv1);
-            subPanel.add(tv2);
-            subPanel.add(tv3);
+            for (int j = 0; j < propertiesCount; j++) {
+                textFields[j] = new TextField();
+                subPanel.add(textFields[j]);
+            }
             jpanel.add(subPanel);
             final JDialog jd = new JDialog();
             rootPanel.add(jLabel);
@@ -109,11 +107,12 @@ public class ClassificationPaneConnector {
             classifyMenuItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String text0 = tv0.getText();
-                    String text1 = tv1.getText();
-                    String text2 = tv2.getText();
-                    String text3 = tv3.getText();
-                    connector.connect(text0, text1, text2, text3);
+                    List<String> all = new ArrayList<String>();
+                    for (TextField tv : textFields) {
+                        String txt = tv.getText();
+                        all.add(txt.isEmpty() ? "-1" : txt);
+                    }
+                    connector.connect(all);
                     jd.setVisible(false);
                     dispose();
                 }

@@ -5,10 +5,12 @@ import com.sun.istack.internal.Nullable;
 import common.DataReader;
 import common.Item;
 import common.Log;
+import common.Utils;
 import some_graphs.GraphVisualiser;
 import topics.agds.engine.GenericAgdsEngine;
 import topics.agds.nodes.AbstractNode;
 import topics.agds.nodes.ValueNode;
+import ui.agds.AgdsApplication;
 import ui.connector.GraphCallbacks;
 
 import java.util.ArrayList;
@@ -83,7 +85,9 @@ public class AGDSAlgorithm {
             }
         }
         if (!DataReader.dataSetOk(dataSet)) throw new NullPointerException("Data set empty");
-
+        int howMuchAttributes = dataSet.get(0).values.length;
+        AgdsApplication.getInstance().numberOfAttributes = howMuchAttributes;
+        Utils.log("numberOfAttributes: " + howMuchAttributes);
         List<String> propertyNames = getPropertyNames(reader.getFirstLine());
         List<String> classNames = getClassNames(dataSet);
 //        Log.d("properties size = " + propertyNames.size());
@@ -121,7 +125,7 @@ public class AGDSAlgorithm {
         if (graphHandler != null) graphHandler.onVisualiserCreated(graphVisualiser);
         if (graphHandler != null) graphHandler.onEngineCreated(engine);
 
-        engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
+       // engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
         // graphVisualiser.enableLegend();
         //Viewer viewer = graphVisualiser.showGraph();
         // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
@@ -148,7 +152,11 @@ public class AGDSAlgorithm {
     private List<String> getPropertyNames(String firstLine) {
         String[] _classes = firstLine.split("\t");
         List<String> classes = new ArrayList<>();
-        for (String s : _classes) classes.add(s);
+        for (String s : _classes) {
+            classes.add(s);
+            Utils.log("next property: " + s + ", ");
+        }
+
         return classes;
     }
 
@@ -156,6 +164,7 @@ public class AGDSAlgorithm {
         List<String> classNames = new ArrayList<>();
         for (Item it : items) {
             classNames.add(it.name);
+            Utils.log("next class: " + it.name + ", ");
         }
         return DataReader.Utils.toDistinctList(classNames);
     }

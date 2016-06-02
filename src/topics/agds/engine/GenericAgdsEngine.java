@@ -161,12 +161,11 @@ public class GenericAgdsEngine {
         double[][] d1 = new double[nodes.size()][nodes.get(0).getNodes().size()];
         for (int j = 0; j < nodes.size(); j++) {
             List<ValueNode> valueNodes = nodes.get(j).getNodes();
-            d1[j] = new double[]{
-                    valueNodes.get(0).getValue(),
-                    valueNodes.get(1).getValue(),
-                    valueNodes.get(2).getValue(),
-                    valueNodes.get(3).getValue(),
-            };
+            double[] doubles = new double[valueNodes.size()];
+            for (int k = 0; k < valueNodes.size(); k++) {
+                doubles[k] = valueNodes.get(k).getValue();
+            }
+            d1[j] = doubles;
         }
         return getSimilarRecordNodes(d1, threshold);
     }
@@ -205,12 +204,16 @@ public class GenericAgdsEngine {
 
     private List<RecordNode> getMostSimilarNodes(int givenLimit, @NonNull Item notClassifiedItem) {
         ClassNode closestClassNode = null;
-
+        Utils.log("getMostSimilarNodes: propertyNodes size: " + propertyNodes.size());
         for (int j = 0; j < propertyNodes.size(); j++) {
             PropertyNode propertyNode = propertyNodes.get(j);
 
+
+            ValueNode valueNode = new ValueNode(notClassifiedItem.values[j]);
+
+
             int foundIndex = GenericAgdsUtils.findClosestPropertyValueIndex(propertyNode,
-                    new ValueNode(notClassifiedItem.values[j]));
+                    valueNode);
 
             propertyNode.calculateWeights(foundIndex);
         }
@@ -401,6 +404,10 @@ public class GenericAgdsEngine {
         common.Utils.log("similar fired");
         List<RecordNode> out = getSimilarRecordNodes(selectedNodes, 1);
         out.removeAll(selectedNodes);
+        Set<RecordNode> set = new HashSet<>();
+        set.addAll(out);
+        out.clear();
+        out.addAll(set);
         return out;
     }
 

@@ -2,6 +2,7 @@ package topics.agds.engine;
 
 import com.sun.javafx.beans.annotations.NonNull;
 import common.Item;
+import common.Utils;
 import topics.agds.nodes.PropertyNode;
 import topics.agds.nodes.ValueNode;
 
@@ -48,6 +49,7 @@ public class GenericAgdsUtils {
             else
                 foundIndex = fixedIndex - 1;
         }
+        Utils.log("index: " + foundIndex);
         return foundIndex;
     }
 
@@ -56,7 +58,7 @@ public class GenericAgdsUtils {
         return list.subList(0, index);
     }
 
-    public static Item randomLeaf(Random r,double min, double max) {
+    public static Item randomLeaf(Random r, double min, double max) {
         return new Item(new double[]{
                 produceValueFrom(r, min, max),
                 produceValueFrom(r, min, max),

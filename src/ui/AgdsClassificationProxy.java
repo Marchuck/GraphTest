@@ -4,6 +4,7 @@ import common.Item;
 import common.Log;
 import some_graphs.GraphMerger;
 import topics.agds.engine.GenericAgdsEngine;
+import ui.agds.AgdsApplication;
 import ui.agds.tabs.classify.ClassifyItem;
 import ui.connector.ResultCallback;
 
@@ -24,7 +25,7 @@ public class AgdsClassificationProxy {
 
     public static void onItemToClassify(GenericAgdsEngine engine, List<ClassifyItem> items, double threshold,
                                         ResultCallback<String> resultCallback) {
-        double[][] doubles = new double[items.size()][4];
+        double[][] doubles = new double[items.size()][AgdsApplication.getInstance().numberOfAttributes];
         for (int j = 0; j < items.size(); j++) {
             doubles[j] = items.get(j).asDoubles();
         }
@@ -32,13 +33,14 @@ public class AgdsClassificationProxy {
     }
 
     @Deprecated
-    public void onItemToClassify(String text0, String text1, String text2, String text3) {
-        Log.d("onItemToClassify");
-        Double d0 = Double.parseDouble(text0);
-        Double d1 = Double.parseDouble(text1);
-        Double d2 = Double.parseDouble(text2);
-        Double d3 = Double.parseDouble(text3);
-        System.out.println("Item to classify: " + d0 + "," + d1 + "," + d2 + "," + d3);
-        graphMerger.getAgds().markNodesSimilarTo(5, new Item(new double[]{d0, d1, d2, d3}));
+    public void onItemToClassify(List<String> inputValues) {
+        Log.d("onItemToClassify: " + inputValues.size());
+        double[] values = new double[inputValues.size()];
+        for (int j = 0; j < inputValues.size(); j++) {
+            values[j] = Double.parseDouble(inputValues.get(j));
+        }
+
+        //System.out.println("Item to classify: " + d0 + "," + d1 + "," + d2 + "," + d3);
+        graphMerger.getAgds().markNodesSimilarTo(5, new Item(values));
     }
 }
