@@ -1,6 +1,6 @@
 package topics.agds.engine;
 
-import agds.GraphDrawer;
+import agds_core.GraphDrawer;
 import com.sun.istack.internal.Nullable;
 import com.sun.javafx.beans.annotations.NonNull;
 import common.Item;
@@ -20,11 +20,7 @@ import java.util.*;
  */
 public class AgdsEngine {
     private static AgdsEngine instance = null;
-
-    public static AgdsEngine getInstance() {
-        return instance;
-    }
-
+    public List<Pair<RecordNode, String>> currentSimilarNodes = new ArrayList<>();
     /**
      * interface which is responsible for drawing selected nodes and edges
      */
@@ -37,11 +33,6 @@ public class AgdsEngine {
      * DrawableNode representation of properties (attributes)
      */
     private List<PropertyNode> propertyNodes = new ArrayList<>();
-
-    public List<PropertyNode> getPropertyNodes() {
-        return propertyNodes;
-    }
-
     /**
      * DrawableNode representation of classes
      */
@@ -54,6 +45,12 @@ public class AgdsEngine {
      * source dataSet; based on this list graph will be created
      */
     private List<Item> dataSet;
+    private Utils.PrintStrategy recordNodesStrategy = new Utils.PrintStrategy<AbstractNode>() {
+        @Override
+        public String print(AbstractNode node) {
+            return node.getName().substring(2);
+        }
+    };
 
 
     public AgdsEngine(List<String> propertyNames, List<String> classNames, List<Item> dataSet) {
@@ -64,8 +61,16 @@ public class AgdsEngine {
         instance = this;
     }
 
+    public static AgdsEngine getInstance() {
+        return instance;
+    }
+
     public static AgdsEngine initWith(List<String> propertyNames, List<String> classNames, List<Item> dataSet) {
         return new AgdsEngine(propertyNames, classNames, dataSet);
+    }
+
+    public List<PropertyNode> getPropertyNodes() {
+        return propertyNodes;
     }
 
     public AgdsEngine withGraphDrawer(@Nullable GraphDrawer<AbstractNode> graphDrawer) {
@@ -202,6 +207,14 @@ public class AgdsEngine {
         }
         return null;
     }
+//    public List<RecordNode> getNodesFromSectionWithExactProperty(PropertyNode propertyNode, double selectedValue) {
+//        for (PropertyNode propertyNode1 : propertyNodes) {
+//            if (propertyNode1.getName().equals(propertyNode.getName())) {
+//
+//                return
+//            }
+//        }
+//    }
 
     @Nullable
     public List<Item> getNodesFromSectionWithExactProperty(int column, double minValue, double maxValue) {
@@ -237,14 +250,6 @@ public class AgdsEngine {
         Utils.log("Time elapsed: " + (time2 - time1));
         return -1 == index ? null : dataSet.get(index);
     }
-//    public List<RecordNode> getNodesFromSectionWithExactProperty(PropertyNode propertyNode, double selectedValue) {
-//        for (PropertyNode propertyNode1 : propertyNodes) {
-//            if (propertyNode1.getName().equals(propertyNode.getName())) {
-//
-//                return
-//            }
-//        }
-//    }
 
     public AgdsEngine printMax() {
         long t0 = System.nanoTime();
@@ -473,7 +478,6 @@ public class AgdsEngine {
         return this;
     }
 
-
     private void cleanupChangedValues() {
         for (PropertyNode propertyNode : propertyNodes)
             propertyNode.clean();
@@ -548,18 +552,9 @@ public class AgdsEngine {
         return GenericAgdsUtils.randomLeaf(new Random(), this.getMin(), this.getMax());
     }
 
-
     public StringBuilder getRecordNodesPrinter(List<ValueNode> nodes) {
         return Utils.listPrinter(nodes, recordNodesStrategy);
     }
-
-    public List<Pair<RecordNode, String>> currentSimilarNodes = new ArrayList<>();
-    private Utils.PrintStrategy recordNodesStrategy = new Utils.PrintStrategy<AbstractNode>() {
-        @Override
-        public String print(AbstractNode node) {
-            return node.getName().substring(2);
-        }
-    };
 
     public void calculateSimilarity(double threshold, List<RecordNode> selected, ResultCallback<RecordNode> resultCallback) {
         Utils.log("calculateSimilarity");

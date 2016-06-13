@@ -1,6 +1,6 @@
 package topics.agds;
 
-import agds.GraphDrawer;
+import agds_core.GraphDrawer;
 import com.sun.istack.internal.Nullable;
 import common.DataReader;
 import common.Item;
@@ -20,10 +20,18 @@ import java.util.List;
  */
 public class AGDSAlgorithm {
 
+    @Nullable
+    public GraphCallbacks graphHandler;
     private SourceSet sourceSet;
+    private AgdsEngine engine;
+    private GraphVisualiser graphVisualiser;
 
     public AGDSAlgorithm(SourceSet set) {
         this.sourceSet = set;
+    }
+
+    public static void main(String[] args) {
+        new AGDSAlgorithm(SourceSet.Iris).run();
     }
 
     private DataReader<Item> prepareWineReader() {
@@ -49,14 +57,6 @@ public class AGDSAlgorithm {
         DataReader<Item> dataReader = new DataReader<>(readStrategy);
         return dataReader.skipFirstLine();
     }
-
-    public static void main(String[] args) {
-        new AGDSAlgorithm(SourceSet.Iris).run();
-    }
-
-    private AgdsEngine engine;
-
-    private GraphVisualiser graphVisualiser;
 
     public GraphVisualiser getGraphVisualiser() {
         return graphVisualiser;
@@ -108,7 +108,7 @@ public class AGDSAlgorithm {
         }
         Log.d("min = " + min + ", time elapsed: " + (System.currentTimeMillis() - minTimeElapsed));
 
-        graphVisualiser = new GraphVisualiser("AGDS with Iris data");
+        graphVisualiser = new GraphVisualiser("AGDSConstants with Iris data");
 
         GraphDrawer<AbstractNode> graphDrawer = buildGraphDrawer(graphVisualiser);
 
@@ -127,30 +127,6 @@ public class AGDSAlgorithm {
         // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
     }
 
-    @Nullable
-    public GraphCallbacks graphHandler;
-
-    public static class DefaultDrawer implements GraphDrawer<AbstractNode> {
-        GraphVisualiser graphVisualiser;
-        public boolean forceDraw;
-
-        public DefaultDrawer(GraphVisualiser visualiser) {
-            this.graphVisualiser = visualiser;
-        }
-
-        @Override
-        public void drawNode(AbstractNode nodeName) {
-            graphVisualiser.shouldAddLabel = forceDraw || !(nodeName instanceof ValueNode);
-            graphVisualiser.drawNode(nodeName);
-        }
-
-        @Override
-        public void drawEdge(AbstractNode nodeA, AbstractNode nodeB) {
-            graphVisualiser.drawEdge(nodeA, nodeB);
-        }
-    }
-
-
     private GraphDrawer<AbstractNode> buildGraphDrawer(final GraphVisualiser graphVisualiser) {
         return new DefaultDrawer(graphVisualiser);
     }
@@ -168,5 +144,25 @@ public class AGDSAlgorithm {
             classNames.add(it.name);
         }
         return DataReader.Utils.toDistinctList(classNames);
+    }
+
+    public static class DefaultDrawer implements GraphDrawer<AbstractNode> {
+        public boolean forceDraw;
+        GraphVisualiser graphVisualiser;
+
+        public DefaultDrawer(GraphVisualiser visualiser) {
+            this.graphVisualiser = visualiser;
+        }
+
+        @Override
+        public void drawNode(AbstractNode nodeName) {
+            graphVisualiser.shouldAddLabel = forceDraw || !(nodeName instanceof ValueNode);
+            graphVisualiser.drawNode(nodeName);
+        }
+
+        @Override
+        public void drawEdge(AbstractNode nodeA, AbstractNode nodeB) {
+            graphVisualiser.drawEdge(nodeA, nodeB);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package agds;
+package agds_core;
 
 /**
  * @author Lukasz Marczak

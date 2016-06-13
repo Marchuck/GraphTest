@@ -1,7 +1,7 @@
 package topics.agds.nodes;
 
 
-import agds.AGDS;
+import agds_core.AGDSConstants;
 import common.SortedList;
 import common.Utils;
 
@@ -14,17 +14,12 @@ import java.util.List;
  */
 public class RecordNode extends AbstractNode {
 
-    public double getTotalWeight() {
-        return totalWeight;
-    }
-
+    public static double maxWeight = 0, minWeight = 0;
+    public boolean banned;
+    public int weight;
+    public boolean visited;
     private double totalWeight;
     private ClassNode classNode;
-
-    public ClassNode getClassNode() {
-        return classNode;
-    }
-
     private SortedList<ValueNode> valueNodeList = new SortedList<>(new Comparator<ValueNode>() {
         @Override
         public int compare(ValueNode o1, ValueNode o2) {
@@ -36,6 +31,13 @@ public class RecordNode extends AbstractNode {
         super(name);
     }
 
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
+    public ClassNode getClassNode() {
+        return classNode;
+    }
 
     public RecordNode setClassNode(ClassNode node) {
         this.classNode = node;
@@ -49,12 +51,12 @@ public class RecordNode extends AbstractNode {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.RECORD_NODE_STYLESHEET;
+        return AGDSConstants.RECORD_NODE_STYLESHEET;
     }
 
     @Override
     public int getEdgeWeight() {
-        return AGDS.RECORD_NODE_WEIGHT;
+        return AGDSConstants.RECORD_NODE_WEIGHT;
     }
 
     //  @Override
@@ -77,11 +79,6 @@ public class RecordNode extends AbstractNode {
     public void clean() {
         totalWeight = maxWeight = minWeight = 0d;
     }
-
-    public static double maxWeight = 0, minWeight = 0;
-    public boolean banned;
-    public int weight;
-    public boolean visited;
 
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,6 @@
 package topics.agds.nodes;
 
-import agds.DrawableNode;
+import agds_core.DrawableNode;
 
 /**
  * @author Lukasz Marczak

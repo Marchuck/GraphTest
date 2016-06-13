@@ -1,18 +1,16 @@
 package topics.sql;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Lukasz Marczak
  * @since 26.04.16.
  */
 public class SqlRoot {
+    private List<SqlColumn> columns;
+
     public SqlRoot() {
     }
-
-    private List<SqlColumn> columns;
 
     public SqlRoot addColumns(List<SqlColumn> columns) {
         this.columns = columns;

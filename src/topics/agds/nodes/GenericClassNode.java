@@ -1,6 +1,6 @@
 package topics.agds.nodes;
 
-import agds.AGDS;
+import agds_core.AGDSConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class GenericClassNode<T extends Comparable<T>> extends AbstractNode {
 
+    private List<GenericRecordNode<T>> rNodeList = new ArrayList<>();
+
     public GenericClassNode(String name) {
         super(name);
     }
-
-    private List<GenericRecordNode<T>> rNodeList = new ArrayList<>();
 
     public GenericClassNode addNode(GenericRecordNode<T> rNode) {
         this.rNodeList.add(rNode);
@@ -26,12 +26,12 @@ public class GenericClassNode<T extends Comparable<T>> extends AbstractNode {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.CLASS_NODE_STYLESHEET;
+        return AGDSConstants.CLASS_NODE_STYLESHEET;
     }
 
     @Override
     public int getEdgeWeight() {
-        return AGDS.CLASS_NODE_WEIGHT;
+        return AGDSConstants.CLASS_NODE_WEIGHT;
     }
 
     // @Override

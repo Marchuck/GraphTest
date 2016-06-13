@@ -1,16 +1,11 @@
 package topics.agds.engine;
 
-import agds.GraphDrawer;
+import agds_core.GraphDrawer;
 import com.sun.istack.internal.Nullable;
-import com.sun.javafx.beans.annotations.NonNull;
-import common.Item;
 import common.Log;
 import common.Utils;
 import javafx.util.Pair;
-import sun.net.www.content.text.Generic;
 import topics.agds.nodes.*;
-import topics.sql.randomizer.Data;
-import ui.agds.tabs.correlation.Correlation;
 import ui.agds.tabs.correlation.CorrelationBundle;
 import ui.connector.ResultCallback;
 
@@ -21,22 +16,18 @@ import java.util.*;
  * @since 23.04.16.
  */
 public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO extends Cellable<DataType>> {
+    public List<Pair<GenericRecordNode<DataType>, String>> currentSimilarNodes = new ArrayList<>();
     /**
      * interface which is responsible for drawing selected nodes and edges
      */
     @Nullable
     private GraphDrawer<AbstractNode> graphDrawer;
-
     private List<String> propertyNames;//for Iris: leaf length, petal width, etc.
     private List<String> classNames; //for Iris: Versicolor, Virginica, etc.
     /**
      * DrawableNode representation of properties (attributes)
      */
     private List<GenericPropertyNode<DataType>> propertyNodes = new ArrayList<>();
-
-    public List<GenericPropertyNode<DataType>> getPropertyNodes() {
-        return propertyNodes;
-    }
 
     /**
      * DrawableNode representation of classes
@@ -50,6 +41,12 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
      * source dataSet; based on this list graph will be created
      */
     private List<POJO> dataSet;
+    private Utils.PrintStrategy recordNodesStrategy = new Utils.PrintStrategy<AbstractNode>() {
+        @Override
+        public String print(AbstractNode node) {
+            return node.getName().substring(2);
+        }
+    };
 
 
     public GenericAgdsEngine(List<String> propertyNames, List<String> classNames, List<POJO> dataSet) {
@@ -59,6 +56,9 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         this.dataSet = dataSet;
     }
 
+    public List<GenericPropertyNode<DataType>> getPropertyNodes() {
+        return propertyNodes;
+    }
 
     public GenericAgdsEngine withGraphDrawer(@Nullable GraphDrawer<AbstractNode> graphDrawer) {
         this.graphDrawer = graphDrawer;
@@ -200,6 +200,14 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         }
         return null;
     }
+//    public List<RecordNode> getNodesFromSectionWithExactProperty(PropertyNode propertyNode, double selectedValue) {
+//        for (PropertyNode propertyNode1 : propertyNodes) {
+//            if (propertyNode1.getName().equals(propertyNode.getName())) {
+//
+//                return
+//            }
+//        }
+//    }
 
     @Nullable
     public List<POJO> getNodesFromSectionWithExactProperty(int column, DataType minValue, DataType maxValue) {
@@ -220,6 +228,10 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         return items;
     }
 
+//    private List<GenericRecordNode<DataType>> getMostSimilarNodes(@NonNull POJO notClassifiedItem) {
+//        return getMostSimilarNodes(-1, notClassifiedItem);
+//    }
+
     @Nullable
     public POJO getNodesWithValueWithExactProperty(int column, DataType selectedValue) {
         long time1 = System.nanoTime();
@@ -235,14 +247,6 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         Utils.log("Time elapsed: " + (time2 - time1));
         return -1 == index ? null : dataSet.get(index);
     }
-//    public List<RecordNode> getNodesFromSectionWithExactProperty(PropertyNode propertyNode, double selectedValue) {
-//        for (PropertyNode propertyNode1 : propertyNodes) {
-//            if (propertyNode1.getName().equals(propertyNode.getName())) {
-//
-//                return
-//            }
-//        }
-//    }
 
     public GenericAgdsEngine<DataType, POJO> printMax() {
         long t0 = System.nanoTime();
@@ -262,18 +266,6 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         Log.d("\nmaximum value of graph: " + max1 + ", time elapsed: " + diff2);
 
         return this;
-    }
-
-//    private List<GenericRecordNode<DataType>> getMostSimilarNodes(@NonNull POJO notClassifiedItem) {
-//        return getMostSimilarNodes(-1, notClassifiedItem);
-//    }
-
-    public interface ArrayCreator<X> {
-        X[][] create(int x, int y);
-    }
-
-    public interface VectorCreator<X> {
-        X[] create(int capacity);
     }
 
 //    private List<GenericRecordNode<DataType>> getSimilarRecordNodes(List<GenericRecordNode<DataType>> nodes,
@@ -524,13 +516,26 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
         return Utils.listPrinter(nodes, recordNodesStrategy);
     }
 
-    public List<Pair<GenericRecordNode<DataType>, String>> currentSimilarNodes = new ArrayList<>();
-    private Utils.PrintStrategy recordNodesStrategy = new Utils.PrintStrategy<AbstractNode>() {
-        @Override
-        public String print(AbstractNode node) {
-            return node.getName().substring(2);
-        }
-    };
+    public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {
+        if (correlationBundle.isInvalid()) return;
+        int i1 = correlationBundle.firstIndex, i2 = correlationBundle.secondIndex;
+        Pair<GenericRecordNode<DataType>, String> first = currentSimilarNodes.get(i1);
+        Pair<GenericRecordNode<DataType>, String> second = currentSimilarNodes.get(i2);
+        GenericRecordNode<DataType> firstNode = first.getKey();
+        GenericRecordNode<DataType> secondNode = second.getKey();
+//        Correlation.test();
+//        final double result = Correlation.pearsonLinearCorrelation(firstNode, secondNode);
+        throw new UnsupportedOperationException("Not yet implemented");
+//        resultCallback.onComputed(new ArrayList<Double>() {
+//            {
+//                add(result);
+//            }
+//        });
+    }
+
+    public void getMinFromTable() {
+
+    }
 
 //    public void calculateSimilarity(double threshold, List<GenericRecordNode<DataType>> selected,
 //                                    ArrayCreator<DataType> arrayCreator,
@@ -561,24 +566,11 @@ public class GenericAgdsEngine<DataType extends Comparable<DataType>, POJO exten
 //        return pollMostSignificantClass(nodes);
 //    }
 
-    public void calculateCorrelation(CorrelationBundle correlationBundle, ResultCallback<Double> resultCallback) {
-        if (correlationBundle.isInvalid()) return;
-        int i1 = correlationBundle.firstIndex, i2 = correlationBundle.secondIndex;
-        Pair<GenericRecordNode<DataType>, String> first = currentSimilarNodes.get(i1);
-        Pair<GenericRecordNode<DataType>, String> second = currentSimilarNodes.get(i2);
-        GenericRecordNode<DataType> firstNode = first.getKey();
-        GenericRecordNode<DataType> secondNode = second.getKey();
-//        Correlation.test();
-//        final double result = Correlation.pearsonLinearCorrelation(firstNode, secondNode);
-        throw new UnsupportedOperationException("Not yet implemented");
-//        resultCallback.onComputed(new ArrayList<Double>() {
-//            {
-//                add(result);
-//            }
-//        });
+    public interface ArrayCreator<X> {
+        X[][] create(int x, int y);
     }
 
-    public void getMinFromTable() {
-
+    public interface VectorCreator<X> {
+        X[] create(int capacity);
     }
 }

@@ -4,8 +4,6 @@ import common.DataReader;
 import common.Log;
 import common.RunAlgorithm;
 import common.Utils;
-import scala.util.parsing.combinator.testing.Str;
-import topics.agds.engine.AgdsEngine;
 import topics.agds.engine.GenericAgdsEngine;
 import topics.agds.nodes.GenericRecordNode;
 import topics.agds.nodes.GenericValueNode;
@@ -24,7 +22,7 @@ import java.util.Random;
  * Zakres wartości z poszczególnych atrybutów
  * filtracja, emulować SELECT na grafowej strukturze
  * <p/>
- * agds szukanie podobieństw
+ * agds_core szukanie podobieństw
  */
 public class RelationalDatabases implements RunAlgorithm {
     public static final String TAG = RelationalDatabases.class.getSimpleName();

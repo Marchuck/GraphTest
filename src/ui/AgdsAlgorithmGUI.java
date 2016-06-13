@@ -16,7 +16,7 @@ public class AgdsAlgorithmGUI extends JPanel {
 
     /**
      * Prezentacja:
-     * (1) prosta animacja AGDS, jak dodawane są elementy
+     * (1) prosta animacja AGDSConstants, jak dodawane są elementy
      * (2) klasyfikacja węzła/węzłów z poza grafu do węzłów z grafu(zadany próg np 50%)
      * (3) podobieństwo węzła/węzłów z grafu do
      * (3) korelacja pomiędzy dwoma węzłami z grafu

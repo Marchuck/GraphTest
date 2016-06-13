@@ -1,7 +1,7 @@
 package topics.agds.nodes;
 
 
-import agds.AGDS;
+import agds_core.AGDSConstants;
 import common.SortedList;
 
 import java.util.Comparator;
@@ -13,10 +13,6 @@ import java.util.List;
  */
 public class GenericPropertyNode<T extends Comparable<T>> extends AbstractNode {
 
-    public GenericPropertyNode(String name) {
-        super(name);
-    }
-
     private SortedList<GenericValueNode<T>> valueNodeList = new SortedList<>(new Comparator<GenericValueNode<T>>() {
         @Override
         public int compare(GenericValueNode<T> o1, GenericValueNode<T> o2) {
@@ -24,6 +20,9 @@ public class GenericPropertyNode<T extends Comparable<T>> extends AbstractNode {
         }
     });
 
+    public GenericPropertyNode(String name) {
+        super(name);
+    }
 
     public GenericPropertyNode<T> addNode(GenericValueNode<T> node) {
         valueNodeList.add(node);
@@ -37,12 +36,12 @@ public class GenericPropertyNode<T extends Comparable<T>> extends AbstractNode {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.PROPERTY_NODE_STYLESHEET;
+        return AGDSConstants.PROPERTY_NODE_STYLESHEET;
     }
 
     @Override
     public int getEdgeWeight() {
-        return AGDS.PROPERTY_NODE_WEIGHT;
+        return AGDSConstants.PROPERTY_NODE_WEIGHT;
     }
 
     @Override

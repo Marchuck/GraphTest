@@ -1,7 +1,7 @@
 package topics.agds.nodes;
 
 
-import agds.AGDS;
+import agds_core.AGDSConstants;
 import common.SortedList;
 
 import java.util.Comparator;
@@ -36,12 +36,12 @@ public class PropertyNode extends AbstractNode {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.PROPERTY_NODE_STYLESHEET;
+        return AGDSConstants.PROPERTY_NODE_STYLESHEET;
     }
 
     @Override
     public int getEdgeWeight() {
-        return AGDS.PROPERTY_NODE_WEIGHT;
+        return AGDSConstants.PROPERTY_NODE_WEIGHT;
     }
 
     @Override

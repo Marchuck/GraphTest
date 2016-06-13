@@ -1,7 +1,7 @@
 package topics.agds.nodes;
 
 
-import agds.AGDS;
+import agds_core.AGDSConstants;
 import common.SortedList;
 import common.Utils;
 
@@ -14,17 +14,12 @@ import java.util.List;
  */
 public class GenericRecordNode<T extends Comparable<T>> extends AbstractNode {
 
-    public double getTotalWeight() {
-        return totalWeight;
-    }
-
+    public static double maxWeight = 0, minWeight = 0;
+    public boolean banned;
+    public int weight;
+    public boolean visited;
     private double totalWeight;
     private GenericClassNode<T> classNode;
-
-    public GenericClassNode<T> getClassNode() {
-        return classNode;
-    }
-
     private SortedList<GenericValueNode<T>> valueNodeList = new SortedList<>(new Comparator<GenericValueNode<T>>() {
         @Override
         public int compare(GenericValueNode<T> o1, GenericValueNode<T> o2) {
@@ -36,6 +31,13 @@ public class GenericRecordNode<T extends Comparable<T>> extends AbstractNode {
         super(name);
     }
 
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
+    public GenericClassNode<T> getClassNode() {
+        return classNode;
+    }
 
     public GenericRecordNode<T> setClassNode(GenericClassNode<T> node) {
         this.classNode = node;
@@ -49,12 +51,12 @@ public class GenericRecordNode<T extends Comparable<T>> extends AbstractNode {
 
     @Override
     public String getStyleSheet() {
-        return AGDS.RECORD_NODE_STYLESHEET;
+        return AGDSConstants.RECORD_NODE_STYLESHEET;
     }
 
     @Override
     public int getEdgeWeight() {
-        return AGDS.RECORD_NODE_WEIGHT;
+        return AGDSConstants.RECORD_NODE_WEIGHT;
     }
 
     //  @Override
@@ -77,11 +79,6 @@ public class GenericRecordNode<T extends Comparable<T>> extends AbstractNode {
     public void clean() {
         totalWeight = maxWeight = minWeight = 0d;
     }
-
-    public static double maxWeight = 0, minWeight = 0;
-    public boolean banned;
-    public int weight;
-    public boolean visited;
 
     @Override
     public boolean equals(Object o) {

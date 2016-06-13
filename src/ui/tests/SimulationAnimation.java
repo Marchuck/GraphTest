@@ -1,6 +1,6 @@
 package ui.tests;
 
-import agds.GraphDrawer;
+import agds_core.GraphDrawer;
 import common.DataReader;
 import common.Item;
 import common.Log;
@@ -19,12 +19,12 @@ import static some_graphs.AGDS_Visualiser.sleep;
  * @author Lukasz
  * @since 03.06.2016.
  */
-public class Sim extends Object {
-    public Sim() {
+public class SimulationAnimation extends Object {
+    public SimulationAnimation() {
     }
 
     public static void main(String[] args) {
-        new Sim().run();
+        new SimulationAnimation().run();
     }
 
     private void run() {
@@ -59,7 +59,7 @@ public class Sim extends Object {
         }
         Log.d("min = " + min + ", time elapsed: " + (System.currentTimeMillis() - minTimeElapsed));
 
-        GraphVisualiser graphVisualiser = new GraphVisualiser("AGDS with Iris data");
+        GraphVisualiser graphVisualiser = new GraphVisualiser("AGDSConstants with Iris data");
 
         GraphDrawer<AbstractNode> graphDrawer = new SleepyDrawer(graphVisualiser);
         graphVisualiser.showGraph();
@@ -69,6 +69,21 @@ public class Sim extends Object {
                 .printMin()
                 .printMax()
                 .printRecordNodes();
+    }
+
+    private List<String> getPropertyNames(String firstLine) {
+        String[] _classes = firstLine.split("\t");
+        List<String> classes = new ArrayList<>();
+        for (String s : _classes) classes.add(s);
+        return classes;
+    }
+
+    private List<String> getClassNames(List<Item> items) {
+        List<String> classNames = new ArrayList<>();
+        for (Item it : items) {
+            classNames.add(it.name);
+        }
+        return DataReader.Utils.toDistinctList(classNames);
     }
 
     public static class SleepyDrawer extends AGDSAlgorithm.DefaultDrawer {
@@ -89,20 +104,5 @@ public class Sim extends Object {
             super.drawEdge(nodeA, nodeB);
             sleep(330);
         }
-    }
-
-    private List<String> getPropertyNames(String firstLine) {
-        String[] _classes = firstLine.split("\t");
-        List<String> classes = new ArrayList<>();
-        for (String s : _classes) classes.add(s);
-        return classes;
-    }
-
-    private List<String> getClassNames(List<Item> items) {
-        List<String> classNames = new ArrayList<>();
-        for (Item it : items) {
-            classNames.add(it.name);
-        }
-        return DataReader.Utils.toDistinctList(classNames);
     }
 }
