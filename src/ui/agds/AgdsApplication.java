@@ -17,6 +17,11 @@ public class AgdsApplication implements Runnable {
     private static AgdsApplication instance;
     public AGDSAlgorithm algorithm;
     public AgdsGUI gui;
+    public int numberOfAttributes;
+
+    private AgdsApplication() {
+        instance = this;
+    }
 
     public static AgdsApplication getInstance() {
         if (instance == null) instance = new AgdsApplication();

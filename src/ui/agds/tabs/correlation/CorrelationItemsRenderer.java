@@ -1,7 +1,5 @@
 package ui.agds.tabs.correlation;
 
-import common.Utils;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,15 +24,15 @@ public class CorrelationItemsRenderer implements ListCellRenderer<CorrelationIte
     }
 
     private Color classBackground(CorrelationItem value) {
-        Utils.log("classBackground");
+      //  Utils.log("classBackground");
         if (value.recordNode.getClassNode().getName().contains("versicolor")) {
-            Utils.log("versicolor");
+          //  Utils.log("versicolor");
             return Color.GRAY;
         } else if (value.recordNode.getClassNode().getName().contains("setosa")) {
-            Utils.log("setosa");
+          //  Utils.log("setosa");
             return Color.BLACK;
         } else {
-            Utils.log("virginica");
+          //  Utils.log("virginica");
             return Color.LIGHT_GRAY;
         }
     }
