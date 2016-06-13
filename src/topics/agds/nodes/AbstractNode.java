@@ -21,4 +21,6 @@ public abstract class AbstractNode implements Comparable<AbstractNode>, Drawable
 //        Utils.log("name: " + name);
         return name;
     }
+
+
 }

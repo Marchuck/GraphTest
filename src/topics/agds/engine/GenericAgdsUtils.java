@@ -2,6 +2,8 @@ package topics.agds.engine;
 
 import com.sun.javafx.beans.annotations.NonNull;
 import common.Item;
+import topics.agds.nodes.GenericPropertyNode;
+import topics.agds.nodes.GenericValueNode;
 import topics.agds.nodes.PropertyNode;
 import topics.agds.nodes.ValueNode;
 
@@ -51,12 +53,38 @@ public class GenericAgdsUtils {
         return foundIndex;
     }
 
+    public static <T extends Comparable<T>> int
+    findClosestGenericPropertyValueIndex(GenericPropertyNode<T> propertyNode, GenericValueNode<T> searchedValue) {
+        List<GenericValueNode<T>> newValueNodes = propertyNode.getNodes();
+        int foundIndex = Collections.binarySearch(newValueNodes, searchedValue);
+
+        //if this element does not exists in set
+        if (foundIndex < 0) {
+            int fixedIndex = -foundIndex - 1;
+            if (fixedIndex > 0 && fixedIndex < newValueNodes.size()) {
+                T lhsValue = newValueNodes.get(fixedIndex - 1).getValue();
+                T rhsValue = newValueNodes.get(fixedIndex).getValue();
+
+                foundIndex = calculateGenericIndex(lhsValue, rhsValue, searchedValue.getValue(), fixedIndex);
+
+            } else if (fixedIndex == 0)
+                foundIndex = fixedIndex;
+            else
+                foundIndex = fixedIndex - 1;
+        }
+        return foundIndex;
+    }
+
+    private static <T extends Comparable<T>> int calculateGenericIndex(T lhsValue, T rhsValue, T value, int fixedIndex) {
+        return 0;
+    }
+
     public static <T> List<T> subList(@NonNull List<T> list, int limit) {
         int index = limit < list.size() ? limit : list.size();
         return list.subList(0, index);
     }
 
-    public static Item randomLeaf(Random r,double min, double max) {
+    public static Item randomLeaf(Random r, double min, double max) {
         return new Item(new double[]{
                 produceValueFrom(r, min, max),
                 produceValueFrom(r, min, max),

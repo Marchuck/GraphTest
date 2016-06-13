@@ -12,37 +12,37 @@ import java.util.List;
  * @author Lukasz Marczak
  * @since 25.04.16.
  */
-public class RecordNode extends AbstractNode {
+public class GenericRecordNode<T extends Comparable<T>> extends AbstractNode {
 
     public double getTotalWeight() {
         return totalWeight;
     }
 
     private double totalWeight;
-    private ClassNode classNode;
+    private GenericClassNode<T> classNode;
 
-    public ClassNode getClassNode() {
+    public GenericClassNode<T> getClassNode() {
         return classNode;
     }
 
-    private SortedList<ValueNode> valueNodeList = new SortedList<>(new Comparator<ValueNode>() {
+    private SortedList<GenericValueNode<T>> valueNodeList = new SortedList<>(new Comparator<GenericValueNode<T>>() {
         @Override
-        public int compare(ValueNode o1, ValueNode o2) {
-            return Double.compare(o1.getValue(), o2.getValue());
+        public int compare(GenericValueNode<T> o1, GenericValueNode<T> o2) {
+            return o1.compareTo(o2);
         }
     });
 
-    public RecordNode(String name) {
+    public GenericRecordNode(String name) {
         super(name);
     }
 
 
-    public RecordNode setClassNode(ClassNode node) {
+    public GenericRecordNode<T> setClassNode(GenericClassNode<T> node) {
         this.classNode = node;
         return this;
     }
 
-    public RecordNode addNode(ValueNode node) {
+    public GenericRecordNode<T> addNode(GenericValueNode<T> node) {
         valueNodeList.add(node);
         return this;
     }
@@ -58,7 +58,7 @@ public class RecordNode extends AbstractNode {
     }
 
     //  @Override
-    public List<ValueNode> getNodes() {
+    public List<GenericValueNode<T>> getNodes() {
         return valueNodeList;
     }
 
@@ -86,9 +86,9 @@ public class RecordNode extends AbstractNode {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RecordNode)) return false;
+        if (!(o instanceof GenericRecordNode)) return false;
 
-        RecordNode that = (RecordNode) o;
+        GenericRecordNode that = (GenericRecordNode) o;
 
         if (!classNode.equals(that.classNode)) return false;
         return valueNodeList.equals(that.valueNodeList);

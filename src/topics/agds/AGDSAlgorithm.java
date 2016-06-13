@@ -6,7 +6,7 @@ import common.DataReader;
 import common.Item;
 import common.Log;
 import some_graphs.GraphVisualiser;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
 import topics.agds.nodes.AbstractNode;
 import topics.agds.nodes.ValueNode;
 import ui.connector.GraphCallbacks;
@@ -54,7 +54,7 @@ public class AGDSAlgorithm {
         new AGDSAlgorithm(SourceSet.Iris).run();
     }
 
-    private GenericAgdsEngine engine;
+    private AgdsEngine engine;
 
     private GraphVisualiser graphVisualiser;
 
@@ -62,7 +62,7 @@ public class AGDSAlgorithm {
         return graphVisualiser;
     }
 
-    public GenericAgdsEngine getEngine() {
+    public AgdsEngine getEngine() {
         return engine;
     }
 
@@ -112,7 +112,7 @@ public class AGDSAlgorithm {
 
         GraphDrawer<AbstractNode> graphDrawer = buildGraphDrawer(graphVisualiser);
 
-        engine = GenericAgdsEngine.initWith(propertyNames, classNames, dataSet)
+        engine = AgdsEngine.initWith(propertyNames, classNames, dataSet)
                 .withGraphDrawer(graphDrawer)
                 .buildGraph()
                 .printMin()
@@ -121,7 +121,7 @@ public class AGDSAlgorithm {
         if (graphHandler != null) graphHandler.onVisualiserCreated(graphVisualiser);
         if (graphHandler != null) graphHandler.onEngineCreated(engine);
 
-        engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
+//        engine.markNodesSimilarToMany(5, engine.randomLeaf(), engine.randomLeaf(), engine.randomLeaf());
         // graphVisualiser.enableLegend();
         //Viewer viewer = graphVisualiser.showGraph();
         // if (graphHandler != null) graphHandler.onGraphCreated(viewer);
@@ -130,19 +130,29 @@ public class AGDSAlgorithm {
     @Nullable
     public GraphCallbacks graphHandler;
 
-    private GraphDrawer<AbstractNode> buildGraphDrawer(final GraphVisualiser graphVisualiser) {
-        return new GraphDrawer<AbstractNode>() {
-            @Override
-            public void drawNode(AbstractNode nodeName) {
-                graphVisualiser.shouldAddLabel = !(nodeName instanceof ValueNode);
-                graphVisualiser.drawNode(nodeName);
-            }
+    public static class DefaultDrawer implements GraphDrawer<AbstractNode> {
+        GraphVisualiser graphVisualiser;
+        public boolean forceDraw;
 
-            @Override
-            public void drawEdge(AbstractNode nodeA, AbstractNode nodeB) {
-                graphVisualiser.drawEdge(nodeA, nodeB);
-            }
-        };
+        public DefaultDrawer(GraphVisualiser visualiser) {
+            this.graphVisualiser = visualiser;
+        }
+
+        @Override
+        public void drawNode(AbstractNode nodeName) {
+            graphVisualiser.shouldAddLabel = forceDraw || !(nodeName instanceof ValueNode);
+            graphVisualiser.drawNode(nodeName);
+        }
+
+        @Override
+        public void drawEdge(AbstractNode nodeA, AbstractNode nodeB) {
+            graphVisualiser.drawEdge(nodeA, nodeB);
+        }
+    }
+
+
+    private GraphDrawer<AbstractNode> buildGraphDrawer(final GraphVisualiser graphVisualiser) {
+        return new DefaultDrawer(graphVisualiser);
     }
 
     private List<String> getPropertyNames(String firstLine) {

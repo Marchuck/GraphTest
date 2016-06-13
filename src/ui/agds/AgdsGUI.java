@@ -4,9 +4,10 @@ import common.Utils;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.AGDSAlgorithm;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
+import topics.agds.nodes.RecordNode;
 import topics.data_mining.DataMining;
-import topics.k_fold_cross_validation.KFoldCrossValidation;
+import topics.k_fold_cross_validation.CrossValidation;
 import topics.nearest_k_neighbours.NearestKNeighbours;
 import topics.som.SOMTest;
 import ui.AgdsClassificationProxy;
@@ -49,6 +50,11 @@ public class AgdsGUI extends JFrame {
     private JButton SOMButton;
     private JButton dataMiningButton;
     private JButton crossValidationButton;
+    private JButton filterValuesButton;
+    private JButton filterSectionButton;
+    private JButton findLeastSimilarButton;
+    private JButton minButton;
+    private JButton maxButton;
 
     /**
      * Connectors
@@ -63,10 +69,11 @@ public class AgdsGUI extends JFrame {
     /**
      * Algorithm here
      */
-    public GenericAgdsEngine agdsEngine;
+    public AgdsEngine agdsEngine;
     public GraphVisualiser agdsVisualiser;
     private boolean graphVisible;
     AGDSAlgorithm agdsAlgorithm;
+    private AgdsEngine engine;
 
 
     public AgdsGUI(String title) throws HeadlessException {
@@ -101,30 +108,30 @@ public class AgdsGUI extends JFrame {
     }
 
     private void setupOtherTopics() {
-     nearestNeighboursButton.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             NearestKNeighbours.main(null);
-         }
-     });
-     SOMButton.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             SOMTest.main(null);
-         }
-     });
-     dataMiningButton.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             DataMining.main(null);
-         }
-     });
-     crossValidationButton.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             KFoldCrossValidation.main(null);
-         }
-     });
+        nearestNeighboursButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NearestKNeighbours.main(null);
+            }
+        });
+        SOMButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SOMTest.main(null);
+            }
+        });
+        dataMiningButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataMining.main(null);
+            }
+        });
+        crossValidationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CrossValidation.main(null);
+            }
+        });
     }
 
     private void setupGraphPane() {
@@ -156,39 +163,45 @@ public class AgdsGUI extends JFrame {
                     Utils.log(item.toString());
                 }
                 //invoke popUp to set threshold
-                thresholdEnterer = new SingleValueChooser(submitItemsButton, "Enter threshold", new SingleValueChooser.SendAction() {
-                    @Override
-                    public void onSend(String value) {
-                        Double d = Double.parseDouble(value);
-                        if (Utils.isBetween(0, 1, d)) {
-                            AgdsClassificationProxy.onItemToClassify(agdsEngine, items, d, new ResultCallback<String>() {
-                                @Override
-                                public void onComputed(List<String> result) {
-                                    String title = (items.size() == 1 ? "Item " : "Items") + " classified to ";
-                                    new InformationDialog(submitItemsButton, title + result.get(0));
+                thresholdEnterer = new SingleValueChooser(submitItemsButton, "Enter threshold",
+                        new SingleValueChooser.SendAction() {
+                            @Override
+                            public void onSend(String value) {
+                                Double d = Double.parseDouble(value);
+                                if (Utils.isBetween(0, 1, d)) {
+                                    AgdsClassificationProxy.onItemToClassify(agdsEngine, items, d, new ResultCallback<RecordNode>() {
+                                        @Override
+                                        public void onComputed(List<RecordNode> results) {
+                                            String title = (items.size() == 1 ? "Item " : "Items") + " classified to ";
+                                            new InformationDialog(submitItemsButton, title,results);
+                                        }
+                                    });
                                 }
-                            });
-                        }
-                        thresholdEnterer.setVisible(false);
-                        thresholdEnterer.dispose();
-                    }
-                });
+                                thresholdEnterer.setVisible(false);
+                                thresholdEnterer.dispose();
+                            }
+                        });
             }
         });
     }
 
     private void setupSimilarityPane() {
-        similarityPaneConnector = new SimilarityPaneConnector(similarityList, searchSimilarButton,
-                loadRecordNodesButton,agdsEngine);
+        similarityPaneConnector = new SimilarityPaneConnector(
+                findLeastSimilarButton, searchSimilarButton, maxButton, minButton,
+                similarityList,
+                loadRecordNodesButton, agdsEngine);
     }
 
     private void setupCorrelationPane() {
         correlationPaneConnector = new CorrelationPaneConnector(correlationList, computeCorrelationButton, agdsEngine);
     }
 
-    public void setAgdsEngine(GenericAgdsEngine agdsEngine) {
+    public void setAgdsEngine(AgdsEngine agdsEngine) {
         this.agdsEngine = agdsEngine;
         setupPanes();
     }
 
+    public AgdsEngine getEngine() {
+        return engine;
+    }
 }

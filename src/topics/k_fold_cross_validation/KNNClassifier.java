@@ -1,7 +1,8 @@
 package topics.k_fold_cross_validation;
 
 import common.Item;
-import common.MPair;
+import common.MutablePair;
+import common.Utils;
 
 import java.util.*;
 
@@ -13,7 +14,7 @@ public class KNNClassifier {
 
     private List<Item> dataSet;
     private Item candidate;
-    private List<MPair<String, Float>> existingListOfCandidates = new ArrayList<>();
+    private List<MutablePair<String, Float>> existingListOfCandidates = new ArrayList<>();
 
     public KNNClassifier() {
 
@@ -34,23 +35,107 @@ public class KNNClassifier {
         return this;
     }
 
-    public KNNClassifier sortEuclides() {
+    public KNNClassifier sortWithLInfinity() {
         Collections.sort(dataSet, new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
-                double d1 = Item.diffDistance(o1, candidate);
-                double d2 = Item.diffDistance(o2, candidate);
+                double d1 = Item.l_InfinityDistance(o1, candidate);
+                double d2 = Item.l_InfinityDistance(o2, candidate);
                 return Double.compare(d1, d2);
             }
         });
         return this;
     }
 
+    public KNNClassifier sortWithEuclides() {
+        Collections.sort(dataSet, getComparator(candidate));
+        return this;
+    }
+
+    public static Comparator<Item> getComparator(final Item _candidate) {
+        return new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                double d1 = Item.diffDistance(o1, _candidate);
+                double d2 = Item.diffDistance(o2, _candidate);
+                return Double.compare(d1, d2);
+            }
+        };
+    }
+
     public String classify(int k, int n) {
-        List<Item> neighbours = XValidationUtils.splitToSubLists(dataSet, k).get(n);
+        List<Item> neighbours = CrossValidationUtils.splitToSubLists(dataSet, k).get(n);
         String candidateName = getCandidateName(neighbours, candidate);
         cache(candidateName);
         return candidateName;
+    }
+
+    List<List<Item>> bothSets = null;
+
+    public double[] optimalKResultRandomized(int sn, int k) {
+        int n = 10;
+        if (bothSets == null) bothSets = CrossValidationUtils.getSlicedRandomizedSets(dataSet, n);
+        double meanValue = 0;
+        for (int whichOne = 0; whichOne < bothSets.size(); whichOne++) {
+            List<Item> validationSet = bothSets.get(whichOne);
+            List<Item> learningSet = new ArrayList<>();
+            learningSet.addAll(dataSet);
+            learningSet.removeAll(validationSet);
+
+            int howMuchSucceeded = 0;
+            for (Item it : validationSet) {
+                if (it.name.equalsIgnoreCase(getCandidateName(getNeighbours(learningSet, it, k), it)))
+                    howMuchSucceeded++;
+            }
+            Utils.log(howMuchSucceeded + " / " + validationSet.size());
+            if (validationSet.size() != 0)
+                meanValue += howMuchSucceeded / validationSet.size();
+        }
+        return new double[]{meanValue, bothSets.size()};
+    }
+
+    public double[] optimalKResult(int sn, int k) {
+        int n = 10;
+        if (bothSets == null) bothSets = CrossValidationUtils.getSlicedSets(dataSet, n);
+
+        double meanValue = 0;
+        for (int whichOne = 0; whichOne < bothSets.size(); whichOne++) {
+            Utils.log("" + whichOne);
+            List<Item> validationSet = bothSets.get(whichOne);
+            List<Item> learningSet = new ArrayList<>();
+            learningSet.addAll(dataSet);
+            learningSet.removeAll(validationSet);
+
+            int howMuchSucceeded = 0;
+            for (Item it : validationSet) {
+                if (it.name.equalsIgnoreCase(getCandidateName(getNeighbours(learningSet, it, k), it)))
+                    howMuchSucceeded++;
+            }
+            meanValue += howMuchSucceeded / validationSet.size();
+        }
+        return new double[]{meanValue, bothSets.size()};
+    }
+
+    private List<Item> getNeighbours(List<Item> learningSet, Item candidate, int k) {
+        candidate.name = "?";
+        List<Item> learningList = new ArrayList<>();
+        learningList.addAll(learningSet);
+        learningList.add(candidate);
+        Collections.sort(learningList, getComparator(candidate));
+        int index = learningList.indexOf(candidate);
+        List<Item> neighbours;
+        int half = k / 2;
+        if (index - half < 0) {
+            neighbours = learningList.subList(0, k);
+            neighbours.remove(candidate);
+        } else if (index + half > learningList.size()) {
+            neighbours = learningList.subList(learningList.size() - k, learningList.size() - 1);
+            neighbours.remove(candidate);
+        } else {
+            neighbours = learningList.subList(index - half, index + half);
+            neighbours.remove(candidate);
+        }
+        return neighbours;
     }
 
     public String getMostVotedCandidateName() {
@@ -63,7 +148,7 @@ public class KNNClassifier {
         }
     }
 
-    static class WeightWrap {
+    private static class WeightWrap {
         private Double distanceSum;
         private Integer amount;
 
@@ -107,12 +192,7 @@ public class KNNClassifier {
 
     public KNNClassifier resetObserving() {
         existingListOfCandidates.clear();
-        existingListOfCandidates = null;
         return this;
     }
 
-    public KNNClassifier observeCandidates() {
-        existingListOfCandidates = new ArrayList<>();
-        return this;
-    }
 }

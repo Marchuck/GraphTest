@@ -1,5 +1,7 @@
 package common;
 
+import java.util.Arrays;
+
 /**
  * @author Lukasz Marczak
  * @since 14.04.16.
@@ -32,11 +34,10 @@ public class Item implements Comparable<Item> {
         for (double value : values) {
             sum += value * value;
         }
-        return   Math.sqrt(sum);
+        return Math.sqrt(sum);
     }
 
     /**
-     *
      * @param candidate
      * @param object
      * @return Item considered as difference between two Items
@@ -48,8 +49,24 @@ public class Item implements Comparable<Item> {
         return new Item(values);
     }
 
+    @Override
+    public String toString() {
+        return "name: " + name +
+                ", values: " + Arrays.toString(values);
+    }
+
     public static double diffDistance(Item candidate, Item object) {
         return getMetric(diff(candidate, object));
     }
 
+    public static double l_InfinityDistance(Item o1, Item o2) {
+        double max = Math.abs(o1.values[0] - o2.values[0]);
+        for (double f : o1.values) {
+            for (double g : o2.values) {
+                double val = Math.abs(f - g);
+                if (val > max) max = val;
+            }
+        }
+        return max;
+    }
 }

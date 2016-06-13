@@ -2,7 +2,7 @@ package ui.agds.tabs.correlation;
 
 import common.Utils;
 import javafx.util.Pair;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
 import topics.agds.nodes.RecordNode;
 import ui.agds.tabs.classify.SingleValueChooser;
 import ui.connector.ResultCallback;
@@ -22,7 +22,7 @@ public class CorrelationPaneConnector {
 
     private CorrelationBundle correlationBundle = new CorrelationBundle();
 
-    public CorrelationPaneConnector(final JList<CorrelationItem> correlationList, final JButton computeCorrelationButton, final GenericAgdsEngine agdsEngine) {
+    public CorrelationPaneConnector(final JList<CorrelationItem> correlationList, final JButton computeCorrelationButton, final AgdsEngine agdsEngine) {
 
         final DefaultListModel<CorrelationItem> model = new DefaultListModel<>();
         correlationList.setModel(model);

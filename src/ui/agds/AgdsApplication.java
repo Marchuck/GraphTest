@@ -1,13 +1,12 @@
 package ui.agds;
 
+import common.Utils;
 import org.graphstream.ui.view.Viewer;
 import some_graphs.GraphVisualiser;
 import topics.agds.AGDSAlgorithm;
 import topics.agds.SourceSet;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
 import ui.connector.GraphCallbacks;
-
-import javax.swing.*;
 
 /**
  * @author Lukasz
@@ -16,12 +15,12 @@ import javax.swing.*;
 public class AgdsApplication implements Runnable {
 
     private static AgdsApplication instance;
-    private JFrame currentGraphInstance;
     public AGDSAlgorithm algorithm;
     public AgdsGUI gui;
 
     public static AgdsApplication getInstance() {
-        return instance == null ? new AgdsApplication() : instance;
+        if (instance == null) instance = new AgdsApplication();
+        return instance;
     }
 
     @Override
@@ -35,7 +34,8 @@ public class AgdsApplication implements Runnable {
     private void setupCallbacks() {
         algorithm.graphHandler = new GraphCallbacks() {
             @Override
-            public void onEngineCreated(GenericAgdsEngine engine) {
+            public void onEngineCreated(AgdsEngine engine) {
+                Utils.log("engine created");
                 gui.setAgdsEngine(engine);
             }
 

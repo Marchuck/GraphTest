@@ -3,7 +3,7 @@ package some_graphs;
 import org.graphstream.ui.view.Viewer;
 import topics.agds.AGDSAlgorithm;
 import topics.agds.SourceSet;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
 
 import javax.swing.*;
 
@@ -15,16 +15,16 @@ import javax.swing.*;
 public class GraphMerger extends JFrame {
     public static final String TAG = GraphMerger.class.getSimpleName();
 
-    private GenericAgdsEngine agdsEngine;
+    private AgdsEngine agdsEngine;
     private GraphVisualiser graphVisualiser;
     private Viewer viewer;
 
 
-    public GenericAgdsEngine getAgds() {
+    public AgdsEngine getAgds() {
         return agdsEngine;
     }
 
-    public void setAgds(GenericAgdsEngine agds) {
+    public void setAgds(AgdsEngine agds) {
         this.agdsEngine = agds;
     }
 
@@ -32,7 +32,7 @@ public class GraphMerger extends JFrame {
         return graphVisualiser;
     }
 
-    public GraphMerger(GenericAgdsEngine engine, GraphVisualiser visualiser) {
+    public GraphMerger(AgdsEngine engine, GraphVisualiser visualiser) {
         super();
         agdsEngine = engine;
         graphVisualiser = visualiser;
@@ -53,7 +53,7 @@ public class GraphMerger extends JFrame {
         init();
     }
 
-    public static GraphMerger create(GenericAgdsEngine engine, GraphVisualiser visualiser) {
+    public static GraphMerger create(AgdsEngine engine, GraphVisualiser visualiser) {
         return new GraphMerger(engine, visualiser);
     }
 }

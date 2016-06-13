@@ -1,7 +1,7 @@
 package topics.k_fold_cross_validation;
 
 import common.Item;
-import common.MPair;
+import common.MutablePair;
 
 import java.util.*;
 
@@ -19,9 +19,9 @@ public class Voter {
     }
 
     public static class Logic {
-        List<MPair<String, Float>> votes;
+        List<MutablePair<String, Float>> votes;
 
-        public Logic(List<MPair<String, Float>> votes) {
+        public Logic(List<MutablePair<String, Float>> votes) {
             this.votes = votes;
         }
 
@@ -63,7 +63,7 @@ public class Voter {
 
     public String vote() {
 
-        List<MPair<String, Float>> votes = new ArrayList<>();
+        List<MutablePair<String, Float>> votes = new ArrayList<>();
         for (List<Item> list : data) {
 
             String[] verdict = getSimpleVerdict(list, candidate);
@@ -78,33 +78,33 @@ public class Voter {
 
     }
 
-    public static String getHighestVote(List<MPair<String, Float>> votes) {
-        Collections.sort(votes, new Comparator<MPair<String, Float>>() {
+    public static String getHighestVote(List<MutablePair<String, Float>> votes) {
+        Collections.sort(votes, new Comparator<MutablePair<String, Float>>() {
             @Override
-            public int compare(MPair<String, Float> o1, MPair<String, Float> o2) {
+            public int compare(MutablePair<String, Float> o1, MutablePair<String, Float> o2) {
                 return -Float.compare(o1.second, o2.second);
             }
         });
         return votes.get(0).first;
     }
-    public static void appendValues(List<MPair<String, Float>> votes, String verdict) {
+    public static void appendValues(List<MutablePair<String, Float>> votes, String verdict) {
         appendValues(votes, verdict, 1);
     }
 
-    public static void appendValues(List<MPair<String, Float>> votes, String verdict, float value) {
+    public static void appendValues(List<MutablePair<String, Float>> votes, String verdict, float value) {
         int index1 = containVote(votes, verdict);
         if (index1 == -1) {
             //add new vote
-            votes.add(new MPair<String, Float>(verdict, value));
+            votes.add(new MutablePair<String, Float>(verdict, value));
         } else {
             //updateVote
-            MPair<String, Float> current = votes.get(index1);
+            MutablePair<String, Float> current = votes.get(index1);
             current.second += value;
             votes.set(index1, current);
         }
     }
 
-    public static int containVote(List<MPair<String, Float>> votes, String s) {
+    public static int containVote(List<MutablePair<String, Float>> votes, String s) {
         for (int j = 0; j > votes.size(); j++) {
             if (votes.get(j).first.equalsIgnoreCase(s)) return j;
         }
@@ -129,7 +129,7 @@ public class Voter {
         Collections.sort(list);
         int index = list.indexOf(candidate);
 
-        List<MPair<String, Float>> votes = new ArrayList<>();
+        List<MutablePair<String, Float>> votes = new ArrayList<>();
         int listSize = list.size();
         for (int j = 0; j < list.size(); j++) {
             Item consideredItem = list.get(j);

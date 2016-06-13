@@ -2,15 +2,12 @@ package topics.data_mining;
 
 import common.DataReader;
 import common.Log;
-import common.MPair;
 import topics.data_mining.property.PropertyConfidenceBuilder;
 import topics.data_mining.property.PropertyManager;
 import topics.data_mining.property.PropertySupportBuilder;
 import topics.data_mining.transaction.Transaction;
 import topics.data_mining.transaction.TransactionManager;
 
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.System.out;
@@ -87,8 +84,10 @@ public class DataMining {
                 .joinStep()
                 .printMostFrequentProperties();
 
-//        List<MPair<List<String>, Integer>> mostFreq = apriori.get();
-//        for (MPair<List<String>, Integer> pair : mostFreq) {
+
+
+//        List<MutablePair<List<String>, Integer>> mostFreq = apriori.get();
+//        for (MutablePair<List<String>, Integer> pair : mostFreq) {
 //
 //            if (pair.first.size() > 1) {
 //                CombinationProvider<String> combinationProvider = new CombinationProvider<>(pair.first);

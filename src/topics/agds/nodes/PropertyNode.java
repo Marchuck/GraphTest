@@ -2,21 +2,27 @@ package topics.agds.nodes;
 
 
 import agds.AGDS;
+import common.SortedList;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * @author Lukasz Marczak
  * @since 25.04.16.
  */
-public class PropertyNode extends AbstractNode   {
+public class PropertyNode extends AbstractNode {
+
+    private SortedList<ValueNode> valueNodeList = new SortedList<>(new Comparator<ValueNode>() {
+        @Override
+        public int compare(ValueNode o1, ValueNode o2) {
+            return Double.compare(o1.getValue(), o2.getValue());
+        }
+    });
 
     public PropertyNode(String name) {
         super(name);
     }
-
-    private List<ValueNode> valueNodeList = new ArrayList<>();
 
     public PropertyNode addNode(ValueNode node) {
         valueNodeList.add(node);

@@ -3,6 +3,12 @@ package topics.sql;
 import common.DataReader;
 import common.Log;
 import common.RunAlgorithm;
+import common.Utils;
+import scala.util.parsing.combinator.testing.Str;
+import topics.agds.engine.AgdsEngine;
+import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.nodes.GenericRecordNode;
+import topics.agds.nodes.GenericValueNode;
 import topics.sql.randomizer.Randomizer;
 import topics.sql.randomizer.Student;
 
@@ -23,6 +29,15 @@ import java.util.Random;
 public class RelationalDatabases implements RunAlgorithm {
     public static final String TAG = RelationalDatabases.class.getSimpleName();
     public static final String FILE_NAME = "students.txt";
+
+    public static final int _ID = 0;
+    public static final int _NAME = 1;
+    public static final int _SURNAME = 2;
+    public static final int _HAS_SCHOLARSHIP = 3;
+    public static final int _YEAR = 4;
+    public static final int _FACULTY = 5;
+    public static final int _CITY = 6;
+    public static final int _STREET = 7;
 
     public static void main(String[] args) throws Exception {
         new RelationalDatabases().run();
@@ -72,7 +87,23 @@ public class RelationalDatabases implements RunAlgorithm {
         DataReader<Student> studentReader = prepareReader();
         List<Student> allStudents = studentReader.read(FILE_NAME);
         List<String> columnNames = getColumnNames(studentReader.getFirstLine());
-        SqlRoot sqlRoot = new SqlRoot();
+        GenericAgdsEngine<String, Student> engine = new GenericAgdsEngine<>(columnNames, columnNames, allStudents)
+                .buildGraph()
+                .printMin()
+                .printMax();
+        GenericValueNode<String> s =
+                engine.getNodesWithValueWithExactProperty(engine.getPropertyNodes().get(_NAME),
+                        "Laura");
+        List<Student> students = engine.getNodesFromSectionWithExactProperty(_YEAR, "2", "4");
+        for (Student student : students) {
+            Utils.log("student: " + student.getValues()[0] + ", " + student.getValues()[2]);
+        }
+        Utils.log("result: " + s.getName() + ", " + s.getValue());
+
+        for (GenericRecordNode<String> ss : s.getNodes()) {
+            Utils.log(ss.getName() + " : ");
+        }
+
 //        for (String columnName : columnNames)
 //            sqlRoot.addColumns(new SqlColumn(columnName));
     }

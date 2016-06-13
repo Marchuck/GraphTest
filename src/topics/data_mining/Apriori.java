@@ -6,8 +6,6 @@ import topics.data_mining.transaction.Transaction;
 import java.util.*;
 import java.util.List;
 
-import static java.lang.System.out;
-
 /**
  * @author Lukasz Marczak
  * @since 22.04.16.
@@ -27,13 +25,13 @@ public class Apriori {
      * list of pairs: property with corresponding support
      * (how much this value was present in transactions), for example { "A", 14}
      */
-    private List<MPair<String, Integer>> propertiesWithFrequnecy;
+    private List<MutablePair<String, Integer>> propertiesWithFrequnecy;
     /**
      * store each patterns with corresponding support,
      * for example { {"A", "B", "C"}, 4 }
      * this is the output of Apriori algorithm
      */
-    private List<MPair<List<String>, Integer>> mostFrequentProperties;
+    private List<MutablePair<List<String>, Integer>> mostFrequentProperties;
     /**
      * it is used to create combinations from most frequent properties
      */
@@ -52,7 +50,7 @@ public class Apriori {
     public Apriori withProperties(List<String> properties) {
         this.properties = properties;
         for (String property : properties) {
-            propertiesWithFrequnecy.add(new MPair<>(property, 0));
+            propertiesWithFrequnecy.add(new MutablePair<>(property, 0));
         }
         return this;
     }
@@ -79,12 +77,12 @@ public class Apriori {
     private Apriori createMostFrequentSingles(double threshold) {
         this.mostFrequentProperties = new ArrayList<>();
         this.singleFrequentProperties = new ArrayList<>();
-        for (MPair<String, Integer> mPair : propertiesWithFrequnecy) {
-            if (mPair.second >= threshold) {
-                List<String> list = DataReader.Utils.wrapToList(mPair.first);
-                MPair<List<String>, Integer> pair = new MPair<>(list, mPair.second);
+        for (MutablePair<String, Integer> mutablePair : propertiesWithFrequnecy) {
+            if (mutablePair.second >= threshold) {
+                List<String> list = DataReader.Utils.wrapToList(mutablePair.first);
+                MutablePair<List<String>, Integer> pair = new MutablePair<>(list, mutablePair.second);
                 mostFrequentProperties.add(pair);
-                singleFrequentProperties.add(mPair.first);
+                singleFrequentProperties.add(mutablePair.first);
                 //    Log.d(TAG, "___adding " + printMostFrequentProperty(pair));
             }
         }
@@ -98,7 +96,7 @@ public class Apriori {
             for (String propertyFromTransaction : transaction.properties) {
                 int index = properties.indexOf(propertyFromTransaction);
                 if (index != -1) {
-                    MPair<String, Integer> toUpdate = propertiesWithFrequnecy.get(index);
+                    MutablePair<String, Integer> toUpdate = propertiesWithFrequnecy.get(index);
                     int previous = propertiesWithFrequnecy.get(index).second;
                     toUpdate.second = previous + 1;
                     propertiesWithFrequnecy.set(index, toUpdate);
@@ -118,13 +116,13 @@ public class Apriori {
         //create ascending list of property and support pairs
         // with min to max support order or max to min order(DESCENDING)
         final int sgn = ascending == SortOrder.ASCENDING ? 1 : -1;
-        Collections.sort(propertiesWithFrequnecy, new Comparator<MPair<String, Integer>>() {
+        Collections.sort(propertiesWithFrequnecy, new Comparator<MutablePair<String, Integer>>() {
             @Override
-            public int compare(MPair<String, Integer> o1, MPair<String, Integer> o2) {
+            public int compare(MutablePair<String, Integer> o1, MutablePair<String, Integer> o2) {
                 return sgn * Integer.compare(o1.second, o2.second);
             }
         });
-//        for (MPair<String, Integer> a : propertiesWithFrequnecy)
+//        for (MutablePair<String, Integer> a : propertiesWithFrequnecy)
 //            out.println(a.first + ", " + a.second);
         return this;
     }
@@ -175,26 +173,26 @@ public class Apriori {
                 Integer computedSupport = computeSupport(combination, transactions);
                 if (computedSupport >= THRESHOLD) {
                     canAddMore = true;
-                    mostFrequentProperties.add(new MPair<>(combination, computedSupport));
+                    mostFrequentProperties.add(new MutablePair<>(combination, computedSupport));
                 }
             }
         }
         return this;
     }
 
-    public List<MPair<List<String>, Integer>> get() {
+    public List<MutablePair<List<String>, Integer>> get() {
         return mostFrequentProperties;
     }
 
     public Apriori printMostFrequentProperties() {
         Log.d(TAG, "\n\n****printMostFrequentProperties***\n\n");
-        for (MPair<List<String>, Integer> pair : mostFrequentProperties) {
+        for (MutablePair<List<String>, Integer> pair : mostFrequentProperties) {
             Log.d(printMostFrequentProperty(pair));
         }
         return this;
     }
 
-    private String printMostFrequentProperty(MPair<List<String>, Integer> mostFrequentProperty) {
+    private String printMostFrequentProperty(MutablePair<List<String>, Integer> mostFrequentProperty) {
         return "support:  " + mostFrequentProperty.second +
                 ", properties: " + printCombination(mostFrequentProperty.first);
     }
@@ -214,24 +212,24 @@ public class Apriori {
         return singleFrequentProperties;
     }
 
-    public List<MPair<List<String>, Integer>> findPairsWhichContains(List<String> properties) {
-        List<MPair<List<String>, Integer>> matches = new ArrayList<>();
-        for (MPair<List<String>, Integer> p : mostFrequentProperties) {
+    public List<MutablePair<List<String>, Integer>> findPairsWhichContains(List<String> properties) {
+        List<MutablePair<List<String>, Integer>> matches = new ArrayList<>();
+        for (MutablePair<List<String>, Integer> p : mostFrequentProperties) {
             if (p.first.size() > properties.size() && p.first.containsAll(properties)) matches.add(p);
         }
         return matches;
     }
 
-    private List<MPair<List<String>, Integer>> findPairsWhichContains(List<MPair<List<String>, Integer>> dataSet,
-                                                                      String properties) {
-        List<MPair<List<String>, Integer>> matches = new ArrayList<>();
-        for (MPair<List<String>, Integer> p : dataSet) {
+    private List<MutablePair<List<String>, Integer>> findPairsWhichContains(List<MutablePair<List<String>, Integer>> dataSet,
+                                                                            String properties) {
+        List<MutablePair<List<String>, Integer>> matches = new ArrayList<>();
+        for (MutablePair<List<String>, Integer> p : dataSet) {
             if (p.first.contains(properties)) matches.add(p);
         }
         return matches;
     }
 
-    public List<MPair<List<String>, Integer>> findPairsWhichContains(String properties) {
+    public List<MutablePair<List<String>, Integer>> findPairsWhichContains(String properties) {
         return findPairsWhichContains(mostFrequentProperties, properties);
     }
 

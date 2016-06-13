@@ -847,8 +847,8 @@ Id,Imię,Nazwisko,Stypendium,Rok,Kierunek,Miasto,Ulica
 846,Olaf,Gaweł,true,5,Informatyka,Kielce,Łódzka
 847,Krzysztof,Panek,false,3,Informatyka,Szczecin,Jacka Malczewskiego
 848,Marek,Rosiak,false,4,Mikroelektronika w technice i medycynie,Poznań,Jana Kasprowicza
-849,Mirosław,Nowacki,true,5,Informatyka,Kraków,Krucza
-850,Józef,Adamus,false,5,Elektrotechnika,Poznań,Krupnicza
+849,Mirosław,Nowacki,true,5,Informatyka,Kraków,Krupnicza
+850,Józef,Adamus,false,5,Elektrotechnika,Poznań,Krucza
 851,Alfred,Brzeziński,false,3,Inżynieria Biomedyczna,Lublin,Chmielna
 852,Nina,Mazur,false,2,Inżynieria Biomedyczna,Kielce,Północna
 853,Karol,Skowroński,false,5,Inżynieria Biomedyczna,Wrocław,Obozowa

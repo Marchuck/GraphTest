@@ -3,7 +3,8 @@ package ui;
 import common.Item;
 import common.Log;
 import some_graphs.GraphMerger;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
+import topics.agds.nodes.RecordNode;
 import ui.agds.tabs.classify.ClassifyItem;
 import ui.connector.ResultCallback;
 
@@ -22,8 +23,8 @@ public class AgdsClassificationProxy {
         this.graphMerger = graphMerger;
     }
 
-    public static void onItemToClassify(GenericAgdsEngine engine, List<ClassifyItem> items, double threshold,
-                                        ResultCallback<String> resultCallback) {
+    public static void onItemToClassify(AgdsEngine engine, List<ClassifyItem> items, double threshold,
+                                        ResultCallback<RecordNode> resultCallback) {
         double[][] doubles = new double[items.size()][4];
         for (int j = 0; j < items.size(); j++) {
             doubles[j] = items.get(j).asDoubles();

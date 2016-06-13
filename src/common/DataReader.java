@@ -11,6 +11,7 @@ import java.util.*;
 
 public class DataReader<DESTINATION> {
     public static final String TAG = DataReader.class.getSimpleName();
+    public static final String IRIS_DATA_LARGE = "LargeIris.txt";
     public static final String IRIS_DATA = "IrisData.txt";
     public static final String IRIS_DATA_SIMPLIFIED = "IrisDataSimplified.txt";
     public static final String IRIS_DATA_TWICE_SIMPLIFIED = "IrisDataTwiceSimplified.txt";
@@ -44,7 +45,7 @@ public class DataReader<DESTINATION> {
     }
 
     /**
-     * ReadStrategy tells DataReader how to
+     * ReadStrategy tells DataReader how to save line as object
      *
      * @param <DESTINATION>
      */
@@ -183,5 +184,27 @@ public class DataReader<DESTINATION> {
             return list;
         }
     }
+    public static DataReader<Item> prepareWineReader() {
+        DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
+            @Override
+            public Item createNewRow(String line) {
+                return DataReader.newWineItemRow(line);
+            }
+        };
 
+        DataReader<Item> dataReader = new DataReader<>(readStrategy);
+        return dataReader.skipFirstLine();
+    }
+
+    public static  DataReader<Item> prepareIrisReader() {
+        DataReader.ReadStrategy<Item> readStrategy = new DataReader.ReadStrategy<Item>() {
+            @Override
+            public Item createNewRow(String line) {
+                return DataReader.newCommaItemRow(line);
+            }
+        };
+
+        DataReader<Item> dataReader = new DataReader<>(readStrategy);
+        return dataReader.skipFirstLine();
+    }
 }

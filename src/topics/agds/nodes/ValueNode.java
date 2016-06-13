@@ -9,11 +9,17 @@ import java.util.List;
  * @author Lukasz Marczak
  * @since 25.04.16.
  */
+
+
 public class ValueNode extends AbstractNode {
 
     private double value;
+
     public double weight;
+
+
     private List<RecordNode> recordNodeList = new ArrayList<>();
+
     private PropertyNode propertyNode;
 
     public ValueNode(String name) {
@@ -75,4 +81,20 @@ public class ValueNode extends AbstractNode {
         weight = 0f;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ValueNode)) return false;
+
+        ValueNode valueNode = (ValueNode) o;
+
+        return Double.compare(valueNode.value, value) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(value);
+        return (int) (temp ^ (temp >>> 32));
+    }
 }

@@ -9,7 +9,7 @@ import topics.agds.nodes.RecordNode;
  */
 public class SimilarItem {
     public RecordNode recordNode;
-    public String name;
+    public String name, className;
     /**
      * 0 - not selected
      * 1 - selected
@@ -24,5 +24,6 @@ public class SimilarItem {
     public SimilarItem(RecordNode recordNode, String name) {
         this.recordNode = recordNode;
         this.name = name;
+        this.className = recordNode.getClassNode().getName();
     }
 }

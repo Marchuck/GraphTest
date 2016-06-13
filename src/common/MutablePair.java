@@ -5,11 +5,11 @@ package common;
  * @since 23.04.16.
  * Mutable pair
  */
-public class MPair<FIRST, SECOND> {
+public final class MutablePair<FIRST, SECOND> {
     public FIRST first;
     public SECOND second;
 
-    public MPair(FIRST first, SECOND second) {
+    public MutablePair(FIRST first, SECOND second) {
         this.first = first;
         this.second = second;
     }

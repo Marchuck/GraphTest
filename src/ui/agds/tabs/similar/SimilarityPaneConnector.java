@@ -2,9 +2,11 @@ package ui.agds.tabs.similar;
 
 import common.Utils;
 import javafx.util.Pair;
-import topics.agds.engine.GenericAgdsEngine;
+import topics.agds.engine.AgdsEngine;
+import topics.agds.nodes.PropertyNode;
 import topics.agds.nodes.RecordNode;
 import ui.agds.tabs.classify.InformationDialog;
+import ui.agds.tabs.classify.SelectPropertyDialog;
 import ui.agds.tabs.classify.SingleValueChooser;
 import ui.connector.ResultCallback;
 
@@ -14,7 +16,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Lukasz
@@ -23,8 +27,48 @@ import java.util.List;
 public class SimilarityPaneConnector {
 
 
-    public SimilarityPaneConnector(JList<SimilarItem> similarityList, final JButton submitItemsButton,
-                                   JButton loadRecordNodesButton, final GenericAgdsEngine engine) {
+    public SimilarityPaneConnector(final JButton findLeastSimilarButton, final JButton searchSimilarButton,
+                                   final JButton maxButton, final JButton minButton,
+                                   JList<SimilarItem> similarityList, final JButton loadRecordNodesButton,
+                                   final AgdsEngine engine) {
+
+
+        maxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SelectPropertyDialog(maxButton, engine.getPropertyNodes(), new SelectPropertyDialog.SendAction() {
+                    @Override
+                    public void onSend(List<PropertyNode> node) {
+                        double max = engine.getMax(node.get(0));
+                        if (node.size() > 1)
+                            for (int j = 1; j < node.size(); j++) {
+                                double d1 = engine.getMax(node.get(j));
+                                if (max > d1) max = d1;
+                            }
+                        String result = "Max: " + max;
+                        new InformationDialog(maxButton, result);
+                    }
+                });
+            }
+        });
+        minButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SelectPropertyDialog(minButton, engine.getPropertyNodes(), new SelectPropertyDialog.SendAction() {
+                    @Override
+                    public void onSend(List<PropertyNode> node) {
+                        double min = engine.getMin(node.get(0));
+                        if (node.size() > 1)
+                            for (int j = 1; j < node.size(); j++) {
+                                double d1 = engine.getMin(node.get(j));
+                                if (min < d1) min = d1;
+                            }
+                        String result = "Min: " + min;
+                        new InformationDialog(minButton, result);
+                    }
+                });
+            }
+        });
 
         final DefaultListModel<SimilarItem> model = new DefaultListModel<>();
         similarityList.setModel(model);
@@ -62,15 +106,26 @@ public class SimilarityPaneConnector {
                     model.addElement(new SimilarItem(pair));
             }
         });
-        actionListener = (new ActionListener() {
+
+        findLeastSimilarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+
+
+        mostSimilarListener = (new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 common.Utils.log("submit items");
 
-                final SingleValueChooser chooser = new SingleValueChooser(submitItemsButton, "Set threshold between 0 and 1", new SingleValueChooser.SendAction() {
+                final SingleValueChooser chooser = new SingleValueChooser(searchSimilarButton,
+                        "Set threshold", new SingleValueChooser.SendAction() {
                     @Override
                     public void onSend(String value) {
-                        double d1 = Double.parseDouble(value);
+                        final double d1 = Double.parseDouble(value);
                         if (Utils.isBetween(0, 1, d1)) {
                             List<RecordNode> selected = new ArrayList<RecordNode>();
                             for (int j = 0; j < model.getSize(); j++) {
@@ -79,27 +134,33 @@ public class SimilarityPaneConnector {
                                     selected.add(item.recordNode);
                                 }
                             }
-                            engine.calculateSimilarity(selected, new ResultCallback<RecordNode>() {
+                            engine.calculateSimilarity(d1, selected, new ResultCallback<RecordNode>() {
                                 @Override
-                                public void onComputed(List<RecordNode> result) {
-                                    String ress = "[";
-                                    for (int k = 0; k < result.size() - 1; k++) {
-                                        ress += result.get(k).getName() + ",";
-                                    }
-                                    ress += result.get(result.size() - 1).getName() + "]";
-                                    new InformationDialog(submitItemsButton, "similarity result:\n" + ress);
+                                public void onComputed(final List<RecordNode> result) {
+                                    Set<String> names = new HashSet<>();
+//                                    String ress = "[";
+//                                    for (RecordNode aResult : result) {
+//                                        names.add(aResult.getName());
+//                                    }
+//                                    List<String> a = new ArrayList<>();
+//                                    a.addAll(names);
+//                                    for (String anA : a) {
+//                                        ress += anA + ", ";
+//                                    }
+//                                    ress += "]";
+                                    new InformationDialog(searchSimilarButton, "similarity result:\n", result);
                                 }
                             });
                         } else {
-                            actionListener.actionPerformed(e);
+                            mostSimilarListener.actionPerformed(e);
                         }
                     }
                 });
-
             }
         });
-        submitItemsButton.addActionListener(actionListener);
+        searchSimilarButton.addActionListener(mostSimilarListener);
     }
 
-    private ActionListener actionListener;
+    private ActionListener mostSimilarListener;
+    private ActionListener leastSimilarListener;
 }
